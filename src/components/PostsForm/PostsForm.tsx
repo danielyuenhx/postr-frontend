@@ -1,18 +1,23 @@
 import React from 'react';
 
-import Input from './Input'
+import Input from './Input';
 
-import styles from './PostsForm.module.css'
+import styles from './PostsForm.module.css';
 
 const PostsForm = () => {
 	return (
-        <form>
-            <div className={styles.card}>
-                <h1>Write Post</h1>
-                <Input title="Post" titlePlaceholder="Write something..." />
-            </div>
-        </form>
-    )
+		<form>
+			<div className={styles.card}>
+                <img />
+					<input
+						placeholder="Write something..."
+						type="text"
+						id="input"
+						className={styles.input}
+					/>
+			</div>
+		</form>
+	);
 };
 
 export default PostsForm;

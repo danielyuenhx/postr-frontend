@@ -10,6 +10,8 @@
 	box-shadow: 0 2px 5px 0 hsl(270deg 1% 53% / 20%);
 	padding: 0 5%;
     background-color: white;
+    text-transform: uppercase;
+    font-weight: 500;
     z-index: 5;
 }
 
@@ -34,9 +36,9 @@
 	cursor: pointer;
 	padding: 1rem 1rem;
     border-radius: 10px;
-    transition: 0.25s;
+    transition: 0.15s ease-in-out;
 }
 
 .right li:hover {
-    background-color: #f1f0f0;
+    color: #5e9be0;
 }
