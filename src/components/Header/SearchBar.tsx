@@ -4,20 +4,18 @@ import styles from './SearchBar.module.css';
 
 const SearchBar = () => {
 	return (
-		<form>
+		<form className={styles.search}>
 			<input
 				type="text"
 				placeholder="Search..."
-				className={styles.search}
 			/>
-			<button type="submit" className={styles.button}>
+			<button type="submit">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-                className={styles.icon}
 			>
 				<path
 					stroke-linecap="round"

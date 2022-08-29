@@ -1,15 +1,32 @@
 .search {
-    border-radius: 5px;
-    padding: 0.25rem;
-    border: none;
-    outline: 1.5px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
-
-.button {
     
+
+.search input {
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0.5rem 0.5rem;
+    border: none;
+    outline: 1.25px solid gray;
+    margin-right: -1.5rem;
 }
 
-.icon {
-    width: 15px;
-    height: 15px;
+.search button {
+    width: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+.search svg {
+    width: 20px;
+    height: 20px;
 }
