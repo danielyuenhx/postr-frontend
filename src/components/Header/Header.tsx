@@ -17,9 +17,9 @@ const Header = () => {
 			</div>
 			<nav className={styles.right}>
 				<ul>
-					<motion.li whileHover={{ scale: 1.1 }}>Home</motion.li>
-					<motion.li whileHover={{ scale: 1.1 }}>Notifications</motion.li>
-					<motion.li whileHover={{ scale: 1.1 }}>Profile</motion.li>
+					<li>Home</li>
+					<li>Notifications</li>
+					<li>Profile</li>
 				</ul>
 			</nav>
 		</header>
