@@ -1,0 +1,15 @@
+.search {
+    border-radius: 5px;
+    padding: 0.25rem;
+    border: none;
+    outline: 1.5px solid gray;
+}
+
+.button {
+    
+}
+
+.icon {
+    width: 15px;
+    height: 15px;
+}
