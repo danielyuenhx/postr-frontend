@@ -1,0 +1,17 @@
+.button {
+    color: white;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    border:none;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+.enabled {
+    background-color: rgb(41, 41, 41);
+    cursor: pointer;
+}
+
+.disabled {
+    background-color: rgb(143, 143, 143);
+}

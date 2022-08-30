@@ -1,10 +1,10 @@
 import React from 'react';
 
-import styles from './LoginButtons.module.css'
+import styles from './ToggleButtons.module.css'
 
 type Props = { toggle: boolean, toggleHandler: (status: boolean) => void}
 
-const LoginButtons = (props: Props) => {
+const ToggleButtons = (props: Props) => {
     const { toggle, toggleHandler } = props;
 
 	return (
@@ -34,4 +34,4 @@ const LoginButtons = (props: Props) => {
 	);
 };
 
-export default LoginButtons;
+export default ToggleButtons;

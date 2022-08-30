@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 
-import LoginButtons from './LoginButtons';
+import ToggleButtons from './ToggleButtons';
 import LoginInput from './LoginInput';
+import LoginButton from './LoginButton';
 
 import styles from './Login.module.css';
 
 const Login = () => {
 	const [toggle, setToggle] = useState(true);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [isValid, setIsValid] = useState(false);
 
 	const submitHandler = (event: React.FormEvent) => {
 		event.preventDefault();
@@ -19,7 +23,7 @@ const Login = () => {
 	return (
 		<div className={styles.card}>
 			<form onSubmit={submitHandler}>
-				<LoginButtons toggle={toggle} toggleHandler={toggleHandler} />
+				<ToggleButtons toggle={toggle} toggleHandler={toggleHandler} />
 				<LoginInput label="Username" type="text" />
 				<LoginInput label="Password" type="password" />
 				{!toggle && (
@@ -33,6 +37,7 @@ const Login = () => {
 						</span>
 					</p>
 				)}
+                <LoginButton label={toggle ? "Login" : "Register"} />
 			</form>
 		</div>
 	);
