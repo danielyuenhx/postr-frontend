@@ -4,6 +4,9 @@ import ToggleButtons from './ToggleButtons';
 import LoginInput from './LoginInput';
 import LoginButton from './LoginButton';
 
+import { createUser } from '../../actions/user-actions';
+import { useAppDispatch } from '../../hooks/hooks'
+
 import styles from './Login.module.css';
 
 const Login = () => {
@@ -13,8 +16,12 @@ const Login = () => {
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [isValid, setIsValid] = useState(false);
 
+    const dispatch = useAppDispatch();
+
 	const submitHandler = (event: React.FormEvent) => {
 		event.preventDefault();
+
+		dispatch(createUser({username, password}));
 	};
 
 	const toggleHandler = (status: boolean) => {
@@ -38,14 +45,13 @@ const Login = () => {
 	useEffect(() => {
 		if (username.trim().length > 0 && password.trim().length > 0) {
 			if (!toggle && confirmPassword.trim().length === 0) {
-                setIsValid(false);
+				setIsValid(false);
 			} else {
 				setIsValid(true);
 			}
+		} else {
+			setIsValid(false);
 		}
-        else {
-            setIsValid(false)
-        }
 	}, [username, password, confirmPassword, toggle]);
 
 	return (

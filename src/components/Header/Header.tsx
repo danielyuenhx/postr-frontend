@@ -1,6 +1,5 @@
 import React from 'react';
 // import logo from '../../images/postr-logo.png';
-import { motion } from 'framer-motion';
 import logo from '../../images/postr-logo-new.png';
 // #1390F4
 
