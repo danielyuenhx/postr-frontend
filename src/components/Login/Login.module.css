@@ -7,5 +7,16 @@
     max-width: 23rem;
     width: 90%;
     margin: 7rem auto;
-    height: 20rem;
+    height: 100%;
+}
+
+.signup {
+    font-size: 0.75rem;
+    text-align: center;
+    margin: auto;
+}
+
+.signup span {
+    cursor: pointer;
+    color:#5252d1;
 }

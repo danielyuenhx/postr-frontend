@@ -20,7 +20,19 @@ const Login = () => {
 		<div className={styles.card}>
 			<form onSubmit={submitHandler}>
 				<LoginButtons toggle={toggle} toggleHandler={toggleHandler} />
-                <LoginInput />
+				<LoginInput label="Username" type="text" />
+				<LoginInput label="Password" type="password" />
+				{!toggle && (
+					<LoginInput label="Confirm password" type="password" />
+				)}
+				{toggle && (
+					<p className={styles.signup}>
+						Don't have an account?{' '}
+						<span onClick={toggleHandler.bind(null, false)}>
+							Sign up
+						</span>
+					</p>
+				)}
 			</form>
 		</div>
 	);
