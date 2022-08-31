@@ -22,7 +22,7 @@ const ToggleButtons = (props: Props) => {
 					onClick={toggleHandler.bind(null, false)}
 					style={toggle ? { color: '#bbbbbb' } : {}}
 				>
-					Register
+					Sign Up
 				</button>
 			</div>
 			<div

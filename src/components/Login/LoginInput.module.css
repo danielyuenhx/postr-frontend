@@ -15,7 +15,7 @@
 }
 
 .password {
-    padding-right: 3.25rem;
+    padding-right: 3.25rem !important;
 }
 
 .container label {

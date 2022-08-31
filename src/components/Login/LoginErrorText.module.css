@@ -1,0 +1,19 @@
+
+
+.pass {
+    color: green;
+}
+
+.fail {
+    color: red;
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+}
+
+.inner p {
+    padding-left: 1rem;
+    margin: 0;
+}

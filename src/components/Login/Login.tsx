@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import ToggleButtons from './ToggleButtons';
 import LoginInput from './LoginInput';
 import LoginButton from './LoginButton';
+import LoginError from './LoginError';
 
 import { createUser } from '../../actions/user-actions';
-import { useAppDispatch } from '../../hooks/hooks'
+import { useAppDispatch } from '../../hooks/hooks';
 
 import styles from './Login.module.css';
 
@@ -14,14 +15,19 @@ const Login = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [error, setError] = useState({
+		eight: false,
+		uppercase: false,
+		number: false,
+	});
 	const [isValid, setIsValid] = useState(false);
 
-    const dispatch = useAppDispatch();
+	const dispatch = useAppDispatch();
 
 	const submitHandler = (event: React.FormEvent) => {
 		event.preventDefault();
 
-		dispatch(createUser({username, password}));
+		dispatch(createUser({ username, password }));
 	};
 
 	const toggleHandler = (status: boolean) => {
@@ -36,6 +42,26 @@ const Login = () => {
 		setPassword(event.target.value);
 	};
 
+	useEffect(() => {
+		if (password.trim().length < 8) {
+			setError((prevError) => ({ ...prevError, eight: false }));
+		} else {
+			setError((prevError) => ({ ...prevError, eight: true }));
+		}
+
+		if (/[A-Z]/.test(password.trim())) {
+			setError((prevError) => ({ ...prevError, uppercase: true }));
+		} else {
+			setError((prevError) => ({ ...prevError, uppercase: false }));
+		}
+
+		if (/\d/.test(password.trim())) {
+			setError((prevError) => ({ ...prevError, number: true }));
+		} else {
+			setError((prevError) => ({ ...prevError, number: false }));
+		}
+	}, [password]);
+
 	const confirmPasswordHandler = (
 		event: React.ChangeEvent<HTMLInputElement>
 	) => {
@@ -43,9 +69,16 @@ const Login = () => {
 	};
 
 	useEffect(() => {
-		if (username.trim().length > 0 && password.trim().length > 0) {
-			if (!toggle && confirmPassword.trim().length === 0) {
-				setIsValid(false);
+		if (username.trim().length > 0 && password.trim().length > 7) {
+			if (!toggle) {
+				if (
+					confirmPassword.trim().length > 0 &&
+					password.trim() === confirmPassword.trim()
+				) {
+					setIsValid(true);
+				} else {
+					setIsValid(false);
+				}
 			} else {
 				setIsValid(true);
 			}
@@ -71,12 +104,15 @@ const Login = () => {
 					onChange={passwordHandler}
 				/>
 				{!toggle && (
-					<LoginInput
-						label="Confirm password"
-						type="password"
-						value={confirmPassword}
-						onChange={confirmPasswordHandler}
-					/>
+					<>
+						<LoginError error={error} />
+						<LoginInput
+							label="Confirm password"
+							type="password"
+							value={confirmPassword}
+							onChange={confirmPasswordHandler}
+						/>
+					</>
 				)}
 				{toggle && (
 					<p className={styles.signup}>
@@ -87,8 +123,13 @@ const Login = () => {
 					</p>
 				)}
 				<LoginButton
-					label={toggle ? 'Login' : 'Register'}
-					isValid={isValid}
+					label={toggle ? 'Login' : 'Sign Up'}
+					// non-empty username and password && (login || (register && fulfill requirements))
+					isValid={
+						isValid &&
+						(toggle ||
+							(!toggle && Object.values(error).every(Boolean)))
+					}
 				/>
 			</form>
 		</div>

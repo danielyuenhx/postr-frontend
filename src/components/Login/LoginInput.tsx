@@ -15,18 +15,17 @@ const LoginInput = (props: Props) => {
 	return (
 		<div className={styles.container}>
 			<label
-				className={`${props.value && styles.filled} ${
-					props.type == 'password' && styles.password
-				}`}
+				className={props.value && styles.filled}
 			>
 				{props.label}
 			</label>
-			<input
+			<input 
 				type={isHidden ? props.type : 'text'}
 				value={props.value}
 				onChange={props.onChange}
+                className={props.type === 'password' ? styles.password : ''}
 			/>
-			{props.type == 'password' && (
+			{props.type === 'password' && (
 				<div className={styles.hide}>
 					{isHidden && (
 						<svg
