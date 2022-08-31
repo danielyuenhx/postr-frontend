@@ -10,7 +10,7 @@ const LoginError = (props: Props) => {
 	return (
 		<div className={styles.card}>
 			<p>
-				<b>Your password should:</b>
+                Your password should:
 			</p>
 			<ul>
 				<LoginErrorText pass={props.error.eight}>
