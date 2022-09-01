@@ -7,6 +7,7 @@ type Props = {
 	type: string;
 	value: string;
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onFocus?: () => void;
 };
 
 const LoginInput = (props: Props) => {
@@ -24,6 +25,7 @@ const LoginInput = (props: Props) => {
 				value={props.value}
 				onChange={props.onChange}
                 className={props.type === 'password' ? styles.password : ''}
+                onFocus={props.onFocus}
 			/>
 			{props.type === 'password' && (
 				<div className={styles.hide}>

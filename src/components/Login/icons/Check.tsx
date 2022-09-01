@@ -5,7 +5,7 @@ const Check = () => {
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth="1.5"
-            stroke="green"
+            stroke="#00bb00"
             style={{ width: '1rem' }}
         >
             <path

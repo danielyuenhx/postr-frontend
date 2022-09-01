@@ -4,14 +4,17 @@ import LoginErrorText from './LoginErrorText';
 
 import styles from './LoginError.module.css';
 
-type Props = { error: { eight: boolean; uppercase: boolean; number: boolean } };
+type Props = {
+	error: { eight: boolean; uppercase: boolean; number: boolean };
+	showLoginError: boolean;
+};
 
 const LoginError = (props: Props) => {
 	return (
-		<div className={styles.card}>
-			<p>
-                Your password should:
-			</p>
+		<div
+			className={`${styles.card} ${props.showLoginError && styles.show}`}
+		>
+			<p>Your password should:</p>
 			<ul>
 				<LoginErrorText pass={props.error.eight}>
 					be at least 8 characters or longer.

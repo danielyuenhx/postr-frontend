@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import ToggleButtons from './ToggleButtons';
 import LoginInput from './LoginInput';
@@ -21,6 +21,8 @@ const Login = () => {
 		number: false,
 	});
 	const [isValid, setIsValid] = useState(false);
+
+    const [showLoginError, setShowLoginError] = useState(false);
 
 	const dispatch = useAppDispatch();
 
@@ -87,6 +89,10 @@ const Login = () => {
 		}
 	}, [username, password, confirmPassword, toggle]);
 
+	const focusHandler = () => {
+		setShowLoginError(true);
+	};
+
 	return (
 		<div className={styles.card}>
 			<form onSubmit={submitHandler}>
@@ -102,10 +108,11 @@ const Login = () => {
 					type="password"
 					value={password}
 					onChange={passwordHandler}
+					onFocus={focusHandler}
 				/>
 				{!toggle && (
 					<>
-						<LoginError error={error} />
+						<LoginError error={error} showLoginError={showLoginError} />
 						<LoginInput
 							label="Confirm password"
 							type="password"
