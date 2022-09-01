@@ -22,7 +22,7 @@ const Login = () => {
 	});
 	const [isValid, setIsValid] = useState(false);
 
-    const [showLoginError, setShowLoginError] = useState(false);
+	const [showLoginError, setShowLoginError] = useState(false);
 
 	const dispatch = useAppDispatch();
 
@@ -44,6 +44,7 @@ const Login = () => {
 		setPassword(event.target.value);
 	};
 
+	// check on change of password ONLY
 	useEffect(() => {
 		if (password.trim().length < 8) {
 			setError((prevError) => ({ ...prevError, eight: false }));
@@ -70,6 +71,7 @@ const Login = () => {
 		setConfirmPassword(event.target.value);
 	};
 
+	// check on change of username, password, confirm password and toggle
 	useEffect(() => {
 		if (username.trim().length > 0 && password.trim().length > 7) {
 			if (!toggle) {
@@ -112,7 +114,10 @@ const Login = () => {
 				/>
 				{!toggle && (
 					<>
-						<LoginError error={error} showLoginError={showLoginError} />
+						<LoginError
+							error={error}
+							showLoginError={showLoginError}
+						/>
 						<LoginInput
 							label="Confirm password"
 							type="password"
