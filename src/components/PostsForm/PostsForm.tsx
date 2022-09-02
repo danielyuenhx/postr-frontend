@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Input from './Input';
-
 import styles from './PostsForm.module.css';
 
 const PostsForm = () => {

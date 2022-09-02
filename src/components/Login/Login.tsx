@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ToggleButtons from './ToggleButtons';
 import LoginInput from './LoginInput';
@@ -11,7 +11,7 @@ import { useAppDispatch } from '../../hooks/hooks';
 import styles from './Login.module.css';
 
 const checkUsername = () => {
-	return
+	return;
 };
 
 var timeout = setTimeout(checkUsername, 2000);
@@ -26,6 +26,7 @@ const Login = () => {
 		uppercase: false,
 		number: false,
 	});
+    // username > 0, password > 7 chars and passwords match
 	const [isValid, setIsValid] = useState(false);
 
 	const [showLoginError, setShowLoginError] = useState(false);
@@ -77,6 +78,19 @@ const Login = () => {
 		setConfirmPassword(event.target.value);
 	};
 
+	// useEffect(() => {
+	// 	const timer = setTimeout((confirmPassword) => {
+    //         if (confirmPassword.trim() === password.trim()) {
+    //             setIsPasswordValid(true);
+    //         }
+    //         else {
+    //             setIsPasswordValid(false);
+    //         }
+    //     }, 150);
+
+	// 	return () => clearTimeout(timer);
+	// }, [confirmPassword, password]);
+
 	// check on change of username, password, confirm password and toggle
 	useEffect(() => {
 		if (username.trim().length > 0 && password.trim().length > 7) {
@@ -111,9 +125,11 @@ const Login = () => {
 					value={username}
 					onChange={usernameHandler}
 				/>
-				{!toggle && <span className={styles.errortext}>
-					{/* Username has been taken */}
-				</span>}
+				{!toggle && (
+					<span className={styles.errortext}>
+						{/* Username has been taken */}
+					</span>
+				)}
 				<LoginInput
 					label="Password"
 					type="password"
@@ -133,6 +149,11 @@ const Login = () => {
 							value={confirmPassword}
 							onChange={confirmPasswordHandler}
 						/>
+						{!toggle && (
+							<span className={styles.errortext}>
+								{/* Passwords do not match */}
+							</span>
+						)}
 					</>
 				)}
 				{toggle && (
