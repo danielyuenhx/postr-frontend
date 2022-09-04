@@ -8,22 +8,3 @@
     margin: 10rem auto;
     height: 100%;
 }
-
-.errortext {
-    display: block;
-    font-size: 0.75rem;
-    margin-top: 0.5rem;
-    color: red;
-}
-
-.signup {
-    font-size: 0.75rem;
-    text-align: center;
-    margin: auto;
-    margin-top: 1rem;
-}
-
-.signup span {
-    cursor: pointer;
-    color:#5252d1;
-}
