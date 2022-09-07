@@ -18,7 +18,7 @@ const LoginInput = (props: Props) => {
 
 	return (
 		<div className={styles.container}>
-			<label
+			<label 
 				className={props.value && styles.filled}
 			>
 				{props.label}

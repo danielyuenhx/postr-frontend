@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import LoginInput from './LoginInput';
 import LoginError from './LoginError';
@@ -24,6 +25,7 @@ const SignUpSection = () => {
 		uppercase: false,
 		number: false,
 	});
+
 	// username > 0, password > 7 chars and passwords match
 	const [isValid, setIsValid] = useState(false);
 
@@ -31,11 +33,13 @@ const SignUpSection = () => {
 	const [showConfirmError, setShowConfirmError] = useState(false);
 
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
 	const submitHandler = (event: React.FormEvent) => {
 		event.preventDefault();
 
-		dispatch(createUser({ username, password }));
+		// sign up the user
+		dispatch(createUser({ username, password, confirmPassword }));
 	};
 
 	const usernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
