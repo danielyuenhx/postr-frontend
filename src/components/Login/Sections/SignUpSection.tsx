@@ -28,6 +28,7 @@ const SignUpSection = () => {
 	const [isValid, setIsValid] = useState(false);
 
 	const [showLoginError, setShowLoginError] = useState(false);
+	const [showConfirmError, setShowConfirmError] = useState(false);
 
 	const dispatch = useAppDispatch();
 
@@ -70,6 +71,7 @@ const SignUpSection = () => {
 		event: React.ChangeEvent<HTMLInputElement>
 	) => {
 		setConfirmPassword(event.target.value);
+		setShowConfirmError(true);
 	};
 
 	// useEffect(() => {
@@ -99,7 +101,7 @@ const SignUpSection = () => {
 		}
 	}, [username, password, confirmPassword]);
 
-	const focusHandler = () => {
+	const loginFocusHandler = () => {
 		setShowLoginError(true);
 	};
 
@@ -119,7 +121,7 @@ const SignUpSection = () => {
 				type="password"
 				value={password}
 				onChange={passwordHandler}
-				onFocus={focusHandler}
+				onFocus={loginFocusHandler}
 			/>
 			<LoginError error={error} showLoginError={showLoginError} />
 			<LoginInput
@@ -128,9 +130,9 @@ const SignUpSection = () => {
 				value={confirmPassword}
 				onChange={confirmPasswordHandler}
 			/>
-			<span className={styles.errortext}>
-				{/* Passwords do not match */}
-			</span>
+			{showConfirmError && password !== confirmPassword && (
+				<span className={styles.errortext}>Passwords do not match</span>
+			)}
 			<LoginButton
 				label={'Sign Up'}
 				// non-empty username and password && (login || (register && fulfill requirements))

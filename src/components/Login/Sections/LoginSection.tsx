@@ -19,7 +19,6 @@ const LoginSection = (props: Props) => {
 
 	const submitHandler = (event: React.FormEvent) => {
 		event.preventDefault();
-
 		// dispatch(createUser({ username, password }));
 	};
 
