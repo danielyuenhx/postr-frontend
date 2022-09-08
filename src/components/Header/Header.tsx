@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import logo from '../../images/postr-logo.png';
-import logo from '../../images/postr-logo-new.png';
+import logo from '../../images/postr-logo-full.png';
 // #1390F4
 
 import SearchBar from './SearchBar';

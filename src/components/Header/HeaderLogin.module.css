@@ -6,7 +6,7 @@
     background-color: transparent;
     cursor: pointer;
     text-transform: uppercase;
-    transition: 0.15s ease-in-out;
+    transition: 0.25s ease-in-out;
 }
 
 .button:hover {

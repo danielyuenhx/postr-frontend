@@ -39,7 +39,7 @@ const SignUpSection = () => {
 		event.preventDefault();
 
 		// sign up the user
-		dispatch(createUser({ username, password, confirmPassword }));
+		const res = dispatch(createUser({ username, password, confirmPassword }));
 	};
 
 	const usernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

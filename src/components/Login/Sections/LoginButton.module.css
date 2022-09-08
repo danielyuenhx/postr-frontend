@@ -8,10 +8,12 @@
 }
 
 .enabled {
-    background-color: rgb(41, 41, 41);
+    /* background-color: #292929; */
+    background-color: #1083FD;
     cursor: pointer;
 }
 
 .disabled {
-    background-color: rgb(143, 143, 143);
+    /* background-color: #8f8f8f; */
+    background-color: #6776a0bd;
 }
