@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import LetteredAvatar from 'react-lettered-avatar';
 // import logo from '../../images/postr-logo.png';
 import logo from '../../images/postr-logo-full.png';
 // #1390F4
@@ -18,7 +19,7 @@ const Header = () => {
 		const token = user?.token;
 
 		setUser(JSON.parse(localStorage.getItem('profile') || ''));
-        console.log(user);
+		console.log(user);
 	}, []);
 
 	return (
@@ -37,8 +38,9 @@ const Header = () => {
 				// 		<li>Profile</li>
 				// 	</ul>
 				// </nav>
-				<nav className={styles.right}>{user.result.username}</nav>
+				<LetteredAvatar name={user.result.username} size={40} />
 			) : (
+				// <nav className={styles.right}>{user.result.username}</nav>
 				<HeaderLogin />
 			)}
 		</header>
