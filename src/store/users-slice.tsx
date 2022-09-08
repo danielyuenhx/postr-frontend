@@ -2,18 +2,22 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type User = { username: string; password: string };
 
-const initialState: User[] = [];
+const initialState = { result: { username: '', password: '' }, token: '' };
 
-const usersSlice = createSlice({
-	name: 'users',
+const authSlice = createSlice({
+	name: 'auth',
 	initialState,
 	reducers: {
-		createUser(state, action: PayloadAction<User>) {
-			return [...state, action.payload];
+		auth(state, action: PayloadAction<User>) {
+			localStorage.setItem(
+				'profile',
+				JSON.stringify({ ...action?.payload })
+			);
+			return { ...state, authData: action?.payload };
 		},
 	},
 });
 
-export const usersActions = usersSlice.actions;
+export const authActions = authSlice.actions;
 
-export default usersSlice.reducer;
+export default authSlice.reducer;

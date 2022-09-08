@@ -12,12 +12,22 @@
     font-size: 1rem;
     padding: 0.5rem 0.5rem;
     border: none;
-    outline: 1px solid rgba(128, 128, 128, 0.333);
-    margin-right: -1.5rem;
+    outline: 1px solid #80808055;
+    margin-right: -3rem;
+    background-color: #f5f5f5a2;
+}
+
+.search input:hover,
+.search input:focus {
+    outline: 1px solid #1082fdb7;
+}
+
+.search input:focus {
+    background-color: white;
 }
 
 .search button {
-    width: 1.5rem;
+    width: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,6 +37,6 @@
 }
 
 .search svg {
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
 }

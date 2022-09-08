@@ -8,12 +8,17 @@
 }
 
 .enabled {
-    /* background-color: #292929; */
-    background-color: #1083FD;
+    background-color: #292929;
+    /* background-color: #1083FD; */
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.enabled:hover {
+    background-color: #292929dd;
 }
 
 .disabled {
-    /* background-color: #8f8f8f; */
-    background-color: #6776a0bd;
+    background-color: #8f8f8f;
+    /* background-color: #7581a1bd; */
 }

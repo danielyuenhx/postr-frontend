@@ -9,5 +9,5 @@ type NewUser = {username: string, password: string, confirmPassword: string}
 // export const fetchPosts = () => axios.get(url);
 // export const createPost = (newPost) => axios.post(url, newPost);
 
-export const createUser = (newUser: NewUser) => axios.post(url, newUser);
-export const loginUser = (user: User) => axios.post(url, user);
+export const createUser = (newUser: NewUser) => axios.post(`${url}/createUser`, newUser);
+export const loginUser = (user: User) => axios.post(`${url}/loginUser`, user);

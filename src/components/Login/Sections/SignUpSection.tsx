@@ -35,11 +35,12 @@ const SignUpSection = () => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	const submitHandler = (event: React.FormEvent) => {
+	const submitHandler = async (event: React.FormEvent) => {
 		event.preventDefault();
 
 		// sign up the user
-		const res = dispatch(createUser({ username, password, confirmPassword }));
+		await dispatch(createUser({ username, password, confirmPassword }));
+		navigate('/');
 	};
 
 	const usernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
