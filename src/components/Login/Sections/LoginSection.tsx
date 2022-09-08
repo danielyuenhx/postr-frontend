@@ -5,7 +5,7 @@ import LoginInput from './LoginInput';
 import LoginButton from './LoginButton';
 
 import { useAppDispatch } from '../../../hooks/hooks';
-import { signInUser } from '../../../actions/user-actions';
+import { loginUser } from '../../../actions/user-actions';
 
 import styles from './LoginSection.module.css';
 
@@ -23,7 +23,7 @@ const LoginSection = (props: Props) => {
 	const submitHandler = (event: React.FormEvent) => {
 		event.preventDefault();
 
-		dispatch(signInUser({ username, password }));
+		dispatch(loginUser({ username, password }));
 	};
 
 	const usernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
