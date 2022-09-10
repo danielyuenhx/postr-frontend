@@ -23,8 +23,15 @@ const LoginSection = (props: Props) => {
 	const submitHandler = async (event: React.FormEvent) => {
 		event.preventDefault();
 
-		await dispatch(loginUser({ username, password }));
-		navigate('/');
+		document.body.style.cursor = 'progress';
+		document.documentElement.style.cursor = 'progress';
+
+		const res = await dispatch(loginUser({ username, password }));
+		if (res !== 404) {
+			navigate('/');
+		}
+		document.body.style.cursor = 'default';
+		document.documentElement.style.cursor = 'default';
 	};
 
 	const usernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

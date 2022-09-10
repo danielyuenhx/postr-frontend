@@ -4,7 +4,7 @@
     justify-content: space-between;
     width: 115%;
     padding: 0.5rem 0.75rem;
-    border: 1px solid gray;
+    border: 1px solid #8080807e;
     border-radius: 45px;
     user-select: none;
 }

@@ -33,7 +33,7 @@ const Header = () => {
 	const navigate = useNavigate();
 
 	const logoutHandler = () => {
-		dispatch(authActions.logout());
+		const res = dispatch(authActions.logout());
 		setUser('');
 		navigate('/');
 	};
@@ -49,10 +49,6 @@ const Header = () => {
 			{user ? (
 				<nav className={styles.right}>
 					<ul>
-						{/* <li>Home</li>
-						<li>Notifications</li>
-						<li>Profile</li>
-						<li onClick={logoutHandler}>Logout</li> */}
 						<li>
 							<Home />
 						</li>
@@ -66,14 +62,14 @@ const Header = () => {
 									size={35}
 								/>
 							</Link> */}
-                            <Profile username={user.result.username}/>
+							<Profile username={user.result.username} />
 						</li>
 					</ul>
 				</nav>
 			) : (
 				<HeaderLogin />
 			)}
-            <ProfileDropdown logoutHandler={logoutHandler} />
+			<ProfileDropdown logoutHandler={logoutHandler} />
 		</header>
 	);
 };
