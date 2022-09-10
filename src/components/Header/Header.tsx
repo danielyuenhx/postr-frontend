@@ -38,7 +38,9 @@ const Header = () => {
 				// 		<li>Profile</li>
 				// 	</ul>
 				// </nav>
-				<LetteredAvatar name={user.result.username} size={40} />
+				<Link to="/login" className={styles.avatar}>
+					<LetteredAvatar name={user.result.username} size={35} />
+				</Link>
 			) : (
 				// <nav className={styles.right}>{user.result.username}</nav>
 				<HeaderLogin />

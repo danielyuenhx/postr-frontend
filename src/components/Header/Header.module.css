@@ -42,3 +42,9 @@
 .right li:hover {
     color: #5e9be0;
 }
+
+.avatar {
+    user-select: none;
+    cursor: pointer;
+    text-decoration: none;
+}
