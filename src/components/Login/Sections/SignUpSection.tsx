@@ -5,7 +5,7 @@ import LoginInput from './LoginInput';
 import LoginError from './LoginError';
 import LoginButton from './LoginButton';
 
-import { createUser } from '../../../actions/user-actions';
+import { createUser } from '../../../actions/auth-actions';
 import { useAppDispatch } from '../../../hooks/hooks';
 
 import styles from './SignUpSection.module.css';

@@ -5,7 +5,7 @@ import LoginInput from './LoginInput';
 import LoginButton from './LoginButton';
 
 import { useAppDispatch } from '../../../hooks/hooks';
-import { loginUser } from '../../../actions/user-actions';
+import { loginUser } from '../../../actions/auth-actions';
 
 import styles from './LoginSection.module.css';
 
@@ -20,10 +20,11 @@ const LoginSection = (props: Props) => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	const submitHandler = (event: React.FormEvent) => {
+	const submitHandler = async (event: React.FormEvent) => {
 		event.preventDefault();
 
-		dispatch(loginUser({ username, password }));
+		await dispatch(loginUser({ username, password }));
+		navigate('/');
 	};
 
 	const usernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

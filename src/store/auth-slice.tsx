@@ -15,6 +15,10 @@ const authSlice = createSlice({
 			);
 			return { ...state, authData: action?.payload };
 		},
+        logout(state) {
+            localStorage.clear();
+			return { ...state, authData: null };
+        }
 	},
 });
 
