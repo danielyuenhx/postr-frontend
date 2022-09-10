@@ -5,23 +5,23 @@ import LetteredAvatar from 'react-lettered-avatar';
 import { authActions } from '../../store/auth-slice';
 import { useAppDispatch } from '../../hooks/hooks';
 
-// import logo from '../../images/postr-logo.png';
-import logo from '../../images/postr-logo-full.png';
-// #1390F4
-
+import Home from './icons/Home';
+import Notifications from './icons/Notifications';
 import SearchBar from './SearchBar';
 import HeaderLogin from './HeaderLogin';
+import Profile from './Profile';
+import ProfileDropdown from './ProfileDropdown';
+
+import logo from '../../images/postr-logo-full.png';
 
 import styles from './Header.module.css';
 
 const Header = () => {
 	const item = localStorage.getItem('profile');
-    const profile = (item === null) ? null : JSON.parse(item);
-	const [user, setUser] = useState(
-		profile
-	);
+	const profile = item === null ? null : JSON.parse(item);
+	const [user, setUser] = useState(profile);
 
-    const location = useLocation();
+	const location = useLocation();
 
 	useEffect(() => {
 		const token = user?.token;
@@ -49,22 +49,31 @@ const Header = () => {
 			{user ? (
 				<nav className={styles.right}>
 					<ul>
-						<li>Home</li>
+						{/* <li>Home</li>
 						<li>Notifications</li>
 						<li>Profile</li>
-						<li onClick={logoutHandler}>Logout</li>
-						<Link to="/login" className={styles.avatar}>
-							<LetteredAvatar
-								name={user.result.username}
-								size={35}
-							/>
-						</Link>
+						<li onClick={logoutHandler}>Logout</li> */}
+						<li>
+							<Home />
+						</li>
+						<li>
+							<Notifications />
+						</li>
+						<li>
+							{/* <Link to="/login" className={styles.avatar}>
+								<LetteredAvatar
+									name={user.result.username}
+									size={35}
+								/>
+							</Link> */}
+                            <Profile username={user.result.username}/>
+						</li>
 					</ul>
 				</nav>
 			) : (
-				// <nav className={styles.right}>{user.result.username}</nav>
 				<HeaderLogin />
 			)}
+            <ProfileDropdown logoutHandler={logoutHandler} />
 		</header>
 	);
 };

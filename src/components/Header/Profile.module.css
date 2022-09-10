@@ -1,0 +1,19 @@
+.container {
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 115%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid gray;
+    border-radius: 45px;
+    user-select: none;
+}
+
+.avatar div {
+	font-size: 1rem !important;
+}
+
+.container svg {
+    width: 1rem !important;
+    margin-right: 0rem !important;
+}
