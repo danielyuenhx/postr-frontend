@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSnackbar } from 'react-simple-snackbar';
 
@@ -33,15 +33,38 @@ const Header = () => {
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-    const [openSnackbar, closeSnackbar] = useSnackbar();
+	const [openSnackbar, closeSnackbar] = useSnackbar();
 
 	const logoutHandler = () => {
 		dispatch(authActions.logout());
 		setUser('');
 		setIsOpen(false);
-		openSnackbar("Successfully logged out!", [2500]);
+		openSnackbar('Successfully logged out!', [2500]);
 		navigate('/');
 	};
+
+	const dropdownRef = useRef<HTMLDivElement>(null);
+	const profileRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		function clickOutsideHandler(event: MouseEvent) {
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(event.target as Element) &&
+				profileRef.current &&
+				!profileRef.current.contains(event.target as Element)
+			) {
+				setIsOpen(false);
+			}
+		}
+
+		// Bind the event listener
+		document.addEventListener('mouseup', clickOutsideHandler);
+		return () => {
+			// Unbind the event listener on clean up
+			document.removeEventListener('mouseup', clickOutsideHandler);
+		};
+	}, [dropdownRef]);
 
 	return (
 		<header className={styles.header}>
@@ -64,6 +87,8 @@ const Header = () => {
 							<Profile
 								username={user.result.username}
 								onClick={setIsOpen.bind(null, !isOpen)}
+								ref={profileRef}
+								isOpen={isOpen}
 							/>
 						</li>
 					</ul>
@@ -71,7 +96,12 @@ const Header = () => {
 			) : (
 				<HeaderLogin />
 			)}
-			{isOpen && <ProfileDropdown logoutHandler={logoutHandler} />}
+			{isOpen && (
+				<ProfileDropdown
+					logoutHandler={logoutHandler}
+					ref={dropdownRef}
+				/>
+			)}
 		</header>
 	);
 };

@@ -7,21 +7,23 @@ import styles from './ProfileDropdown.module.css';
 
 type Props = { logoutHandler: () => void };
 
-const ProfileDropdown = (props: Props) => {
-	return (
-		<div className={styles.container}>
-			<ul>
-				<li>
-					<User />
-					Profile
-				</li>
-				<li onClick={props.logoutHandler}>
-					<Logout />
-					Logout
-				</li>
-			</ul>
-		</div>
-	);
-};
+const ProfileDropdown = React.forwardRef(
+	(props: Props, ref: React.Ref<HTMLDivElement>) => {
+		return (
+			<div className={styles.container} ref={ref}>
+				<ul>
+					<li>
+						<User />
+						Profile
+					</li>
+					<li onClick={props.logoutHandler}>
+						<Logout />
+						Logout
+					</li>
+				</ul>
+			</div>
+		);
+	}
+);
 
 export default ProfileDropdown;
