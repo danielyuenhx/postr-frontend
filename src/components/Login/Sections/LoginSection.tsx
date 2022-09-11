@@ -27,13 +27,12 @@ const LoginSection = (props: Props) => {
 		document.documentElement.style.cursor = 'progress';
         props.onLoading(true);
 
-		const res = await dispatch(loginUser({ username, password }));
-        console.log(res)
-		if (res === 200) {
-			navigate('/');
+		const error = await dispatch(loginUser({ username, password }));
+		if (error) {
+            console.log(error);
 		} 
         else {
-            console.log("Error occured.")
+			navigate('/');
         }
         
 		document.body.style.cursor = 'default';

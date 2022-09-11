@@ -15,7 +15,7 @@ export const createUser =
 			dispatch(authActions.auth(data));
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
-				return error.message;
+				return error.response;
 			} else {
 				return 'An unexpected error occurred';
 			}
@@ -28,7 +28,7 @@ export const loginUser = (userData: User) => async (dispatch: AppDispatch) => {
 		dispatch(authActions.auth(data));
 	} catch (error) {
 		if (axios.isAxiosError(error)) {
-			return error.response?.status;
+			return error.response;
 		} else {
 			return 'An unexpected error occurred';
 		}

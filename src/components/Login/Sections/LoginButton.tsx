@@ -11,6 +11,7 @@ const LoginButton = (props: Props) => {
 			className={`${styles.button} ${
 				props.isValid ? styles.enabled : styles.disabled
 			}`}
+            disabled={!props.isValid}
 		>
 			{props.label}
 		</button>
