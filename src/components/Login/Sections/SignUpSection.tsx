@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'react-simple-snackbar';
 
 import LoginInput from './LoginInput';
 import LoginError from './LoginError';
@@ -30,6 +31,7 @@ const SignUpSection = (props: Props) => {
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+	const [openSnackbar, closeSnackbar] = useSnackbar();
 
 	const submitHandler = async (event: React.FormEvent) => {
 		event.preventDefault();
@@ -39,8 +41,13 @@ const SignUpSection = (props: Props) => {
         props.onLoading(true);
 
 		// sign up the user
-		await dispatch(createUser({ username, password, confirmPassword }));
-		navigate('/');
+		const error = await dispatch(createUser({ username, password, confirmPassword }));
+		if (error) {
+			openSnackbar(error, [5000]);
+		} else {
+			openSnackbar("Successfully created user!", [5000]);
+			navigate('/');
+		}
         
 		document.body.style.cursor = 'default';
 		document.documentElement.style.cursor = 'default';

@@ -36,6 +36,7 @@ const LoginSection = (props: Props) => {
 		if (error) {
 			openSnackbar(error, [5000]);
 		} else {
+			// openSnackbar("Successfully logged in.", [2500]);
 			navigate('/');
 		}
 

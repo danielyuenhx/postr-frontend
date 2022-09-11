@@ -16,11 +16,11 @@ export const createUser =
 			const { data } = await api.createUser(userData);
 			dispatch(authActions.auth(data));
 		} catch (error) {
-			if (axios.isAxiosError(error)) {
-				return error.response;
-			} else {
-				return 'An unexpected error occurred';
-			}
+            if (axios.isAxiosError(error) && error.response) {
+                return (error.response?.data as Error).message;
+            } else {
+                return 'An unexpected error occurred';
+            }
 		}
 	};
 

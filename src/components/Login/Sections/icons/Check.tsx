@@ -6,7 +6,7 @@ const Check = () => {
             viewBox="0 0 24 24"
             strokeWidth="2.5"
             stroke="#00bb00"
-            style={{ width: '1rem' }}
+            style={{ width: '12px' }}
         >
             <path
                 strokeLinecap="round"
