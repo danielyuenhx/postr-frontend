@@ -18,7 +18,9 @@ import styles from './Header.module.css';
 const Header = () => {
 	const item = localStorage.getItem('profile');
 	const profile = item === null ? null : JSON.parse(item);
+
 	const [user, setUser] = useState(profile);
+    const [isOpen, setIsOpen] = useState(false);
 
 	const location = useLocation();
 
@@ -32,7 +34,8 @@ const Header = () => {
 	const navigate = useNavigate();
 
 	const logoutHandler = () => {
-		const res = dispatch(authActions.logout());
+        setIsOpen(false);
+		dispatch(authActions.logout());
 		setUser('');
 		navigate('/');
 	};
@@ -55,20 +58,14 @@ const Header = () => {
 							<Notifications />
 						</li>
 						<li>
-							{/* <Link to="/login" className={styles.avatar}>
-								<LetteredAvatar
-									name={user.result.username}
-									size={35}
-								/>
-							</Link> */}
-							<Profile username={user.result.username} />
+							<Profile username={user.result.username} onClick={setIsOpen.bind(null, !isOpen)}/>
 						</li>
 					</ul>
 				</nav>
 			) : (
 				<HeaderLogin />
 			)}
-			<ProfileDropdown logoutHandler={logoutHandler} />
+			{isOpen && <ProfileDropdown logoutHandler={logoutHandler} />}
 		</header>
 	);
 };
