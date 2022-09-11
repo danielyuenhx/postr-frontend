@@ -10,13 +10,9 @@ import { useAppDispatch } from '../../../hooks/hooks';
 
 import styles from './SignUpSection.module.css';
 
-const checkUsername = () => {
-	return;
-};
+type Props = { onLoading: (status: boolean) => void }
 
-var timeout = setTimeout(checkUsername, 2000);
-
-const SignUpSection = () => {
+const SignUpSection = (props: Props) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
@@ -38,16 +34,24 @@ const SignUpSection = () => {
 	const submitHandler = async (event: React.FormEvent) => {
 		event.preventDefault();
 
+		document.body.style.cursor = 'progress';
+		document.documentElement.style.cursor = 'progress';
+        props.onLoading(true);
+
 		// sign up the user
 		await dispatch(createUser({ username, password, confirmPassword }));
 		navigate('/');
+        
+		document.body.style.cursor = 'default';
+		document.documentElement.style.cursor = 'default';
+        props.onLoading(false);
 	};
 
 	const usernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setUsername(event.target.value);
 
-		clearTimeout(timeout);
-		timeout = setTimeout(checkUsername, 2000);
+		// clearTimeout(timeout);
+		// timeout = setTimeout(checkUsername, 2000);
 	};
 
 	const passwordHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

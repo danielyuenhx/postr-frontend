@@ -9,7 +9,7 @@ import { loginUser } from '../../../actions/auth-actions';
 
 import styles from './LoginSection.module.css';
 
-type Props = { onToggle: (status: boolean) => void };
+type Props = { onToggle: (status: boolean) => void; onLoading: (status: boolean) => void };
 
 const LoginSection = (props: Props) => {
 	const [username, setUsername] = useState('');
@@ -25,13 +25,20 @@ const LoginSection = (props: Props) => {
 
 		document.body.style.cursor = 'progress';
 		document.documentElement.style.cursor = 'progress';
+        props.onLoading(true);
 
 		const res = await dispatch(loginUser({ username, password }));
-		if (res !== 404) {
+        console.log(res)
+		if (res === 200) {
 			navigate('/');
-		}
+		} 
+        else {
+            console.log("Error occured.")
+        }
+        
 		document.body.style.cursor = 'default';
 		document.documentElement.style.cursor = 'default';
+        props.onLoading(false);
 	};
 
 	const usernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
