@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useSnackbar } from 'react-simple-snackbar';
 
 import { authActions } from '../../store/auth-slice';
 import { useAppDispatch } from '../../hooks/hooks';
@@ -20,7 +21,7 @@ const Header = () => {
 	const profile = item === null ? null : JSON.parse(item);
 
 	const [user, setUser] = useState(profile);
-    const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
 	const location = useLocation();
 
@@ -32,11 +33,13 @@ const Header = () => {
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+    const [openSnackbar, closeSnackbar] = useSnackbar();
 
 	const logoutHandler = () => {
-        setIsOpen(false);
 		dispatch(authActions.logout());
 		setUser('');
+		setIsOpen(false);
+		openSnackbar("Successfully logged out!", [2500]);
 		navigate('/');
 	};
 
@@ -58,7 +61,10 @@ const Header = () => {
 							<Notifications />
 						</li>
 						<li>
-							<Profile username={user.result.username} onClick={setIsOpen.bind(null, !isOpen)}/>
+							<Profile
+								username={user.result.username}
+								onClick={setIsOpen.bind(null, !isOpen)}
+							/>
 						</li>
 					</ul>
 				</nav>

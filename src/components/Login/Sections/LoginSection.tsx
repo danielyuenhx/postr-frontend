@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'react-simple-snackbar';
 
 import LoginInput from './LoginInput';
 import LoginButton from './LoginButton';
@@ -9,7 +10,10 @@ import { loginUser } from '../../../actions/auth-actions';
 
 import styles from './LoginSection.module.css';
 
-type Props = { onToggle: (status: boolean) => void; onLoading: (status: boolean) => void };
+type Props = {
+	onToggle: (status: boolean) => void;
+	onLoading: (status: boolean) => void;
+};
 
 const LoginSection = (props: Props) => {
 	const [username, setUsername] = useState('');
@@ -19,25 +23,25 @@ const LoginSection = (props: Props) => {
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+	const [openSnackbar, closeSnackbar] = useSnackbar();
 
 	const submitHandler = async (event: React.FormEvent) => {
 		event.preventDefault();
 
 		document.body.style.cursor = 'progress';
 		document.documentElement.style.cursor = 'progress';
-        props.onLoading(true);
+		props.onLoading(true);
 
 		const error = await dispatch(loginUser({ username, password }));
 		if (error) {
-            console.log(error);
-		} 
-        else {
+			openSnackbar(error, [5000]);
+		} else {
 			navigate('/');
-        }
-        
+		}
+
 		document.body.style.cursor = 'default';
 		document.documentElement.style.cursor = 'default';
-        props.onLoading(false);
+		props.onLoading(false);
 	};
 
 	const usernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

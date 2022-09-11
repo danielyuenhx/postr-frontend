@@ -3,3 +3,4 @@ declare module '*.jpg';
 declare module '*.module.css';
 
 declare module 'react-lettered-avatar'
+declare module 'react-simple-snackbar'
