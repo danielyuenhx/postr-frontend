@@ -16,7 +16,12 @@
 
 .container svg {
     width: 1rem !important;
-    margin-right: 0rem !important;
+    margin-top: 0rem !important;
+    margin-right: 0.25rem !important;
+}
+
+.container svg path {
+    transition: 0.15s ease-in-out;
 }
 
 .container:hover {

@@ -17,12 +17,14 @@ import logo from '../../images/postr-logo-full.png';
 import styles from './Header.module.css';
 
 const Header = () => {
+    // check if user is logged in
 	const item = localStorage.getItem('profile');
 	const profile = item === null ? null : JSON.parse(item);
 
 	const [user, setUser] = useState(profile);
 	const [isOpen, setIsOpen] = useState(false);
 
+    // check logged in on every page change
 	const location = useLocation();
 
 	useEffect(() => {
@@ -31,6 +33,11 @@ const Header = () => {
 		setUser(profile);
 	}, [location]);
 
+    // on logout: 
+    // 1. remove logged in user
+    // 2. close the dropdown
+    // 3. show snackbar
+    // 4. return to home page
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const [openSnackbar, closeSnackbar] = useSnackbar();
@@ -43,10 +50,12 @@ const Header = () => {
 		navigate('/');
 	};
 
+    // add close dropdown mouselistener to close on outside click
 	const dropdownRef = useRef<HTMLDivElement>(null);
 	const profileRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+        // click outside handler
 		function clickOutsideHandler(event: MouseEvent) {
 			if (
 				dropdownRef.current &&
@@ -58,13 +67,13 @@ const Header = () => {
 			}
 		}
 
-		// Bind the event listener
+		// bind event listener to entire document
 		document.addEventListener('mouseup', clickOutsideHandler);
 		return () => {
-			// Unbind the event listener on clean up
+			// remove event listener on cleanup
 			document.removeEventListener('mouseup', clickOutsideHandler);
 		};
-	}, [dropdownRef]);
+	}, [dropdownRef, profileRef]);
 
 	return (
 		<header className={styles.header}>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import LetteredAvatar from 'react-lettered-avatar';
 
 import Dropdown from './icons/Dropdown';
@@ -17,7 +16,7 @@ const Profile = React.forwardRef(
 					<LetteredAvatar name={props.username} size={30} />
 				</div>
 				{props.username}
-				{props.isOpen ? <ArrowUp /> : <Dropdown />}
+				<Dropdown isOpen={props.isOpen} />
 			</div>
 		);
 	}
