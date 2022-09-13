@@ -33,16 +33,16 @@
 }
 
 .right li {
-    margin-right: 0.5rem;
+    margin-right: 1rem;
 	cursor: pointer;
 	padding: 1rem 0.5rem;
     border-radius: 10px;
     transition: 0.15s ease-in-out;
+    position: relative;
 }
 
 .right li svg {
     margin-top: 0.25rem;
-    margin-right: 0.5rem;
     width: 1.5rem;
 }
 
@@ -52,4 +52,15 @@
 
 .right li a {
     text-decoration: none;
+}
+
+.badge {
+    position: absolute;
+    top: 1.1rem;
+    right: 0.5rem;
+    width: 0.45rem;
+    height: 0.45rem;
+    background-color: red;
+    border-radius: 100px;
+    border: 0.01rem solid rgba(219, 219, 219, 0.331);
 }

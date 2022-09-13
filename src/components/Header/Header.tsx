@@ -90,6 +90,7 @@ const Header = () => {
 							<Home />
 						</li>
 						<li>
+                            <div className={user.result.notifications && styles.badge} />
 							<Notifications />
 						</li>
 						<li>

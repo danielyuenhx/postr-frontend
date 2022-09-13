@@ -6,7 +6,7 @@ const PostsForm = () => {
 	return (
 		<form>
 			<div className={styles.card}>
-                <img />
+                
 					<input
 						placeholder="Write something..."
 						type="text"
