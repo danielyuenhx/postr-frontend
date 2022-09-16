@@ -11,7 +11,7 @@ import { useAppDispatch } from '../../../hooks/hooks';
 
 import styles from './SignUpSection.module.css';
 
-type Props = { onLoading: (status: boolean) => void }
+type Props = { onLoading: (status: boolean) => void };
 
 const SignUpSection = (props: Props) => {
 	const [username, setUsername] = useState('');
@@ -38,20 +38,22 @@ const SignUpSection = (props: Props) => {
 
 		document.body.style.cursor = 'progress';
 		document.documentElement.style.cursor = 'progress';
-        props.onLoading(true);
+		props.onLoading(true);
 
 		// sign up the user
-		const error = await dispatch(createUser({ username, password, confirmPassword }));
+		const error = await dispatch(
+			createUser({ username, password, confirmPassword })
+		);
 		if (error) {
 			openSnackbar(error, [5000]);
 		} else {
-			openSnackbar("Successfully created user!", [5000]);
+			openSnackbar('Successfully created user!', [5000]);
 			navigate('/');
 		}
-        
+
 		document.body.style.cursor = 'default';
 		document.documentElement.style.cursor = 'default';
-        props.onLoading(false);
+		props.onLoading(false);
 	};
 
 	const usernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
