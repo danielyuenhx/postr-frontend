@@ -2,7 +2,6 @@ import React from 'react';
 import LetteredAvatar from 'react-lettered-avatar';
 
 import Dropdown from './icons/Dropdown';
-import ArrowUp from './icons/ArrowUp';
 
 import styles from './Profile.module.css';
 
