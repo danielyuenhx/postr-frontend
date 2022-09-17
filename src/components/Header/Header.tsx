@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSnackbar } from 'react-simple-snackbar';
-
+import decode, { JwtPayload } from 'jwt-decode';
 import { authActions } from '../../store/auth-slice';
 import { useAppDispatch } from '../../hooks/hooks';
 
@@ -29,6 +29,17 @@ const Header = () => {
 
 	useEffect(() => {
 		const token = user?.token;
+
+		if (token) {
+			const decodedToken = decode<JwtPayload>(token);
+            const expiry = decodedToken ? decodedToken.exp : null;
+
+            if (expiry) {
+                if (expiry*1000 < new Date().getTime()) {
+                    logoutHandler();
+                }
+            }
+		}
 
 		setUser(profile);
 	}, [location]);
@@ -95,7 +106,9 @@ const Header = () => {
 									user.result.notifications && styles.badge
 								}
 							/>
-							<Notifications filled={location.pathname === '/notifications'} />
+							<Notifications
+								filled={location.pathname === '/notifications'}
+							/>
 						</li>
 						<li>
 							<Profile
