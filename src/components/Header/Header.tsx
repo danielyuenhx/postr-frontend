@@ -58,6 +58,7 @@ const Header = () => {
 		dispatch(authActions.logout());
 		setUser('');
 		setIsOpen(false);
+        window.location.reload();
 		openSnackbar('Successfully logged out!', [2500]);
 		navigate('/');
 	};

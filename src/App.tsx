@@ -3,7 +3,7 @@ import SnackbarProvider from 'react-simple-snackbar';
 
 import './App.css';
 import Header from './components/Header/Header';
-import PostsForm from './components/PostsForm/PostsForm';
+import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
 			<BrowserRouter>
 				<Header />
 				<Routes>
-					<Route path="/" element={<PostsForm />}></Route>
+					<Route path="/" element={<Home />}></Route>
 					<Route path="/login" element={<Login />}></Route>
 				</Routes>
 			</BrowserRouter>

@@ -1,0 +1,8 @@
+.home {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    max-width: 60rem;
+    width: 90%;
+    margin: 7rem auto;
+}

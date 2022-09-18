@@ -7,16 +7,18 @@ import styles from './PostsForm.module.css';
 type User = {auth: { result: { username: '', password: '' }, token: '' }};
 
 const PostsForm = () => {
-    const username = useSelector((state: User) => state.auth.result.username);
+	// check if user is logged in
+	const item = localStorage.getItem('profile');
+	const profile = item === null ? null : JSON.parse(item);
 
 	return (
 		<form>
 			<div className={styles.card}>
 				<div className={styles.avatar}>
-					{username && <LetteredAvatar name={username} size={35} />}
+					{profile && <LetteredAvatar name={profile.result.username} size={35} />}
 				</div>
                 <input
-                    placeholder="Write something..."
+                    placeholder="What's up?"
                     type="text"
                     id="input"
                     className={styles.input}

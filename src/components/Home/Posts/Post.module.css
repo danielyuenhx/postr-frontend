@@ -1,0 +1,47 @@
+.card {
+    box-sizing: border-box;
+    margin-right: 2rem;
+    width: 100%;
+	padding: 0.6rem 1.5rem 1.5rem 1.5rem;
+    border-radius: 5px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.196);
+	border-radius: 14px;
+	background-color: white;
+}
+
+.profile {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+.profile p {
+    margin-left: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.avatar div {
+	font-size: 0.6rem !important;
+    user-select: none;
+}
+
+.card h2 {
+    display: inline;
+}
+
+.tags {
+    margin-top: 1.5rem;
+}
+
+.tags p {
+    display: inline;
+    outline: 1px solid #8080805c;
+    border-radius: 45px;
+    padding: 0.25rem 0.8rem;
+    margin: auto 0.25rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
