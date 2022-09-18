@@ -32,6 +32,10 @@ const Post = () => {
 			<div className={styles.tags}>
 				<p>#tags</p> <p>#tags</p> <p>#tags</p>
 			</div>
+            <div className={styles.line} />
+            <div>
+
+            </div>
 		</div>
 	);
 };

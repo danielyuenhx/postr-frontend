@@ -4,7 +4,7 @@ import LetteredAvatar from 'react-lettered-avatar';
 
 import styles from './PostsForm.module.css';
 
-type User = {auth: { result: { username: '', password: '' }, token: '' }};
+type User = { auth: { result: { username: ''; password: '' }; token: '' } };
 
 const PostsForm = () => {
 	// check if user is logged in
@@ -12,18 +12,18 @@ const PostsForm = () => {
 	const profile = item === null ? null : JSON.parse(item);
 
 	return (
-		<form>
-			<div className={styles.card}>
-				<div className={styles.avatar}>
-					{profile && <LetteredAvatar name={profile.result.username} size={35} />}
-				</div>
-                <input
-                    placeholder="What's up?"
-                    type="text"
-                    id="input"
-                    className={styles.input}
-                />
+		<form className={styles.card}>
+			<div className={styles.avatar}>
+				{profile && (
+					<LetteredAvatar name={profile.result.username} size={35} />
+				)}
 			</div>
+			<input
+				placeholder="What's up?"
+				type="text"
+				id="input"
+				className={styles.input}
+			/>
 		</form>
 	);
 };

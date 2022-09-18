@@ -8,6 +8,8 @@ const Posts = () => {
   return (
     <div className={styles.container}>
         <Post />
+        <Post />
+        <Post />
     </div>
   )
 }

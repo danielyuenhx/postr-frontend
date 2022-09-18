@@ -1,6 +1,7 @@
 .card {
     box-sizing: border-box;
     margin-right: 2rem;
+    margin-bottom: 2rem;
     width: 100%;
 	padding: 0.6rem 1.5rem 1.5rem 1.5rem;
     border-radius: 5px;
@@ -33,7 +34,8 @@
 }
 
 .tags {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .tags p {
@@ -44,4 +46,14 @@
     margin: auto 0.25rem;
     font-size: 0.9rem;
     cursor: pointer;
+    transition: 0.25s;
+}
+
+.tags p:hover {
+    background-color: black;
+    color: white;
+}
+
+.line {
+    border-top: 1px solid #72727252;
 }
