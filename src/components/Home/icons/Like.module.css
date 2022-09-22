@@ -1,0 +1,47 @@
+.heart {
+	width: 1.5rem;
+	stroke: #f91880;
+	fill: #b5b5b57e;
+	stroke-dasharray: 48;
+	stroke-dashoffset: 48;
+    margin-right: 0.75rem;
+    cursor: pointer;
+}
+
+.heart.like {
+	animation: 1s ease-in-out forwards like;
+}
+
+.heart.unlike {
+	animation: 1s ease-in-out forwards unlike;
+}
+
+@keyframes like {
+	0% {
+		stroke-dashoffset: 48;
+		fill: #b5b5b57e;
+	}
+	75% {
+		stroke-dashoffset: 0;
+		fill: #b5b5b57e;
+	}
+	100% {
+		stroke-dashoffset: 0;
+		fill: #f91880;
+	}
+}
+
+@keyframes unlike {
+	0% {
+		stroke-dashoffset: 0;
+		fill: #f91880;
+	}
+	25% {
+		stroke-dashoffset: 0;
+		fill: #b5b5b57e;
+	}
+	100% {
+		stroke-dashoffset: 48;
+	}
+}
+

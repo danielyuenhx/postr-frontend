@@ -1,6 +1,8 @@
 import React from 'react';
 import LetteredAvatar from 'react-lettered-avatar';
 
+import Like from '../icons/Like';
+
 import styles from './Post.module.css';
 
 const Post = () => {
@@ -32,10 +34,11 @@ const Post = () => {
 			<div className={styles.tags}>
 				<p>#tags</p> <p>#tags</p> <p>#tags</p>
 			</div>
-            <div className={styles.line} />
-            <div>
-
-            </div>
+			<div className={styles.line} />
+			<div className={styles.like}>
+				<Like />
+                <span>100 likes</span>
+			</div>
 		</div>
 	);
 };

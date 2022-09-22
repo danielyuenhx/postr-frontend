@@ -12,19 +12,28 @@ const PostsForm = () => {
 	const profile = item === null ? null : JSON.parse(item);
 
 	return (
-		<form className={styles.card}>
-			<div className={styles.avatar}>
-				{profile && (
-					<LetteredAvatar name={profile.result.username} size={35} />
-				)}
-			</div>
-			<input
-				placeholder="What's up?"
-				type="text"
-				id="input"
-				className={styles.input}
-			/>
-		</form>
+			<form className={styles.card}>
+				<div className={styles.user}>
+					<div className={styles.avatar}>
+						{profile && (
+							<LetteredAvatar
+								name={profile.result.username}
+								size={25}
+							/>
+						)}
+					</div>
+					<label htmlFor="input">{profile.result.username}</label>
+				</div>
+				<div className={styles.textarea}>
+					<input
+						placeholder="What's up?"
+						type="text"
+						id="input"
+						className={styles.input}
+						disabled
+					/>
+				</div>
+			</form>
 	);
 };
 
