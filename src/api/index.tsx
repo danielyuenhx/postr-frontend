@@ -3,6 +3,7 @@ import { AxiosRequestConfig } from 'axios';
 
 type User = { username: string; password: string };
 type NewUser = { username: string; password: string; confirmPassword: string };
+type NewPost = { }
 
 const API = axios.create({ baseURL: 'http://localhost:5000' });
 
@@ -24,8 +25,8 @@ API.interceptors.request.use((req: AxiosRequestConfig) => {
 });
 
 // callback functions that make requests
-// export const fetchPosts = () => axios.get(url);
-// export const createPost = (newPost) => axios.post(url, newPost);
+// export const fetchPosts = () => API.get();
+// export const createPost = (newPost: NewPost) => axios.post(url, newPost);
 
 export const createUser = (newUser: NewUser) =>
 	API.post('/users/createUser', newUser);

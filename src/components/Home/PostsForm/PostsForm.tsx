@@ -1,39 +1,65 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import LetteredAvatar from 'react-lettered-avatar';
+import { Link } from 'react-router-dom';
 
 import styles from './PostsForm.module.css';
 
 type User = { auth: { result: { username: ''; password: '' }; token: '' } };
+
+const placeholders = [
+	"What's up?",
+	'Write something...',
+	'Post something...',
+	"What's happening?",
+	'Create post...',
+	"What's going on?",
+	'Share something...',
+	"What's on your mind?",
+];
 
 const PostsForm = () => {
 	// check if user is logged in
 	const item = localStorage.getItem('profile');
 	const profile = item === null ? null : JSON.parse(item);
 
+	const placeholder =
+		placeholders[Math.floor(Math.random() * placeholders.length)];
+
 	return (
-			<form className={styles.card}>
-				<div className={styles.user}>
-					<div className={styles.avatar}>
-						{profile && (
-							<LetteredAvatar
-								name={profile.result.username}
-								size={25}
-							/>
-						)}
+		<form className={styles.card}>
+			{profile ? (
+				<>
+					<div className={styles.user}>
+						<div className={styles.avatar}>
+							{profile && (
+								<LetteredAvatar
+									name={profile.result.username}
+									size={20}
+								/>
+							)}
+						</div>
+						<label htmlFor="input">{profile.result.username}</label>
 					</div>
-					<label htmlFor="input">{profile.result.username}</label>
+					<Link to="/create" className={styles.textarea}>
+						<input
+							placeholder={placeholder}
+							type="text"
+							id="input"
+							className={styles.input}
+							disabled
+						/>
+					</Link>
+				</>
+			) : (
+				<div className={styles.login}>
+					<p>Log in to post something!</p>
+					<Link to="/login">
+						<button className={styles.button}>Login</button>
+					</Link>
 				</div>
-				<div className={styles.textarea}>
-					<input
-						placeholder="What's up?"
-						type="text"
-						id="input"
-						className={styles.input}
-						disabled
-					/>
-				</div>
-			</form>
+			)}
+		</form>
 	);
 };
 

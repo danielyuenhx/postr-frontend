@@ -14,7 +14,7 @@ const Home = () => {
 	return (
 		<div className={styles.home}>
 			<Posts />
-			{profile && <PostsForm />}
+			<PostsForm />
 			{/* <p>© 2022 postr by Daniel Yuen</p>   */}
 		</div>
 	);

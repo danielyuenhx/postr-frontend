@@ -16,6 +16,7 @@ import ProfileDropdown from './ProfileDropdown';
 import logo from '../../images/postr-logo-full.png';
 
 import styles from './Header.module.css';
+import CreatePost from './icons/CreatePost';
 
 const Header = () => {
 	// check if user is logged in
@@ -33,13 +34,13 @@ const Header = () => {
 
 		if (token) {
 			const decodedToken = decode<JwtPayload>(token);
-            const expiry = decodedToken ? decodedToken.exp : null;
+			const expiry = decodedToken ? decodedToken.exp : null;
 
-            if (expiry) {
-                if (expiry*1000 < new Date().getTime()) {
-                    logoutHandler();
-                }
-            }
+			if (expiry) {
+				if (expiry * 1000 < new Date().getTime()) {
+					logoutHandler();
+				}
+			}
 		}
 
 		setUser(profile);
@@ -58,7 +59,7 @@ const Header = () => {
 		dispatch(authActions.logout());
 		setUser('');
 		setIsOpen(false);
-        window.location.reload();
+		window.location.reload();
 		openSnackbar('Successfully logged out!', [2500]);
 		navigate('/');
 	};
@@ -99,9 +100,16 @@ const Header = () => {
 			{user ? (
 				<nav className={styles.right}>
 					<ul>
-						<li className={styles.icon}>
-							<Home filled={location.pathname === '/'} />
-						</li>
+						<Link to="/">
+							<li className={styles.icon}>
+								<Home filled={location.pathname === '/'} />
+							</li>
+						</Link>
+						<Link to="/create">
+							<li className={styles.icon}>
+								<CreatePost filled={location.pathname === '/create'} />
+							</li>
+						</Link>
 						<li className={styles.icon}>
 							<div
 								className={

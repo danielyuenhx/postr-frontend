@@ -12,7 +12,7 @@
 	background-color: white;
     line-height: 1.5rem;
     position: sticky;
-    top: 7rem;
+    top: 6rem;
 }
 
 .card h1 {
@@ -21,7 +21,7 @@
 }
 
 .avatar div {
-	font-size: 0.8rem !important;
+	font-size: 0.6rem !important;
     user-select: none;
 }
 
@@ -36,12 +36,14 @@
 
 .user label {
     margin-left: 0.5rem;
+    font-size: 0.8rem;
 }
 
 .textarea {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 
 .input {
@@ -53,11 +55,40 @@
     border-radius: 45px;
     outline: 0px;
     width: 100%;
-    background-color: #f5f5f5a2;
-    transition: 0.25s;
+    background-color: #f5f5f5cb;
+    transition: 0.3s;
     cursor: pointer;
 }
 
-.container {
-    
+input:hover {
+    background-color: #eeeeeefd;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
+.login p {
+    margin: 1rem 0px 1rem 0px;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bffca;
+    color: white;
+    transition: 0.2s linear;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.button:hover {
+    background-color: #007bff;
 }

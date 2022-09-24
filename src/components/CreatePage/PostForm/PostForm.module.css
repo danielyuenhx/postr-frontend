@@ -1,0 +1,25 @@
+.card {
+    box-sizing: border-box;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+	padding: 0.6rem 1.5rem 0.6rem 1.5rem;
+    border-radius: 7px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.196);
+	background-color: white;
+}
+
+.title {
+    margin: 0px;
+}
+
+.line {
+    border-top: 1px solid #72727252;
+    margin: 0.8rem 0rem 1.5rem 0rem;
+}
+
+/* .editor {
+    border: 1px solid gray;
+    min-height: 6rem;
+    cursor: text;
+} */
