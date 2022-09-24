@@ -31,7 +31,7 @@ const SignUpSection = (props: Props) => {
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-	const [openSnackbar, closeSnackbar] = useSnackbar();
+	const [openSnackbar] = useSnackbar();
 
 	const submitHandler = async (event: React.FormEvent) => {
 		event.preventDefault();

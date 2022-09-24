@@ -10,7 +10,7 @@ type NewUser = { username: string; password: string; confirmPassword: string };
 
 type Error = { message: string }
 
-export const createUser =
+export const createPost =
 	(userData: NewUser) => async (dispatch: AppDispatch) => {
 		try {
 			const { data } = await api.createUser(userData);

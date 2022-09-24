@@ -52,7 +52,7 @@
 }
 
 .bottom button {
-    padding: 0.5rem 0rem;
+    height: 2.25rem;
     width: 8rem;
     font-size: 1rem;
     border-radius: 5px;
@@ -62,14 +62,11 @@
     cursor: pointer;
     margin-top: 0.5rem;
     margin-left: 1rem;
+    vertical-align: bottom;
 }
 
-.post:hover {
-	background-color: #007bff;
-}
-
-.cancel:hover {
-    background-color: #e0e0e0;
+.bottom button div {
+    justify-content: center;
 }
 
 .cancel {
@@ -80,4 +77,12 @@
 .post {
     background-color: #007bffca;
     color: white;
+}
+
+.post:hover {
+	background-color: #007bff;
+}
+
+.cancel:hover {
+    background-color: #e0e0e0;
 }
