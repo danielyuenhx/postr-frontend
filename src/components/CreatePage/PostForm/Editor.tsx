@@ -16,7 +16,7 @@ const placeholders = [
 	'Type your content here...',
 ];
 
-const charLimit = 360;
+const charLimit = 2500;
 
 const Editor = () => {
 	const placeholder =
@@ -56,25 +56,25 @@ const Editor = () => {
 					onClick={() => editor.chain().focus().toggleBold().run()}
 					className={editor.isActive('bold') ? styles.active : ''}
 				>
-					bold
+					<b>bold</b>
 				</button>
 				<button
 					onClick={() => editor.chain().focus().toggleItalic().run()}
 					className={editor.isActive('italic') ? styles.active : ''}
 				>
-					italic
+					<i>italic</i>
 				</button>
 				<button
 					onClick={() => editor.chain().focus().toggleStrike().run()}
 					className={editor.isActive('strike') ? styles.active : ''}
 				>
-					strike
+					<s>strike</s>
 				</button>
 				<button
 					onClick={() => editor.chain().focus().toggleCode().run()}
 					className={editor.isActive('code') ? styles.active : ''}
 				>
-					code
+					<code>code</code>
 				</button>
 				<button
 					onClick={() => editor.chain().focus().setParagraph().run()}
@@ -204,7 +204,7 @@ const Editor = () => {
 				<button
 					onClick={() => editor.chain().focus().setHardBreak().run()}
 				>
-					hard break
+				    line break
 				</button>
 				<button onClick={() => editor.chain().focus().undo().run()}>
 					<Undo />

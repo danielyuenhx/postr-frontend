@@ -1,40 +1,83 @@
 .card {
-    box-sizing: border-box;
-    margin-right: 2rem;
-    margin-bottom: 2rem;
-    width: 100%;
+	box-sizing: border-box;
+	margin-right: 2rem;
+	margin-bottom: 2rem;
+	width: 100%;
 	padding: 0.6rem 1.5rem 1.5rem 1.5rem;
-    border-radius: 7px;
+	border-radius: 7px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.196);
 	background-color: white;
 }
 
 .heading {
-    margin: 0;
+	margin: 0;
+}
+
+.title,
+.tags {
+	/* outline: 2px solid #8d8d8d5d; */
+	border-radius: 10px;
+	border: none;
+	outline: 2px solid #8d8d8d5d;
+	padding: 0.5rem;
+	transition: 0.25s;
 }
 
 .title {
-    margin: 1rem 0rem;
-    /* outline: 2px solid #8d8d8d5d; */
-    border-radius: 10px;
-    border: none;
-    padding: 0.5rem;
-    line-height: 2rem;
-    font-size: 1.5rem;
-    font-weight: bold;
+	margin: 1rem 0rem 0.5rem 0rem;
+	line-height: 2rem;
+	font-size: 1.5rem;
+	font-weight: bold;
+	/* background-color: rgba(245, 245, 245, 0.662); */
 }
 
-.title:hover {
-    background-color: inherit;
+.tags {
+	margin: 0.5rem 0rem 0rem 0rem;
+}
+
+.card input:hover,
+.card input:focus,
+.card input:not(:placeholder-shown) {
+	background-color: inherit;
 }
 
 .line {
-    border-top: 1px solid #72727252;
-    margin: 0.8rem 0rem 1.5rem 0rem;
+	border-top: 1px solid #72727252;
+	margin: 0.8rem 0rem 1.5rem 0rem;
 }
 
-/* .editor {
-    border: 1px solid gray;
-    min-height: 6rem;
-    cursor: text;
-} */
+.bottom {
+	display: flex;
+	justify-content: space-between;
+}
+
+.bottom button {
+    padding: 0.5rem 0rem;
+    width: 8rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    transition: 0.2s linear;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+}
+
+.post:hover {
+	background-color: #007bff;
+}
+
+.cancel:hover {
+    background-color: #e0e0e0;
+}
+
+.cancel {
+    background-color: #dedede80;
+    color: black;
+}
+
+.post {
+    background-color: #007bffca;
+    color: white;
+}

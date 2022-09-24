@@ -1,29 +1,33 @@
-import React, { MutableRefObject, Ref, useRef, useState } from 'react';
-import 'medium-editor/dist/css/themes/default.css';
-import 'medium-editor/dist/css/medium-editor.css';
-// import { EditorState } from 'draft-js';
-// import { Editor } from 'react-draft-wysiwyg';
-// import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-// import Editor from 'react-medium-editor';
+import React, { useRef, useState } from 'react';
 
 import Editor from './Editor';
 
 import styles from './PostForm.module.css';
 
 const PostForm = () => {
-
-    const submitHandler = (event: React.FormEvent) => {
-        event?.preventDefault()
-    }
+	const submitHandler = (event: React.FormEvent) => {
+		event?.preventDefault();
+	};
 
 	return (
 		<div>
 			<h2 className={styles.heading}>Create a post</h2>
 			<div className={styles.line}></div>
 			<form className={styles.card} onSubmit={submitHandler}>
-				<input placeholder="Title" className={styles.title}></input>
+				<input
+					placeholder="Title"
+					className={styles.title}
+					maxLength={300}
+				/>
 				<div className={styles.editor}>
-                    <Editor />
+					<Editor />
+				</div>
+				<div className={styles.bottom}>
+					<input placeholder="Tags..." className={styles.tags} />
+					<div>
+						<button className={styles.cancel}>Cancel</button>
+						<button className={styles.post}>Post</button>
+					</div>
 				</div>
 			</form>
 		</div>
