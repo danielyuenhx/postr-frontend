@@ -1,3 +1,18 @@
+.container {
+	border: 2px solid #8d8d8d5d;
+	border-radius: 10px;
+	padding: 1rem 1rem 0.5rem 1rem;
+}
+
+.editor {
+	min-height: 10rem;
+	cursor: text;
+}
+
+:global(.ProseMirror) {
+	min-height: 10rem;
+}
+
 .editor ul,
 .editor ol {
 	padding: 0 1rem;
@@ -38,23 +53,51 @@ h6 {
 
 .editor blockquote {
 	padding-left: 1rem;
-	border-left: 2px solid rgba(#0d0d0d, 0.1);
+	border-left: 2px solid #0d0d0d1b;
 }
 
 .editor hr {
 	border: none;
-	border-top: 2px solid rgba(#0d0d0d, 0.1);
+	border-top: 2px solid #0d0d0d1b;
 	margin: 2rem 0;
 }
 
+.editor :global(p.is-editor-empty:first-child::before) {
+	color: #adb5bd;
+	content: attr(data-placeholder);
+	float: left;
+	height: 0;
+	pointer-events: none;
+}
+
+.editor p.is-editor-empty {
+	color: #0d0d0d;
+}
+
+:global(.ProseMirror:focus) {
+	outline: none;
+}
+
+.charcount {
+	color: #868e96;
+	text-align: right;
+	user-select: none;
+}
+
 .menu button {
-    padding: 0.5rem;
-    border-radius: 15px;
-    border: none;
-    margin: 2px 2px;
+	user-select: none;
+	padding: 0.6rem;
+	border-radius: 10px;
+	border: none;
+	margin: 2px 2px;
+	transition: 0.25s;
+}
+
+.menu button svg {
+    width: 10px;
 }
 
 .menu .active {
-    color: rgb(218, 218, 218);
-    background-color: black;
+	color: rgb(218, 218, 218);
+	background-color: black;
 }

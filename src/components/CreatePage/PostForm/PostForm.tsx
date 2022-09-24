@@ -18,10 +18,10 @@ const PostForm = () => {
 
 	return (
 		<div>
-			<h2 className={styles.title}>Create Post</h2>
+			<h2 className={styles.heading}>Create a post</h2>
 			<div className={styles.line}></div>
 			<form className={styles.card} onSubmit={submitHandler}>
-				<input placeholder="Title"></input>
+				<input placeholder="Title" className={styles.title}></input>
 				<div className={styles.editor}>
                     <Editor />
 				</div>
