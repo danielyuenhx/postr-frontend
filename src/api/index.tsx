@@ -3,7 +3,13 @@ import { AxiosRequestConfig } from 'axios';
 
 type User = { username: string; password: string };
 type NewUser = { username: string; password: string; confirmPassword: string };
-type NewPost = { }
+type NewPost = {
+	user: string;
+	title: string;
+	content: string;
+	tags: string;
+	selectedFile: string;
+};
 
 const API = axios.create({ baseURL: 'http://localhost:5000' });
 

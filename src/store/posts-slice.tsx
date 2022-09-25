@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Action } from 'history';
 
 type Post = {
+    id: string;
+    user: string;
 	title: string;
 	content: string;
 	tags: string;
 	selectedFile: string;
+    createdAt: Date;
 };
 
 const initialState: any[] = [];
@@ -17,8 +19,9 @@ const postsSlice = createSlice({
 		getPosts(state, action: PayloadAction<Post[]>) {
 			return action?.payload;
 		},
-		createPost(state, action: PayloadAction<Post>) {
-			return [state, action?.payload];
+		createPost(state, action: PayloadAction<Post[]>) {
+            console.log("ARRAY" + [state,action?.payload])
+			return [...state, action?.payload];
 		},
 	},
 });

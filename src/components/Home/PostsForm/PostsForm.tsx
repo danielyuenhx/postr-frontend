@@ -2,6 +2,8 @@ import React from 'react';
 import LetteredAvatar from 'react-lettered-avatar';
 import { Link } from 'react-router-dom';
 
+import logo from '../../../images/only-logo-full.png';
+
 import styles from './PostsForm.module.css';
 
 const placeholders = [
@@ -50,6 +52,9 @@ const PostsForm = () => {
 				</>
 			) : (
 				<div className={styles.login}>
+					<div className={styles.logo}>
+						<img src={logo} />
+					</div>
 					<p>Log in to post something!</p>
 					<Link to="/login">
 						<button className={styles.button}>Login</button>

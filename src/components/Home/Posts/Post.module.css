@@ -23,6 +23,10 @@
     font-size: 0.8rem;
 }
 
+.content {
+    margin: 1rem 0rem;
+}
+
 .avatar div {
 	font-size: 0.6rem !important;
     user-select: none;
@@ -54,7 +58,7 @@
 
 .line {
     border-top: 1px solid #72727252;
-    margin: 1.5rem 0rem 0.5rem 0rem;
+    margin: 1rem 0rem 0.5rem 0rem;
 }
 
 .like {

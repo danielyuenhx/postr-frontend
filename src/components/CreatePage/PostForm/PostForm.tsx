@@ -48,7 +48,7 @@ const PostForm = () => {
 		// create the post
 		const error = await dispatch(
 			createPost({
-				user: profile.username,
+				user: profile.result.username,
 				title,
 				content,
 				tags,

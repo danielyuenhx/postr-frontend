@@ -11,6 +11,15 @@ type Post = {
 	content: string;
 	tags: string;
 	selectedFile: string;
+    createdAt: Date;
+};
+
+type NewPost = {
+    user: string;
+	title: string;
+	content: string;
+	tags: string;
+	selectedFile: string;
 };
 
 type Error = { message: string }
@@ -30,7 +39,7 @@ export const getPosts = () => async (dispatch: AppDispatch) => {
 };
 
 export const createPost =
-	(postData: Post) => async (dispatch: AppDispatch) => {
+	(postData: NewPost) => async (dispatch: AppDispatch) => {
 		try {
 			const { data } = await api.createPost(postData);
 
