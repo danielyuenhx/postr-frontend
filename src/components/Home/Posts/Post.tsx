@@ -36,6 +36,7 @@ const Post = (props: { post: Post, key: string }) => {
 			<div className={styles.content}>
 				{ReactHtmlParser(post.content)}
 			</div>
+            <img src={post.selectedFile} />
 			<div className={styles.tags}>
 				<p>#tags</p> <p>#tags</p> <p>#tags</p>
 			</div>

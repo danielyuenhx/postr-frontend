@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import ContentLoader, { Facebook } from 'react-content-loader';
 
 import Post from './Post';
 import { useAppSelector } from '../../../hooks/hooks';
@@ -21,13 +21,15 @@ const Posts = () => {
 	const posts = [...fetchedPosts];
 	posts.reverse();
 
-	return !posts.length ? (
-		<p>no posts</p>
-	) : (
+	return (
 		<div className={styles.container}>
-			{posts.map((post) => (
-				<Post post={post} key={post._id} />
-			))}
+			{!posts.length
+				? Array(5).fill(
+						<div className={styles.card}>
+							<Facebook />
+						</div>
+				  )
+				: posts.map((post) => <Post post={post} key={post._id} />)}
 		</div>
 	);
 };

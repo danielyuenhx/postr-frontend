@@ -9,6 +9,10 @@
 	background-color: white;
 }
 
+.card img {
+    width: 100%;
+}
+
 .profile {
     display: flex;
     width: 100%;
