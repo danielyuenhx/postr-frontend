@@ -4,7 +4,6 @@ import PostsForm from './PostsForm/PostsForm';
 import Posts from './Posts/Posts';
 
 import styles from './Home.module.css';
-type User = { auth: { result: { username: ''; password: '' }; token: '' } };
 
 const Home = () => {
 	// check if user is logged in

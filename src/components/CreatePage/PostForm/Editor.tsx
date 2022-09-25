@@ -18,7 +18,7 @@ const placeholders = [
 
 const charLimit = 2500;
 
-const Editor = () => {
+const Editor = (props: { onChange: (html: string) => void }) => {
 	const placeholder =
 		placeholders[Math.floor(Math.random() * placeholders.length)];
 
@@ -31,7 +31,11 @@ const Editor = () => {
 			CharacterCount.configure({
 				limit: charLimit,
 			}),
-		]
+		],
+		onUpdate: ({ editor }) => {
+			const html = editor.getHTML();
+			props.onChange(html);
+		},
 	});
 
 	const editorRef = useRef<HTMLDivElement>(null);
@@ -39,15 +43,6 @@ const Editor = () => {
 	if (!editor) {
 		return null;
 	}
-
-	// const onClickHandler = () => {
-	// 	if (editorRef.current) {
-	// 		const prose = editorRef.current.querySelector(
-	// 			'.ProseMirror'
-	// 		) as HTMLInputElement | null;
-	// 		prose && prose.classList.add("ProseMirror-focused");
-	// 	}
-	// };
 
 	return (
 		<div className={styles.container}>
@@ -204,7 +199,7 @@ const Editor = () => {
 				<button
 					onClick={() => editor.chain().focus().setHardBreak().run()}
 				>
-				    line break
+					line break
 				</button>
 				<button onClick={() => editor.chain().focus().undo().run()}>
 					<Undo />
@@ -213,12 +208,7 @@ const Editor = () => {
 					<Redo />
 				</button>
 			</div>
-			<div ref={editorRef}>
-				<EditorContent
-					editor={editor}
-					className={styles.editor}
-				/>
-			</div>
+			<EditorContent editor={editor} className={styles.editor} />
 			<div className={styles.charcount}>
 				{editor.storage.characterCount.words()} words
 				<br />

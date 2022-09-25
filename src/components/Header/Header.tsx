@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSnackbar } from 'react-simple-snackbar';
 import decode, { JwtPayload } from 'jwt-decode';
@@ -26,8 +26,26 @@ const Header = () => {
 	const [user, setUser] = useState(profile);
 	const [isOpen, setIsOpen] = useState(false);
 
+	// on logout:
+	// 1. remove logged in user
+	// 2. close the dropdown
+	// 3. show snackbar
+	// 4. return to home page
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
+	const [openSnackbar] = useSnackbar();
+
 	// check logged in on every page change
 	const location = useLocation();
+
+	const logoutHandler = useCallback(() => {
+		dispatch(authActions.logout());
+		setUser('');
+		setIsOpen(false);
+		window.location.reload();
+		openSnackbar('Successfully logged out!', [2500]);
+		navigate('/');
+	}, [dispatch, setUser, setIsOpen, navigate, openSnackbar, location]);
 
 	useEffect(() => {
 		const token = user?.token;
@@ -45,24 +63,6 @@ const Header = () => {
 
 		setUser(profile);
 	}, [location]);
-
-	// on logout:
-	// 1. remove logged in user
-	// 2. close the dropdown
-	// 3. show snackbar
-	// 4. return to home page
-	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
-	const [openSnackbar, closeSnackbar] = useSnackbar();
-
-	const logoutHandler = () => {
-		dispatch(authActions.logout());
-		setUser('');
-		setIsOpen(false);
-		window.location.reload();
-		openSnackbar('Successfully logged out!', [2500]);
-		navigate('/');
-	};
 
 	// add close dropdown mouselistener to close on outside click
 	const dropdownRef = useRef<HTMLDivElement>(null);

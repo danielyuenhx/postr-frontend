@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import styles from './Like.module.css';
 

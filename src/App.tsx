@@ -1,13 +1,23 @@
+import { useAppDispatch } from './hooks/hooks';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SnackbarProvider from 'react-simple-snackbar';
 
 import './App.css';
+import { getPosts } from './actions/posts-actions';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import CreatePage from './components/CreatePage/CreatePage';
 
 function App() {
+
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(getPosts())
+    }, [dispatch])
+
 	return (
 		<SnackbarProvider>
 			<BrowserRouter>

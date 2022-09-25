@@ -25,8 +25,8 @@ API.interceptors.request.use((req: AxiosRequestConfig) => {
 });
 
 // callback functions that make requests
-// export const fetchPosts = () => API.get();
-// export const createPost = (newPost: NewPost) => axios.post(url, newPost);
+export const getPosts = () => API.get('/posts');
+export const createPost = (newPost: NewPost) => API.post('/posts', newPost);
 
 export const createUser = (newUser: NewUser) =>
 	API.post('/users/createUser', newUser);

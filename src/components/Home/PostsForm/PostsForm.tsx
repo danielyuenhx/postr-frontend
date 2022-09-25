@@ -1,11 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import LetteredAvatar from 'react-lettered-avatar';
 import { Link } from 'react-router-dom';
 
 import styles from './PostsForm.module.css';
-
-type User = { auth: { result: { username: ''; password: '' }; token: '' } };
 
 const placeholders = [
 	"What's up?",
