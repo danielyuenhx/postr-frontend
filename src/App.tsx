@@ -11,12 +11,11 @@ import Login from './components/Login/Login';
 import CreatePage from './components/CreatePage/CreatePage';
 
 function App() {
+	const dispatch = useAppDispatch();
 
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        dispatch(getPosts())
-    }, [dispatch])
+	useEffect(() => {
+		dispatch(getPosts());
+	}, [dispatch]);
 
 	return (
 		<SnackbarProvider>

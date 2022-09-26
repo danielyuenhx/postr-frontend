@@ -79,7 +79,7 @@ const Editor = (props: { onChange: (html: string) => void }) => {
 				>
 					paragraph
 				</button>
-				<button
+				{/* <button
 					onClick={() =>
 						editor.chain().focus().toggleHeading({ level: 1 }).run()
 					}
@@ -150,7 +150,7 @@ const Editor = (props: { onChange: (html: string) => void }) => {
 					}
 				>
 					h6
-				</button>
+				</button> */}
 				<button
 					onClick={() =>
 						editor.chain().focus().toggleBulletList().run()

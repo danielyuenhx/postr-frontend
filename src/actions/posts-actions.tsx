@@ -53,6 +53,16 @@ export const createPost =
 		}
 	};
 
-// export const logoutUser = () => async (dispatch: AppDispatch) => {
-//     dispatch(authActions.logout());
-// }
+export const deletePost = (id: string) => async (dispatch: AppDispatch) => {
+    try {
+        await api.deletePost(id);
+
+        dispatch(postsActions.deletePost(id));
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response) {
+            return (error.response?.data as Error).message;
+        } else {
+            return 'An unexpected error occurred';
+        }
+    }
+};

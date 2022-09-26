@@ -1,7 +1,7 @@
 .card {
     box-sizing: border-box;
     margin-right: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     width: 100%;
 	padding: 0.6rem 1.5rem 0.6rem 1.5rem;
     border-radius: 7px;
@@ -19,12 +19,31 @@
     justify-content: start;
     align-items: center;
     padding-bottom: 0.5rem;
+    position: relative;
 }
 
 .profile p {
     margin-left: 0.5rem;
     font-weight: 500;
     font-size: 0.8rem;
+}
+
+.options {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    border-radius: 50%;
+	padding: 0rem 0.25rem;
+    transition: 0.15s ease-in-out;
+}
+
+.options svg {
+    margin-top: 0.25rem;
+    width: 1.5rem;
+}
+
+.options:hover {
+    background-color: #bebebe6b;
 }
 
 .content {
@@ -36,12 +55,13 @@
     user-select: none;
 }
 
-.card h2 {
+.card h3 {
     display: inline;
 }
 
 .tags {
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .tags p {
@@ -62,12 +82,36 @@
 
 .line {
     border-top: 1px solid #72727252;
-    margin: 1rem 0rem 0.5rem 0rem;
+    margin: 1rem 0rem 0.25rem 0rem;
 }
 
 .like {
     display: flex;
     justify-content: start;
     align-items: center;
-    padding: 0.5rem 0rem;
+    padding: 0.5rem 0rem 0.25rem 0rem;
+}
+
+blockquote {
+	padding-left: 1rem;
+	border-left: 2px solid #0d0d0d1b;
+}
+
+code {
+	background-color: rgba(#616161, 0.1);
+	color: #616161;
+}
+
+pre {
+	background: #0d0d0d;
+	color: #fff;
+	font-family: 'JetBrainsMono', monospace;
+	padding: 0.75rem 1rem;
+	border-radius: 0.5rem;
+}
+pre code {
+	color: inherit;
+	padding: 0;
+	background: none;
+	font-size: 0.8rem;
 }

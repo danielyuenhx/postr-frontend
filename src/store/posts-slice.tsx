@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type Post = {
-    id: string;
-    user: string;
+	id: string;
+	user: string;
 	title: string;
 	content: string;
 	tags: string;
 	selectedFile: string;
-    createdAt: Date;
+	likeCount: number;
+	createdAt: Date;
 };
 
 const initialState: any[] = [];
@@ -20,8 +21,11 @@ const postsSlice = createSlice({
 			return action?.payload;
 		},
 		createPost(state, action: PayloadAction<Post[]>) {
-            console.log("ARRAY" + [state,action?.payload])
 			return [...state, action?.payload];
+		},
+		deletePost(state, action: PayloadAction<string>) {
+            console.log('testing')
+			return state.filter((post) => post._id != action.payload);
 		},
 	},
 });

@@ -29,6 +29,7 @@ const PostsForm = () => {
 		<form className={styles.card}>
 			{profile ? (
 				<>
+					{/* <Join /> */}
 					<div className={styles.user}>
 						<div className={styles.avatar}>
 							{profile && (

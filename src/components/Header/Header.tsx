@@ -19,6 +19,15 @@ import styles from './Header.module.css';
 import CreatePost from './icons/CreatePost';
 
 const Header = () => {
+    // show snackbar AFTER reload
+	window.onload = () => {
+		const message = sessionStorage.getItem('reload');
+		if (message) {
+			openSnackbar(message, [2500]);
+			sessionStorage.removeItem('reload');
+		}
+	};
+
 	// check if user is logged in
 	const item = localStorage.getItem('profile');
 	const profile = item === null ? null : JSON.parse(item);
@@ -38,14 +47,17 @@ const Header = () => {
 	// check logged in on every page change
 	const location = useLocation();
 
-	const logoutHandler = useCallback(() => {
-		dispatch(authActions.logout());
-		setUser('');
-		setIsOpen(false);
-		window.location.reload();
-		openSnackbar('Successfully logged out!', [2500]);
-		navigate('/');
-	}, [dispatch, setUser, setIsOpen, navigate, openSnackbar, location]);
+	const logoutHandler = useCallback(
+		(message: string) => {
+			dispatch(authActions.logout());
+			setUser('');
+			setIsOpen(false);
+			navigate('/');
+			window.location.reload();
+			sessionStorage.setItem('reload', message);
+		},
+		[dispatch, setUser, setIsOpen, navigate, openSnackbar, location]
+	);
 
 	useEffect(() => {
 		const token = user?.token;
@@ -56,7 +68,7 @@ const Header = () => {
 
 			if (expiry) {
 				if (expiry * 1000 < new Date().getTime()) {
-					logoutHandler();
+					logoutHandler('Login expired, please log in again!');
 				}
 			}
 		}
@@ -107,7 +119,9 @@ const Header = () => {
 						</Link>
 						<Link to="/create">
 							<li className={styles.icon}>
-								<CreatePost filled={location.pathname === '/create'} />
+								<CreatePost
+									filled={location.pathname === '/create'}
+								/>
 							</li>
 						</Link>
 						<li className={styles.icon}>
@@ -135,7 +149,10 @@ const Header = () => {
 			)}
 			{isOpen && (
 				<ProfileDropdown
-					logoutHandler={logoutHandler}
+					logoutHandler={logoutHandler.bind(
+						null,
+						'Successfully logged out!'
+					)}
 					ref={dropdownRef}
 				/>
 			)}

@@ -47,11 +47,6 @@ h6 {
 	font-size: 0.8rem;
 }
 
-.editor img {
-	max-width: 100%;
-	height: auto;
-}
-
 .editor blockquote {
 	padding-left: 1rem;
 	border-left: 2px solid #0d0d0d1b;
