@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type Post = {
-	id: string;
+	_id: string;
 	user: string;
 	title: string;
 	content: string;
@@ -24,8 +24,12 @@ const postsSlice = createSlice({
 			return [...state, action?.payload];
 		},
 		deletePost(state, action: PayloadAction<string>) {
-            console.log('testing')
 			return state.filter((post) => post._id != action.payload);
+		},
+		updatePost(state, action: PayloadAction<Post>) {
+			return state.map((post) =>
+				post._id === action.payload._id ? action.payload : post
+			);
 		},
 	},
 });

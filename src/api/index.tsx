@@ -33,7 +33,8 @@ API.interceptors.request.use((req: AxiosRequestConfig) => {
 // callback functions that make requests
 export const getPosts = () => API.get('/posts');
 export const createPost = (newPost: NewPost) => API.post('/posts', newPost);
-export const deletePost = (id: string) => API.delete(`/posts/${id}`) 
+export const deletePost = (id: string) => API.delete(`/posts/${id}`);
+export const likePost = (id: string) => API.patch(`posts/${id}/likePost`);
 
 export const createUser = (newUser: NewUser) =>
 	API.post('/users/createUser', newUser);

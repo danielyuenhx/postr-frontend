@@ -8,7 +8,7 @@ import Like from '../icons/Like';
 import Options from '../icons/Options';
 import OptionsDropdown from './OptionsDropdown';
 import { useAppDispatch } from '../../../hooks/hooks';
-import { deletePost } from '../../../actions/posts-actions';
+import { deletePost, likePost } from '../../../actions/posts-actions';
 
 import styles from './Post.module.css';
 
@@ -32,11 +32,15 @@ const Post = (props: { post: Post; key: string }) => {
 	const dispatch = useAppDispatch();
 	const [openSnackbar] = useSnackbar();
 
+	const likeHandler = () => {
+		dispatch(likePost(post._id));
+	};
+
 	const deleteHandler = async () => {
 		document.body.style.cursor = 'progress';
 		document.documentElement.style.cursor = 'progress';
 
-        const error = await dispatch(deletePost(post._id));
+		const error = await dispatch(deletePost(post._id));
 		if (error) {
 			openSnackbar(error, [5000]);
 		} else {
@@ -45,7 +49,7 @@ const Post = (props: { post: Post; key: string }) => {
 
 		document.body.style.cursor = 'default';
 		document.documentElement.style.cursor = 'default';
-    };
+	};
 
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -106,7 +110,7 @@ const Post = (props: { post: Post; key: string }) => {
 			)}
 			<div className={styles.line} />
 			<div className={styles.like}>
-				<Like isLoggedIn={profile ? true : false} />
+				<Like isLoggedIn={profile ? true : false} onClick={profile ? likeHandler : ()=>{}} />
 				<span>{post.likeCount} likes</span>
 			</div>
 		</div>

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import styles from './Like.module.css';
 
-const Like = (props: { isLoggedIn: boolean }) => {
+const Like = (props: { isLoggedIn: boolean; onClick: () => void }) => {
 	const [isLiked, setIsLiked] = useState('first');
 
 	const likeHandler = (event: React.MouseEvent<SVGSVGElement>) => {
@@ -11,6 +11,7 @@ const Like = (props: { isLoggedIn: boolean }) => {
 		} else {
 			setIsLiked('liked');
 		}
+        props.onClick();
 	};
 
 	return (
