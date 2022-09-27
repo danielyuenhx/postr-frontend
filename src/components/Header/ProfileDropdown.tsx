@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 import User from './icons/User';
 import Logout from './icons/Logout';
@@ -10,7 +11,13 @@ type Props = { logoutHandler: () => void };
 const ProfileDropdown = React.forwardRef(
 	(props: Props, ref: React.Ref<HTMLDivElement>) => {
 		return (
-			<div className={styles.container} ref={ref}>
+			<motion.div
+				initial={{ opacity: 0, y: '-50%' }}
+				animate={{ opacity: 1, y: '0%' }}
+				exit={{ opacity: -1, y: '-50%' }}
+				className={styles.container}
+				ref={ref}
+			>
 				<ul>
 					<li>
 						<User />
@@ -21,7 +28,7 @@ const ProfileDropdown = React.forwardRef(
 						Logout
 					</li>
 				</ul>
-			</div>
+			</motion.div>
 		);
 	}
 );

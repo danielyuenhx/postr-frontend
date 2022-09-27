@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSnackbar } from 'react-simple-snackbar';
 import decode, { JwtPayload } from 'jwt-decode';
+import { AnimatePresence } from 'framer-motion';
 
 import { authActions } from '../../store/auth-slice';
 import { useAppDispatch } from '../../hooks/hooks';
@@ -19,11 +20,11 @@ import styles from './Header.module.css';
 import CreatePost from './icons/CreatePost';
 
 export interface UserIDJwtPayload extends JwtPayload {
-    username: string
+	username: string;
 }
 
 const Header = () => {
-    // show snackbar AFTER reload
+	// show snackbar AFTER reload
 	window.onload = () => {
 		const message = sessionStorage.getItem('reload');
 		if (message) {
@@ -64,16 +65,18 @@ const Header = () => {
 		if (token) {
 			const decodedToken = decode<UserIDJwtPayload>(token);
 			const expiry = decodedToken ? decodedToken.exp : null;
-            const imposter = decodedToken.username !== profile.result.username;
+			const imposter = decodedToken.username !== profile.result.username;
 
 			if (expiry) {
 				if (expiry * 1000 < new Date().getTime()) {
 					logoutHandler('Login expired, please log in again!');
 				}
 			}
-            if (imposter) {
-                logoutHandler("That's not very nice, identity theft is not a joke.")
-            }
+			if (imposter) {
+				logoutHandler(
+					"That's not very nice, identity theft is not a joke."
+				);
+			}
 		}
 
 		setUser(profile);
@@ -150,15 +153,17 @@ const Header = () => {
 			) : (
 				<HeaderLogin />
 			)}
-			{isOpen && (
-				<ProfileDropdown
-					logoutHandler={logoutHandler.bind(
-						null,
-						'Successfully logged out!'
-					)}
-					ref={dropdownRef}
-				/>
-			)}
+			<AnimatePresence>
+				{isOpen && (
+					<ProfileDropdown
+						logoutHandler={logoutHandler.bind(
+							null,
+							'Successfully logged out!'
+						)}
+						ref={dropdownRef}
+					/>
+				)}
+			</AnimatePresence>
 		</header>
 	);
 };

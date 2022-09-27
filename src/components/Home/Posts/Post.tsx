@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import LetteredAvatar from 'react-lettered-avatar';
 import ReactHtmlParser from 'react-html-parser';
 import { useSnackbar } from 'react-simple-snackbar';
+import { motion, AnimatePresence } from 'framer-motion';
 import moment from 'moment';
 
 import Like from '../icons/Like';
@@ -90,19 +91,21 @@ const Post = (props: { post: Post; key: string }) => {
 				<p style={{ fontWeight: '100' }}>
 					• {moment(post.createdAt).fromNow()}
 				</p>
-				{profile && (post.user === profile.result.username && (
+				{profile && post.user === profile.result.username && (
 					<>
 						<div className={styles.options} ref={optionsRef}>
 							<Options onClick={setIsOpen.bind(null, !isOpen)} />
 						</div>
-						{isOpen && (
-							<OptionsDropdown
-								deleteHandler={deleteHandler}
-								ref={dropdownRef}
-							/>
-						)}
+						<AnimatePresence>
+							{isOpen && (
+								<OptionsDropdown
+									deleteHandler={deleteHandler}
+									ref={dropdownRef}
+								/>
+							)}
+						</AnimatePresence>
 					</>
-				))}
+				)}
 			</div>
 			<h3>{post.title}</h3>
 			<div className={styles.content}>
