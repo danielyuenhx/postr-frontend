@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type User = { username: string; password: string };
+type User = { result: { username: string, id: string, notification: boolean }, token: string };
 
-const initialState = { result: { username: '', password: '' }, token: '' };
+const initialState = { result: { username: '', id: '', notification: false }, token: '' };
 
 const authSlice = createSlice({
 	name: 'auth',
@@ -13,11 +13,11 @@ const authSlice = createSlice({
 				'profile',
 				JSON.stringify({ ...action?.payload })
 			);
-			return { ...state, authData: action?.payload };
+			return { ...state, ...action?.payload };
 		},
         logout(state) {
-            localStorage.clear();
-			return { ...state, authData: null };
+            localStorage.removeItem('profile');
+			return { result: { username: '', id: '', notification: false }, token: '' };
         }
 	},
 });

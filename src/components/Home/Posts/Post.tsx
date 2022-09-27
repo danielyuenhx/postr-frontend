@@ -7,10 +7,12 @@ import moment from 'moment';
 import Like from '../icons/Like';
 import Options from '../icons/Options';
 import OptionsDropdown from './OptionsDropdown';
-import { useAppDispatch } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { deletePost, likePost } from '../../../actions/posts-actions';
 
 import styles from './Post.module.css';
+import Line from '../../UI/Line';
+import { postsActions } from '../../../store/posts-slice';
 
 type Post = {
 	_id: string;
@@ -19,7 +21,7 @@ type Post = {
 	content: string;
 	tags: string;
 	selectedFile: string;
-	likeCount: number;
+	likes: [string];
 	createdAt: Date;
 };
 
@@ -32,8 +34,8 @@ const Post = (props: { post: Post; key: string }) => {
 	const dispatch = useAppDispatch();
 	const [openSnackbar] = useSnackbar();
 
-	const likeHandler = () => {
-		dispatch(likePost(post._id));
+	const likeHandler = async () => {
+		await dispatch(likePost(post._id));
 	};
 
 	const deleteHandler = async () => {
@@ -108,10 +110,23 @@ const Post = (props: { post: Post; key: string }) => {
 					<p>#tags</p> <p>#tags</p> <p>#tags</p>
 				</div>
 			)}
-			<div className={styles.line} />
+			<Line />
 			<div className={styles.like}>
-				<Like isLoggedIn={profile ? true : false} onClick={profile ? likeHandler : ()=>{}} />
-				<span>{post.likeCount} likes</span>
+				<Like
+					isLoggedIn={profile ? true : false}
+					isLikedByUser={
+						(profile
+							? true
+							: false) && (post.likes.includes(profile.result.id)
+							? true
+							: false)
+					}
+					onClick={profile ? likeHandler : () => {}}
+				/>
+				<span>
+					{post.likes.length}{' '}
+					{post.likes.length === 1 ? 'like' : 'likes'}
+				</span>
 			</div>
 		</div>
 	);

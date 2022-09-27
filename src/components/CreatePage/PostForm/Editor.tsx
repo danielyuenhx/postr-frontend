@@ -71,15 +71,15 @@ const Editor = (props: { onChange: (html: string) => void }) => {
 				>
 					<code>code</code>
 				</button>
-				<button
+				{/* <button
 					onClick={() => editor.chain().focus().setParagraph().run()}
 					className={
 						editor.isActive('paragraph') ? styles.active : ''
 					}
 				>
 					paragraph
-				</button>
-				{/* <button
+				</button> 
+				<button
 					onClick={() =>
 						editor.chain().focus().toggleHeading({ level: 1 }).run()
 					}

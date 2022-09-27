@@ -5,6 +5,7 @@ import { TailSpin } from 'react-loader-spinner';
 import FileBase from 'react-file-base64';
 
 import Editor from './Editor';
+import Line from '../../UI/Line';
 import { createPost } from '../../../actions/posts-actions';
 import { useAppDispatch } from '../../../hooks/hooks';
 
@@ -70,7 +71,7 @@ const PostForm = () => {
 	return (
 		<div>
 			<h2 className={styles.heading}>Create a post</h2>
-			<div className={styles.line}></div>
+			<Line />
 			<div className={styles.card}>
 				<input
 					placeholder="Title"
@@ -100,7 +101,8 @@ const PostForm = () => {
 							onChange={tagsHandler}
 						/>
 					</div>
-					<div>
+                    <Line />
+					<div className={styles.buttons}>
 						<Link to="/">
 							<button className={styles.cancel}>Cancel</button>
 						</Link>

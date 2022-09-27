@@ -1,27 +1,37 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { debounce } from 'lodash';
 
 import styles from './Like.module.css';
 
-const Like = (props: { isLoggedIn: boolean; onClick: () => void }) => {
-	const [isLiked, setIsLiked] = useState('first');
+const Like = (props: {
+	isLoggedIn: boolean;
+	isLikedByUser: boolean;
+	onClick: () => void;
+}) => {
+	const [isLiked, setIsLiked] = useState(props.isLikedByUser);
 
-	const likeHandler = (event: React.MouseEvent<SVGSVGElement>) => {
-		if (isLiked === 'liked') {
-			setIsLiked('unliked');
+	// const debouncedClick = useCallback(debounce(() => {
+	//     props.onClick;
+	//   }, INTERVAL, {leading: true, trailing: false, maxWait: INTERVAL}), []);
+
+	const likeHandler = async (event: React.MouseEvent<SVGSVGElement>) => {
+		await props.onClick();
+		if (isLiked) {
+			setIsLiked(false);
 		} else {
-			setIsLiked('liked');
+			setIsLiked(true);
 		}
-        props.onClick();
 	};
 
 	return (
 		<svg
 			className={`${styles.heart} ${
-				isLiked === 'first'
-					? ''
-					: isLiked === 'liked'
-					? styles.like
-					: styles.unlike
+				isLiked ? styles.like : styles.unlike
+				// isLiked === 'first'
+				// 	? ''
+				// 	: isLiked === 'liked'
+				// 	? styles.like
+				// 	: styles.unlike
 			}`}
 			viewBox="0 0 20 20"
 			xmlns="http://www.w3.org/2000/svg"

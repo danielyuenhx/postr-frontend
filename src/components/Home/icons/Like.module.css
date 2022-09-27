@@ -9,11 +9,11 @@
 }
 
 .heart.like {
-	animation: 1s ease-in-out forwards like;
+	animation: 0.5s ease-in-out forwards like;
 }
 
 .heart.unlike {
-	animation: 1s ease-in-out forwards unlike;
+	animation: 0.5s ease-in-out forwards unlike;
 }
 
 @keyframes like {

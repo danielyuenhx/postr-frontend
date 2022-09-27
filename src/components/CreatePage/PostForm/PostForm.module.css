@@ -1,9 +1,10 @@
 .card {
 	box-sizing: border-box;
+    margin-top: 1.5rem;
 	margin-right: 2rem;
 	margin-bottom: 2rem;
 	width: 100%;
-	padding: 0.6rem 1.5rem 1.5rem 1.5rem;
+	padding: 0.6rem 1.5rem 1rem 1.5rem;
 	border-radius: 7px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.196);
 	background-color: white;
@@ -11,6 +12,7 @@
 
 .heading {
 	margin: 0;
+    margin-bottom: 0.8rem;
 }
 
 .title,
@@ -32,7 +34,7 @@
 }
 
 .tags {
-	margin: 0.5rem 0rem 0rem 0rem;
+	margin: 0.5rem 0rem 1rem 0rem;
 }
 
 .card input:hover,
@@ -41,14 +43,16 @@
 	background-color: inherit;
 }
 
-.line {
-	border-top: 1px solid #72727252;
-	margin: 0.8rem 0rem 1.5rem 0rem;
-}
-
 .bottom {
 	display: flex;
+    flex-direction: column;
 	justify-content: space-between;
+}
+
+.buttons {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: end;
 }
 
 .bottom button {

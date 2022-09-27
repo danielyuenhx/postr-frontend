@@ -13,7 +13,7 @@ type PostType = {
 	content: string;
 	tags: string;
 	selectedFile: string;
-    likeCount: number;
+    likes: [string];
 	createdAt: Date;
 };
 

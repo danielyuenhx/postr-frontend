@@ -27,6 +27,7 @@ export const createUser =
 export const loginUser = (userData: User) => async (dispatch: AppDispatch) => {
 	try {
 		const { data } = await api.loginUser(userData);
+        
 		dispatch(authActions.auth(data));
 	} catch (error) {
 		if (axios.isAxiosError(error) && error.response) {
