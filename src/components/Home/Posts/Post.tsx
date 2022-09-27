@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import LetteredAvatar from 'react-lettered-avatar';
 import ReactHtmlParser from 'react-html-parser';
 import { useSnackbar } from 'react-simple-snackbar';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import moment from 'moment';
 
 import Like from '../icons/Like';

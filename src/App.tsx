@@ -9,6 +9,7 @@ import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import CreatePage from './components/CreatePage/CreatePage';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 
 function App() {
 	const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ function App() {
 					<Route path="/" element={<Home />}></Route>
 					<Route path="/login" element={<Login />}></Route>
 					<Route path="/create" element={<CreatePage />}></Route>
+					<Route path="/profile/:username" element={<ProfilePage />}></Route>
 				</Routes>
 			</BrowserRouter>
 		</SnackbarProvider>

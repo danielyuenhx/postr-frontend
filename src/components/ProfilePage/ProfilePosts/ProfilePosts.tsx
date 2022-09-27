@@ -1,10 +1,10 @@
 import React from 'react';
-import ContentLoader, { Facebook } from 'react-content-loader';
+import { Facebook } from 'react-content-loader';
 
-import Post from './Post';
+import Post from '../../Home/Posts/Post';
 import { useAppSelector } from '../../../hooks/hooks';
 
-import styles from './Posts.module.css';
+import styles from './ProfilePosts.module.css';
 
 type PostType = {
 	_id: string;
@@ -13,16 +13,22 @@ type PostType = {
 	content: string;
 	tags: string;
 	selectedFile: string;
-    likes: [string];
+	likes: [string];
 	createdAt: Date;
 };
 
-const Posts = () => {
-	const fetchedPosts: PostType[] = useAppSelector((state) => state.posts);
-	const posts = [...fetchedPosts];
-	posts.reverse();
+type User = {
+	username: string;
+	createdAt: string;
+	totalPosts: number;
+	totalLikes: number;
+};
 
-    console.log(posts);
+const ProfilePosts = (props: { user: User }) => {
+	const fetchedPosts: PostType[] = useAppSelector((state) => state.posts);
+	let posts = [...fetchedPosts];
+	posts = posts.filter((post) => post.user === props.user.username);
+	posts.reverse();
 
 	return (
 		<div className={styles.container}>
@@ -37,4 +43,4 @@ const Posts = () => {
 	);
 };
 
-export default Posts;
+export default ProfilePosts;

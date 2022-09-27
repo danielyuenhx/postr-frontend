@@ -65,7 +65,7 @@ const Header = () => {
 		if (token) {
 			const decodedToken = decode<UserIDJwtPayload>(token);
 			const expiry = decodedToken ? decodedToken.exp : null;
-			const imposter = decodedToken.username !== profile.result.username;
+			const imposter = decodedToken.username !== user.result.username;
 
 			if (expiry) {
 				if (expiry * 1000 < new Date().getTime()) {
@@ -161,6 +161,8 @@ const Header = () => {
 							'Successfully logged out!'
 						)}
 						ref={dropdownRef}
+                        username={user.result.username}
+                        onClickProfile={setIsOpen.bind(null, false)}
 					/>
 				)}
 			</AnimatePresence>

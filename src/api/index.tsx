@@ -34,8 +34,9 @@ API.interceptors.request.use((req: AxiosRequestConfig) => {
 export const getPosts = () => API.get('/posts');
 export const createPost = (newPost: NewPost) => API.post('/posts', newPost);
 export const deletePost = (id: string) => API.delete(`/posts/${id}`);
-export const likePost = (id: string) => API.patch(`posts/${id}/likePost`);
+export const likePost = (id: string) => API.patch(`/posts/${id}/likePost`);
 
 export const createUser = (newUser: NewUser) =>
 	API.post('/users/createUser', newUser);
 export const loginUser = (user: User) => API.post('/users/loginUser', user);
+export const getUser = (username: string) => API.get(`/users/${username}`);

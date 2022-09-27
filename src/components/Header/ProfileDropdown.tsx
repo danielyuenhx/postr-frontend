@@ -1,12 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 import User from './icons/User';
 import Logout from './icons/Logout';
 
 import styles from './ProfileDropdown.module.css';
 
-type Props = { logoutHandler: () => void };
+type Props = {
+	logoutHandler: () => void;
+	username: string;
+	onClickProfile: () => void;
+};
 
 const ProfileDropdown = React.forwardRef(
 	(props: Props, ref: React.Ref<HTMLDivElement>) => {
@@ -19,10 +24,12 @@ const ProfileDropdown = React.forwardRef(
 				ref={ref}
 			>
 				<ul>
-					<li>
-						<User />
-						Profile
-					</li>
+					<Link to={`/profile/${props.username}`}>
+						<li onClick={props.onClickProfile}>
+							<User />
+							Profile
+						</li>
+					</Link>
 					<li onClick={props.logoutHandler}>
 						<Logout />
 						Logout

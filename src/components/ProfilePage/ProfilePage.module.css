@@ -1,0 +1,10 @@
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    max-width: 60rem;
+    width: 90%;
+    margin: 6rem auto;
+}
+

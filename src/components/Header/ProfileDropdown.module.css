@@ -1,37 +1,42 @@
 .container {
-    position: absolute;
-    border-radius: 7px;
-    background-color: white;
+	position: absolute;
+	border-radius: 7px;
+	background-color: white;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    max-width: 12.5rem;
-    width: 90%;
-    margin-top: 10rem;
-    padding: 0rem;
-    z-index: 50;
-    right: 5%;
+	max-width: 12.5rem;
+	width: 90%;
+	margin-top: 10rem;
+	padding: 0rem;
+	z-index: 50;
+	right: 5%;
 }
 
 .container ul {
-    list-style: none;
-    padding: 0rem;
+	list-style: none;
+	padding: 0rem;
 }
 
 .container li {
-    user-select: none;
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.2s;
+	user-select: none;
+	padding: 0.5rem 1.5rem;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.container a {
+	text-decoration: none;
+    color: inherit;
 }
 
 .container li svg {
-    width: 1rem;
-    margin-right: 1rem;
+	width: 1rem;
+	margin-right: 1rem;
 }
 
 .container li:hover {
-    background-color: rgba(225, 224, 224, 0.482)
+	background-color: rgba(225, 224, 224, 0.482);
 }
 
 /* @media only screen and (min-width: 425px) {

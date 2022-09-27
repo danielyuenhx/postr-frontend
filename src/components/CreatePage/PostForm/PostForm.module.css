@@ -52,7 +52,7 @@
 .buttons {
     margin-top: 0.5rem;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .bottom button {
