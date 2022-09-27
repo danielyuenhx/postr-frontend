@@ -18,6 +18,10 @@ import logo from '../../images/postr-logo-full.png';
 import styles from './Header.module.css';
 import CreatePost from './icons/CreatePost';
 
+export interface UserIDJwtPayload extends JwtPayload {
+    username: string
+}
+
 const Header = () => {
     // show snackbar AFTER reload
 	window.onload = () => {
@@ -35,11 +39,6 @@ const Header = () => {
 	const [user, setUser] = useState(profile);
 	const [isOpen, setIsOpen] = useState(false);
 
-	// on logout:
-	// 1. remove logged in user
-	// 2. close the dropdown
-	// 3. show snackbar
-	// 4. return to home page
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const [openSnackbar] = useSnackbar();
@@ -63,14 +62,18 @@ const Header = () => {
 		const token = user?.token;
 
 		if (token) {
-			const decodedToken = decode<JwtPayload>(token);
+			const decodedToken = decode<UserIDJwtPayload>(token);
 			const expiry = decodedToken ? decodedToken.exp : null;
+            const imposter = decodedToken.username !== profile.result.username;
 
 			if (expiry) {
 				if (expiry * 1000 < new Date().getTime()) {
 					logoutHandler('Login expired, please log in again!');
 				}
 			}
+            if (imposter) {
+                logoutHandler("That's not very nice, identity theft is not a joke.")
+            }
 		}
 
 		setUser(profile);

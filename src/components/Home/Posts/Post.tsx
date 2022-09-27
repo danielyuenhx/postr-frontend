@@ -90,15 +90,19 @@ const Post = (props: { post: Post; key: string }) => {
 				<p style={{ fontWeight: '100' }}>
 					• {moment(post.createdAt).fromNow()}
 				</p>
-				<div className={styles.options} ref={optionsRef}>
-					<Options onClick={setIsOpen.bind(null, !isOpen)} />
-				</div>
-				{isOpen && (
-					<OptionsDropdown
-						deleteHandler={deleteHandler}
-						ref={dropdownRef}
-					/>
-				)}
+				{profile && (post.user === profile.result.username && (
+					<>
+						<div className={styles.options} ref={optionsRef}>
+							<Options onClick={setIsOpen.bind(null, !isOpen)} />
+						</div>
+						{isOpen && (
+							<OptionsDropdown
+								deleteHandler={deleteHandler}
+								ref={dropdownRef}
+							/>
+						)}
+					</>
+				))}
 			</div>
 			<h3>{post.title}</h3>
 			<div className={styles.content}>
@@ -115,11 +119,8 @@ const Post = (props: { post: Post; key: string }) => {
 				<Like
 					isLoggedIn={profile ? true : false}
 					isLikedByUser={
-						(profile
-							? true
-							: false) && (post.likes.includes(profile.result.id)
-							? true
-							: false)
+						(profile ? true : false) &&
+						(post.likes.includes(profile.result.id) ? true : false)
 					}
 					onClick={profile ? likeHandler : () => {}}
 				/>
