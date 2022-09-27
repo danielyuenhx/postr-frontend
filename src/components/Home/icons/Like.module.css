@@ -4,16 +4,22 @@
 	fill: #b5b5b57e;
 	stroke-dasharray: 48;
 	stroke-dashoffset: 48;
-    margin-right: 0.75rem;
-    cursor: pointer;
+	margin-right: 0.75rem;
+	cursor: pointer;
+}
+
+.heart.pageload {
+    animation: none !important;
 }
 
 .heart.like {
-	animation: 0.5s ease-in-out forwards like;
+	animation: 0.75s ease-in-out forwards like;
+    fill: #f91880;
 }
 
 .heart.unlike {
-	animation: 0.5s ease-in-out forwards unlike;
+	animation: 0.75s ease-in-out forwards unlike;
+    fill: #b5b5b57e;
 }
 
 @keyframes like {
@@ -42,6 +48,6 @@
 	}
 	100% {
 		stroke-dashoffset: 48;
+		fill: #b5b5b57e;
 	}
 }
-

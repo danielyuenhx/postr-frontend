@@ -91,9 +91,13 @@
     background-color: #e0e0e0;
 }
 
-:global(input[type="file" i]::-webkit-file-upload-button) {
+/* .file input[type="file"] {
+    display: none;
+} */
+
+/* :global(input[type="file" i]::-webkit-file-upload-button) {
     border: none;
     font-size: 1rem;
     line-height: 1rem;
     height: 2.25rem;
-}
+} */
