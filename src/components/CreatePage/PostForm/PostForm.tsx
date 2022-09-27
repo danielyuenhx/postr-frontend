@@ -87,7 +87,7 @@ const PostForm = () => {
 					<div>
 						<div className={styles.file}>
 							<FileBase
-								type="file"
+								type="image"
 								multiple={false}
 								onDone={({ base64 }: { base64: string }) =>
 									setSelectedFile(base64)
@@ -101,7 +101,7 @@ const PostForm = () => {
 							onChange={tagsHandler}
 						/>
 					</div>
-                    <Line />
+					<Line />
 					<div className={styles.buttons}>
 						<Link to="/">
 							<button className={styles.cancel}>Cancel</button>
