@@ -30,6 +30,8 @@
 	line-height: 1.5rem;
 	font-size: 1.25rem;
 	font-weight: bold;
+    word-wrap: break-word;
+    width: 100%;
 	/* background-color: rgba(245, 245, 245, 0.662); */
 }
 
@@ -91,9 +93,40 @@
     background-color: #e0e0e0;
 }
 
+:global(#filebase) {
+    display: none;
+}
+
+.file {
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
+}
+
+.file label {
+    word-wrap: break-word;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.file label svg {
+    width: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.picture {
+    border-radius: 10px;
+    width: 10rem;
+    height: 10rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 1rem;
+}
+
 /* .file input[type="file"] {
     display: none;
-} */
+}  */
 
 /* :global(input[type="file" i]::-webkit-file-upload-button) {
     border: none;

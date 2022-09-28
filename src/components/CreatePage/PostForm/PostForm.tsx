@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'react-simple-snackbar';
 import { TailSpin } from 'react-loader-spinner';
@@ -10,6 +10,7 @@ import { createPost } from '../../../actions/posts-actions';
 import { useAppDispatch } from '../../../hooks/hooks';
 
 import styles from './PostForm.module.css';
+import Attach from '../icons/Attach';
 
 const PostForm = () => {
 	// check if user is logged in
@@ -20,6 +21,7 @@ const PostForm = () => {
 	const [content, setContent] = useState('');
 	const [tags, setTags] = useState('');
 	const [selectedFile, setSelectedFile] = useState('');
+	const [fileName, setFileName] = useState('');
 
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -68,6 +70,23 @@ const PostForm = () => {
 		setIsLoading(false);
 	};
 
+	// VERY BAD PRACTICE BECAUSE NOT USING VIRTUAL DOM
+	// but library used does not offer much customisation
+	// already submitted pull request but no recent moderation
+	useEffect(() => {
+		document
+			.getElementById('filebaseDiv')
+			?.firstElementChild?.setAttribute('id', 'filebase');
+	}, [document.getElementById('filebaseDiv')]);
+
+	useEffect(() => {
+		const input = document.getElementById('filebase') as HTMLInputElement;
+		if (input) {
+			const path = input.value.split('\\');
+			setFileName(input.value.split('\\')[path.length - 1]);
+		}
+	}, [document.getElementById('filebaseDiv'), selectedFile]);
+
 	return (
 		<div>
 			<h2 className={styles.heading}>Create a post</h2>
@@ -85,7 +104,7 @@ const PostForm = () => {
 				</div>
 				<div className={styles.bottom}>
 					<div>
-						<div className={styles.file}>
+						<div className={styles.file} id="filebaseDiv">
 							<FileBase
 								type="image"
 								multiple={false}
@@ -93,13 +112,26 @@ const PostForm = () => {
 									setSelectedFile(base64)
 								}
 							/>
+							<label htmlFor="filebase">
+								<Attach />{' '}
+								{fileName ? fileName : 'Attach an image'}
+							</label>
 						</div>
-						<input
+						{selectedFile && (
+							<div
+								className={styles.picture}
+								style={{
+									backgroundImage: `url(${selectedFile})`,
+								}}
+							/>
+							// <img src={selectedFile} style={{"width": "100%"}} />
+						)}
+						{/* <input
 							placeholder="Tags..."
 							className={styles.tags}
 							value={tags}
 							onChange={tagsHandler}
-						/>
+						/> */}
 					</div>
 					<Line />
 					<div className={styles.buttons}>

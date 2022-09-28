@@ -22,8 +22,6 @@ const Posts = () => {
 	const posts = [...fetchedPosts];
 	posts.reverse();
 
-    console.log(posts);
-
 	return (
 		<div className={styles.container}>
 			{!posts.length

@@ -4,16 +4,16 @@ import ReactHtmlParser from 'react-html-parser';
 import { useSnackbar } from 'react-simple-snackbar';
 import { AnimatePresence } from 'framer-motion';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import Like from '../icons/Like';
 import Options from '../icons/Options';
 import OptionsDropdown from './OptionsDropdown';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useAppDispatch } from '../../../hooks/hooks';
 import { deletePost, likePost } from '../../../actions/posts-actions';
 
 import styles from './Post.module.css';
 import Line from '../../UI/Line';
-import { postsActions } from '../../../store/posts-slice';
 
 type Post = {
 	_id: string;
@@ -84,10 +84,12 @@ const Post = (props: { post: Post; key: string }) => {
 	return (
 		<div className={styles.card}>
 			<div className={styles.profile}>
-				<div className={styles.avatar}>
+				<Link to={`/profile/${post.user}`} className={styles.avatar}>
 					<LetteredAvatar name={post.user} size={20} />
-				</div>
+				</Link>
+				<Link to={`/profile/${post.user}`} >
 				<p style={{ fontWeight: '500' }}>{post.user}</p>
+                </Link>
 				<p style={{ fontWeight: '100' }}>
 					• {moment(post.createdAt).fromNow()}
 				</p>

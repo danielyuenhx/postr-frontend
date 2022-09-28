@@ -29,11 +29,12 @@
 .container .fromNow {
     font-weight: 200;
     font-size: 0.9rem;
-    color: rgb(141, 141, 141);
+    color: #8d8d8d;
+    margin-top: 0.25rem;
 }
 
 .stats {
-    margin: 1.5rem 0rem 1.5rem 0rem;
+    margin: 1.5rem 0rem 0.5rem 0rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -84,12 +85,25 @@
     height: 2rem;
     border: none;
     border-radius: 45px;
-    background-color: #dadada92;
-    cursor: pointer;
-    margin-bottom: 0.5rem;
-    transition: 0.2s;
+    background-color: #dedede80;
+	transition: 0.3s;
+	cursor: pointer;
+    margin: 1rem 0rem 0.5rem 0rem;
+    font-weight: 500;
 }
 
 .container button:hover {
-    background-color: #dadada;
+    background-color: #e0e0e0;
+}
+
+@media only screen and (max-width: 800px) {
+	.container {
+		max-width: 13rem;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.container {
+        max-width: 100%;
+	}
 }

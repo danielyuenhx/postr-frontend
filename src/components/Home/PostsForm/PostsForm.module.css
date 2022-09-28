@@ -36,11 +36,15 @@
 	margin-bottom: 0.5rem;
 	font-weight: 500;
 	margin-left: 0.25rem;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
 }
 
 .user label {
 	margin-left: 0.5rem;
 	font-size: 0.8rem;
+    cursor: pointer;
 }
 
 .textarea {

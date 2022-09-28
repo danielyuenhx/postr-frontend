@@ -29,8 +29,7 @@ const PostsForm = () => {
 		<form className={styles.card}>
 			{profile ? (
 				<>
-					{/* <Join /> */}
-					<div className={styles.user}>
+					<Link to={`/profile/${profile.result.username}`} className={styles.user}>
 						<div className={styles.avatar}>
 							{profile && (
 								<LetteredAvatar
@@ -40,7 +39,7 @@ const PostsForm = () => {
 							)}
 						</div>
 						<label htmlFor="input">{profile.result.username}</label>
-					</div>
+					</Link>
 					<Link to="/create" className={styles.textarea}>
 						<input
 							placeholder={placeholder}

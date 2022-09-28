@@ -1,5 +1,4 @@
-import React from 'react';
-import { Facebook } from 'react-content-loader';
+import React, { useState } from 'react';
 
 import Post from '../../Home/Posts/Post';
 import { useAppSelector } from '../../../hooks/hooks';
@@ -25,6 +24,8 @@ type User = {
 };
 
 const ProfilePosts = (props: { user: User }) => {
+	const [isLoading, setIsLoading] = useState(false);
+
 	const fetchedPosts: PostType[] = useAppSelector((state) => state.posts);
 	let posts = [...fetchedPosts];
 	posts = posts.filter((post) => post.user === props.user.username);
@@ -32,13 +33,14 @@ const ProfilePosts = (props: { user: User }) => {
 
 	return (
 		<div className={styles.container}>
-			{!posts.length
-				? Array(5).fill(
-						<div className={styles.card}>
-							<Facebook />
-						</div>
-				  )
-				: posts.map((post) => <Post post={post} key={post._id} />)}
+			{!posts.length ? (
+				<div className={styles.card}>
+                    <h1>🥺</h1>
+					<p>This user has not posted anything yet.</p>
+				</div>
+			) : (
+				posts.map((post) => <Post post={post} key={post._id} />)
+			)}
 		</div>
 	);
 };

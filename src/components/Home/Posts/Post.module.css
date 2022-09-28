@@ -22,6 +22,11 @@
     position: relative;
 }
 
+.profile a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .profile p {
     margin-left: 0.5rem;
     font-weight: 500;
