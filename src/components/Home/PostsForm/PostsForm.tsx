@@ -29,7 +29,10 @@ const PostsForm = () => {
 		<form className={styles.card}>
 			{profile ? (
 				<>
-					<Link to={`/profile/${profile.result.username}`} className={styles.user}>
+					<Link
+						to={`/profile/${profile.result.username}`}
+						className={styles.user}
+					>
 						<div className={styles.avatar}>
 							{profile && (
 								<LetteredAvatar
@@ -55,7 +58,9 @@ const PostsForm = () => {
 					<div className={styles.logo}>
 						<img src={logo} />
 					</div>
-					<p>Log in to post something!</p>
+					<p style={{ textAlign: 'center' }}>
+						Log in to post something!
+					</p>
 					<Link to="/login">
 						<button className={styles.button}>Login</button>
 					</Link>

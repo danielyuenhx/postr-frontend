@@ -140,13 +140,16 @@ const PostForm = () => {
 						</Link>
 						<form onSubmit={submitHandler}>
 							<button
-								className={styles.post}
+								className={`${styles.post} ${
+                                    title ? styles.enabled : styles.disabled
+                                }`}
 								type="submit"
 								onClick={
 									!isLoading
 										? setIsLoading.bind(null, false)
 										: () => {}
 								}
+								disabled={title === '' ? true : false}
 							>
 								{!isLoading ? (
 									'Post'

@@ -114,11 +114,11 @@ const Post = (props: { post: Post; key: string }) => {
 				{ReactHtmlParser(post.content)}
 			</div>
 			{post.selectedFile && <img src={post.selectedFile} />}
-			{post.tags && (
+			{/* {post.tags && (
 				<div className={styles.tags}>
 					<p>#tags</p> <p>#tags</p> <p>#tags</p>
 				</div>
-			)}
+			)} */}
 			<Line />
 			<div className={styles.like}>
 				<Like

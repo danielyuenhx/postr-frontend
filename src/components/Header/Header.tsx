@@ -123,8 +123,9 @@ const Header = () => {
 			<div className={styles.left}>
 				<Link to="/">
 					<img
-						src={windowWidth <= 600 ? logoOnly : logo}
+						src={(user !== null) && (windowWidth <= 600) ? logoOnly : logo}
 						alt="logo"
+                        style={{width: (user !== null) && (windowWidth <= 600) ? "2rem" : "8rem"}}
 					/>
 				</Link>
 				{/* <SearchBar /> */}

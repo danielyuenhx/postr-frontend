@@ -65,7 +65,6 @@
     border: none;
     transition: 0.2s linear;
     font-weight: 500;
-    cursor: pointer;
     margin-top: 0.5rem;
     margin-left: 0.5rem;
     vertical-align: bottom;
@@ -78,19 +77,25 @@
 .cancel {
     background-color: #dedede80;
     color: black;
+    cursor: pointer;
 }
 
-.post {
+.enabled {
     background-color: #007bffca;
     color: white;
+    cursor: pointer;
 }
 
-.post:hover {
+.enabled:hover {
 	background-color: #007bff;
 }
 
 .cancel:hover {
     background-color: #e0e0e0;
+}
+
+.disabled {
+    cursor: default;
 }
 
 :global(#filebase) {
