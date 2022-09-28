@@ -16,7 +16,6 @@
 
 .header img {
 	width: 8rem;
-	margin-right: 3rem;
 	cursor: pointer;
 }
 
@@ -25,11 +24,16 @@
 	width: 40%;
 }
 
+.right{
+    padding: 0;
+}
+
 .right ul {
 	display: flex;
 	list-style: none;
     align-items: center;
     justify-content: center;
+    padding: 0;
 }
 
 .right li {
@@ -63,4 +67,14 @@
     background-color: red;
     border-radius: 100px;
     border: 0.01rem solid rgba(219, 219, 219, 0.331);
+}
+
+@media only screen and (max-width: 600px) {
+    .right li {
+        margin-right: 0.5rem;
+    }
+
+    .header img {
+        width: 2rem;
+    }
 }

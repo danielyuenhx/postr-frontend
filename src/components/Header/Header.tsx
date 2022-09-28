@@ -15,6 +15,7 @@ import Profile from './Profile';
 import ProfileDropdown from './ProfileDropdown';
 
 import logo from '../../images/postr-logo-full.png';
+import logoOnly from '../../images/only-logo-full.png';
 
 import styles from './Header.module.css';
 import CreatePost from './icons/CreatePost';
@@ -39,6 +40,7 @@ const Header = () => {
 
 	const [user, setUser] = useState(profile);
 	const [isOpen, setIsOpen] = useState(false);
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
@@ -107,13 +109,25 @@ const Header = () => {
 		};
 	}, [dropdownRef, profileRef]);
 
+	useEffect(() => {
+		const handleResize = () => {
+			setWindowWidth(window.innerWidth);
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, [window.innerWidth]);
+
 	return (
 		<header className={styles.header}>
 			<div className={styles.left}>
 				<Link to="/">
-					<img src={logo} alt="logo" />
+					<img
+						src={windowWidth <= 600 ? logoOnly : logo}
+						alt="logo"
+					/>
 				</Link>
-				<SearchBar />
+				{/* <SearchBar /> */}
 			</div>
 			{user ? (
 				<nav className={styles.right}>
@@ -144,6 +158,7 @@ const Header = () => {
 							<Profile
 								username={user.result.username}
 								onClick={setIsOpen.bind(null, !isOpen)}
+                                windowWidth={windowWidth}
 								ref={profileRef}
 								isOpen={isOpen}
 							/>
@@ -161,8 +176,8 @@ const Header = () => {
 							'Successfully logged out!'
 						)}
 						ref={dropdownRef}
-                        username={user.result.username}
-                        onClickProfile={setIsOpen.bind(null, false)}
+						username={user.result.username}
+						onClickProfile={setIsOpen.bind(null, false)}
 					/>
 				)}
 			</AnimatePresence>
