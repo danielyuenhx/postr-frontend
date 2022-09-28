@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import LetteredAvatar from 'react-lettered-avatar';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import styles from './Profile.module.css';
-import Like from '../../Home/icons/Like';
 import Heart from '../icons/Heart';
 import Write from '../icons/Write';
 import Birthday from '../icons/Birthday';
@@ -16,6 +16,9 @@ type User = {
 };
 
 const Profile = (props: { user: User }) => {
+	const item = localStorage.getItem('profile');
+	const profile = item === null ? null : JSON.parse(item);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.avatar}>
@@ -27,10 +30,14 @@ const Profile = (props: { user: User }) => {
 			</p>
 			<div className={styles.stats}>
 				<div className={styles.stat}>
-					<p>postr day</p>
+					<p>Created</p>
 					<div>
 						<Birthday />
-						<span>{moment(props.user.createdAt).format('MMMM DD, YYYY')}</span>
+						<span>
+							{moment(props.user.createdAt).format(
+								'MMMM DD, YYYY'
+							)}
+						</span>
 					</div>
 				</div>
 				<div className={styles.smallStats}>
@@ -48,6 +55,11 @@ const Profile = (props: { user: User }) => {
 					</div>
 				</div>
 			</div>
+			{profile && profile.result.username === props.user.username && (
+				<Link to="/create" style={{"width": "100%"}}>
+					<button>Create a post</button>
+				</Link>
+			)}
 		</div>
 	);
 };
