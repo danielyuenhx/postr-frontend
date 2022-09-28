@@ -11,5 +11,68 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.196);
     border-radius: 7px;
     background-color: white;
-    line-height: 1.5rem;
+    cursor:default;
+}
+
+.container * {
+    margin: 0px;
+}
+
+.avatar {
+    margin: 1.25rem 0rem;
+}
+
+.avatar div {
+    font-size: 2rem;
+}
+
+.container .fromNow {
+    font-weight: 200;
+    font-size: 0.9rem;
+    color: rgb(141, 141, 141);
+}
+
+.stats {
+    margin: 1.5rem 0rem 1rem 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0rem 1rem;
+}
+
+.stats p {
+    display: block;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.smallStats {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top:0.75rem;
+}
+
+.smallStats div {
+    width: 100%;
+}
+
+.stats svg {
+    width: 1rem;
+    line-height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.stat div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 0.2rem;
+}
+
+.stat span {
+    font-weight: 200;
+    color: gray;
+    font-size: 0.8rem;
 }
