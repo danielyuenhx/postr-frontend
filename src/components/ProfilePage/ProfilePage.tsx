@@ -15,11 +15,11 @@ const ProfilePage = () => {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-            if (username) {
-                dispatch(getUser(username));
-            }
+			if (username) {
+				dispatch(getUser(username));
+			}
 		}, 1000);
-        return () => clearInterval(interval);
+		return () => clearInterval(interval);
 	}, [username, dispatch]);
 
 	const user = useAppSelector((state) => state.users);

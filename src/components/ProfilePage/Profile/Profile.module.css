@@ -12,6 +12,9 @@
     border-radius: 7px;
     background-color: white;
     cursor:default;
+    position: sticky;
+    top: 6rem;
+    min-height: 300px;
 }
 
 .container * {
