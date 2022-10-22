@@ -37,7 +37,7 @@
 
 .container:focus-within label {
 	transform: translate(0, 0.75rem) scale(0.8);
-	color: #0a53e4;
+	color: black;
 }
 
 .container .filled {

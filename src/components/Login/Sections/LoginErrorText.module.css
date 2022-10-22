@@ -5,7 +5,7 @@
 }
 
 .fail {
-    color: red;
+    color: gray;
 }
 
 .inner {
@@ -16,5 +16,5 @@
 .inner p {
     padding-left: 1rem;
     margin: 0rem 1rem;
-    font-weight: 500;
+    /* font-weight: 500; */
 }
