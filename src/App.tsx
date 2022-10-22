@@ -1,6 +1,6 @@
 import { useAppDispatch } from './hooks/hooks';
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import SnackbarProvider from 'react-simple-snackbar';
 
 import './App.css';
@@ -14,6 +14,10 @@ import ProfilePage from './components/ProfilePage/ProfilePage';
 function App() {
 	const dispatch = useAppDispatch();
 
+	// check if user is logged in
+	const item = localStorage.getItem('profile');
+	const profile = item === null ? null : JSON.parse(item);
+
 	useEffect(() => {
 		dispatch(getPosts());
 	}, [dispatch]);
@@ -23,10 +27,20 @@ function App() {
 			<BrowserRouter>
 				<Header />
 				<Routes>
-					<Route path="/" element={<Home />}></Route>
-					<Route path="/login" element={<Login />}></Route>
-					<Route path="/create" element={<CreatePage />}></Route>
-					<Route path="/profile/:username" element={<ProfilePage />}></Route>
+					{/* accessible if logged in or not */}
+					<Route path="/" element={<Home />} />
+					<Route
+						path="/profile/:username"
+						element={<ProfilePage />}
+					/>
+					{/* only accessible if not logged in */}
+					{!profile?.result?.username && <Route path="/login" element={<Login />} />}
+					{/* only accessible if logged in */}
+					{profile?.result?.username && (
+						<Route path="/create" element={<CreatePage />} />
+					)}
+          {/* wildcard route */}
+					<Route path="*" element={<Navigate replace to="/" />} />
 				</Routes>
 			</BrowserRouter>
 		</SnackbarProvider>
