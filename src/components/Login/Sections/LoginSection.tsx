@@ -38,6 +38,7 @@ const LoginSection = (props: Props) => {
 		} else {
 			openSnackbar("Successfully logged in.", [2500]);
 			navigate('/');
+			window.location.reload();
 		}
 
 		document.body.style.cursor = 'default';
