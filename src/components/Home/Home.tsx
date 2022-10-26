@@ -12,7 +12,7 @@ const Home = () => {
 
 	return (
 		<div className={styles.home}>
-			<Posts />
+			<Posts pinnedPost={profile?.result?.pinnedPost} />
 			<PostsForm />
 			{/* <p>© 2022 postr by Daniel Yuen</p>   */}
 		</div>

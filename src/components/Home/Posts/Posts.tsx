@@ -17,7 +17,7 @@ type PostType = {
 	createdAt: Date;
 };
 
-const Posts = () => {
+const Posts = (props: { pinnedPost: String }) => {
 	const fetchedPosts: PostType[] = useAppSelector((state) => state.posts);
 	const posts = [...fetchedPosts];
 	posts.reverse();
@@ -31,7 +31,11 @@ const Posts = () => {
 						</div>
 				  ))
 				: posts.map((post) => (
-						<Post post={post} key={post._id} isPinned={false} />
+						<Post
+							post={post}
+							key={post._id}
+							isPinned={post._id === props.pinnedPost}
+						/>
 				  ))}
 		</div>
 	);

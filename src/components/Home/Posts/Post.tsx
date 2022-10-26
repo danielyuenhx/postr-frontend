@@ -51,8 +51,6 @@ const Post = (props: { post: Post; key: string; isPinned: boolean }) => {
 		await dispatch(likePost(post._id));
 	};
 
-	const navigate = useNavigate();
-
 	const pinHandler = async () => {
 		const error = await dispatch(pinPost(profile?.result?.id, post._id));
 		if (error) {
@@ -60,6 +58,16 @@ const Post = (props: { post: Post; key: string; isPinned: boolean }) => {
 		} else {
 			window.location.reload();
 			sessionStorage.setItem('reload', 'Post pinned!');
+		}
+	};
+
+	const unpinHandler = async () => {
+		const error = await dispatch(pinPost(profile?.result?.id, ''));
+		if (error) {
+			openSnackbar(error, [5000]);
+		} else {
+			window.location.reload();
+			sessionStorage.setItem('reload', 'Post unpinned!');
 		}
 	};
 
@@ -115,7 +123,10 @@ const Post = (props: { post: Post; key: string; isPinned: boolean }) => {
 					<AnimatePresence>
 						{isOpen && (
 							<OptionsDropdown
-								pinHandler={pinHandler}
+                isPinned={props.isPinned}
+								pinHandler={
+									!props.isPinned ? pinHandler : unpinHandler
+								}
 								deleteHandler={deleteHandler}
 								ref={dropdownRef}
 							/>

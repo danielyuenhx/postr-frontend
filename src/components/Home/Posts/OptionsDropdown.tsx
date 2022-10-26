@@ -6,7 +6,11 @@ import Pin from '../icons/Pin';
 
 import styles from './OptionsDropdown.module.css';
 
-type Props = { deleteHandler: () => void; pinHandler: () => void };
+type Props = {
+	isPinned: boolean;
+	deleteHandler: () => void;
+	pinHandler: () => void;
+};
 
 const OptionsDropdown = React.forwardRef(
 	(props: Props, ref: React.Ref<HTMLDivElement>) => {
@@ -21,7 +25,9 @@ const OptionsDropdown = React.forwardRef(
 				<ul>
 					<li onClick={props.pinHandler}>
 						<Pin />
-						Pin to profile
+						{!props.isPinned
+							? 'Pin to profile'
+							: 'Unpin post'}
 					</li>
 					<li onClick={props.deleteHandler}>
 						<Delete />
