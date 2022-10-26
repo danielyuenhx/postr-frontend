@@ -40,3 +40,5 @@ export const createUser = (newUser: NewUser) =>
 	API.post('/users/createUser', newUser);
 export const loginUser = (user: User) => API.post('/users/loginUser', user);
 export const getUser = (username: string) => API.get(`/users/${username}`);
+export const pinPost = (userId: string, postId: string) =>
+	API.post('/users/pinPost', { userId, postId });

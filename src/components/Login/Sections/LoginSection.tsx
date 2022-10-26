@@ -11,12 +11,21 @@ import { loginUser } from '../../../actions/auth-actions';
 import styles from './LoginSection.module.css';
 
 type Props = {
-    onToggle: (status: boolean) => void;
-    onLoading: (status: boolean) => void;
+	onToggle: (status: boolean) => void;
+	onLoading: (status: boolean) => void;
 };
 
 const LoginSection = (props: Props) => {
-    const [username, setUsername] = useState('');
+	// show snackbar AFTER reload
+	window.onload = () => {
+		const message = sessionStorage.getItem('reload');
+		if (message) {
+			openSnackbar(message, [2500]);
+			sessionStorage.removeItem('reload');
+		}
+	};
+
+	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
 	const [isValid, setIsValid] = useState(false);
@@ -36,9 +45,9 @@ const LoginSection = (props: Props) => {
 		if (error) {
 			openSnackbar(error, [5000]);
 		} else {
-			openSnackbar("Successfully logged in.", [2500]);
 			navigate('/');
 			window.location.reload();
+			sessionStorage.setItem('reload', 'Successfully logged in!');
 		}
 
 		document.body.style.cursor = 'default';

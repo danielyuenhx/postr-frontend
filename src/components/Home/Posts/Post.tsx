@@ -4,13 +4,14 @@ import ReactHtmlParser from 'react-html-parser';
 import { useSnackbar } from 'react-simple-snackbar';
 import { AnimatePresence } from 'framer-motion';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Like from '../icons/Like';
 import Options from '../icons/Options';
 import OptionsDropdown from './OptionsDropdown';
 import { useAppDispatch } from '../../../hooks/hooks';
 import { deletePost, likePost } from '../../../actions/posts-actions';
+import { pinPost } from '../../../actions/users-actions';
 
 import styles from './Post.module.css';
 import Line from '../../UI/Line';
@@ -27,6 +28,15 @@ type Post = {
 };
 
 const Post = (props: { post: Post; key: string }) => {
+	// show snackbar AFTER reload
+	window.onload = () => {
+		const message = sessionStorage.getItem('reload');
+		if (message) {
+			openSnackbar(message, [2500]);
+			sessionStorage.removeItem('reload');
+		}
+	};
+
 	const item = localStorage.getItem('profile');
 	const profile = item === null ? null : JSON.parse(item);
 
@@ -37,6 +47,19 @@ const Post = (props: { post: Post; key: string }) => {
 
 	const likeHandler = async () => {
 		await dispatch(likePost(post._id));
+	};
+
+	const navigate = useNavigate();
+
+	const pinHandler = async () => {
+		const error = await dispatch(pinPost(profile?.result?.id, post._id));
+		if (error) {
+			openSnackbar(error, [5000]);
+		} else {
+			navigate('/');
+			window.location.reload();
+			sessionStorage.setItem('reload', 'Post pinned!');
+		}
 	};
 
 	const deleteHandler = async () => {
@@ -87,9 +110,9 @@ const Post = (props: { post: Post; key: string }) => {
 				<Link to={`/profile/${post.user}`} className={styles.avatar}>
 					<LetteredAvatar name={post.user} size={20} />
 				</Link>
-				<Link to={`/profile/${post.user}`} >
-				<p style={{ fontWeight: '500' }}>{post.user}</p>
-                </Link>
+				<Link to={`/profile/${post.user}`}>
+					<p style={{ fontWeight: '500' }}>{post.user}</p>
+				</Link>
 				<p style={{ fontWeight: '100' }}>
 					• {moment(post.createdAt).fromNow()}
 				</p>
@@ -101,6 +124,7 @@ const Post = (props: { post: Post; key: string }) => {
 						<AnimatePresence>
 							{isOpen && (
 								<OptionsDropdown
+									pinHandler={pinHandler}
 									deleteHandler={deleteHandler}
 									ref={dropdownRef}
 								/>

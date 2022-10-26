@@ -16,14 +16,14 @@ type User = {
 	totalLikes: number;
 };
 
-const Profile = (props: { user: User }) => {
+const Profile = (props: { user: User, isLoading: boolean }) => {
 	const item = localStorage.getItem('profile');
 	const profile = item === null ? null : JSON.parse(item);
 
 	return (
-		<div className={styles.container} >
-			{props.user.username !== '' ? (
-                <>
+		<div className={styles.container}>
+			{!props.isLoading ? (
+				<>
 					<div className={styles.avatar}>
 						<LetteredAvatar name={props.user.username} size={60} />
 					</div>

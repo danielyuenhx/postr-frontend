@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Profile from './Profile/Profile';
@@ -12,6 +12,19 @@ import styles from './ProfilePage.module.css';
 const ProfilePage = () => {
 	const dispatch = useAppDispatch();
 	const { username } = useParams();
+	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		const fetchUser = async (username: string) => {
+			setIsLoading(true);
+			await dispatch(getUser(username));
+			setIsLoading(false);
+		};
+
+		if (username) {
+			fetchUser(username);
+		}
+	}, [username, dispatch]);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -26,7 +39,7 @@ const ProfilePage = () => {
 
 	return (
 		<div className={styles.container}>
-			<Profile user={user} />
+			<Profile user={user} isLoading={isLoading} />
 			<ProfilePosts user={user} />
 		</div>
 	);

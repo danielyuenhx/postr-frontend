@@ -5,6 +5,7 @@ const initialState = {
 	createdAt: '',
 	totalLikes: 0,
 	totalPosts: 0,
+  pinnedPost: '',
 };
 
 type User = {
@@ -12,6 +13,7 @@ type User = {
 	createdAt: string;
 	totalLikes: number;
 	totalPosts: number;
+  pinnedPost: string,
 };
 
 const usersSlice = createSlice({

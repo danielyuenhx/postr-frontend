@@ -6,7 +6,7 @@ import Pin from '../icons/Pin';
 
 import styles from './OptionsDropdown.module.css';
 
-type Props = { deleteHandler: () => void };
+type Props = { deleteHandler: () => void; pinHandler: () => void };
 
 const OptionsDropdown = React.forwardRef(
 	(props: Props, ref: React.Ref<HTMLDivElement>) => {
@@ -19,7 +19,7 @@ const OptionsDropdown = React.forwardRef(
 				ref={ref}
 			>
 				<ul>
-					<li>
+					<li onClick={props.pinHandler}>
 						<Pin />
 						Pin to profile
 					</li>

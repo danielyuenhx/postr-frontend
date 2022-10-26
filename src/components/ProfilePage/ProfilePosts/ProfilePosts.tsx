@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Post from '../../Home/Posts/Post';
 import { useAppSelector } from '../../../hooks/hooks';
@@ -35,7 +35,7 @@ const ProfilePosts = (props: { user: User }) => {
 		<div className={styles.container}>
 			{!posts.length ? (
 				<div className={styles.card}>
-                    <h1>🥺</h1>
+					<h1>🥺</h1>
 					<p>This user has not posted anything yet.</p>
 				</div>
 			) : (
