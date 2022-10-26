@@ -107,6 +107,8 @@
 
 @media only screen and (max-width: 600px) {
 	.container {
-        max-width: 100%;
+      max-width: 100%;
+      position: relative;
+      top: 0rem;
 	}
 }

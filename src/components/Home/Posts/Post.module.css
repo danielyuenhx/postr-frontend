@@ -7,6 +7,7 @@
     border-radius: 7px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.196);
 	background-color: white;
+  position: relative;
 }
 
 .card img {
@@ -15,6 +16,22 @@
 
 .card img {
     margin-bottom: 1rem;
+}
+
+.pin svg {
+    width: 0.7rem;
+    margin-right: 0.5rem;
+    color: #536471;
+}
+
+.pin {
+  user-select: none;
+  margin: 0.5rem 0rem 0rem 0rem;
+  display: flex;
+  flex: start;
+  font-size: 0.7rem;
+  color: #536471;
+  font-weight: 800;
 }
 
 .profile {
@@ -39,11 +56,13 @@
 
 .options {
     position: absolute;
-    right: 0;
+    right: 1.5rem;
     cursor: pointer;
     border-radius: 50%;
 	padding: 0rem 0.25rem;
     transition: 0.15s ease-in-out;
+    z-index: 50;
+    margin-top: 0.25rem;
 }
 
 .options svg {

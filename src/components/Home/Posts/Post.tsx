@@ -8,6 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import Like from '../icons/Like';
 import Options from '../icons/Options';
+import Pin from '../icons/Pin';
+
 import OptionsDropdown from './OptionsDropdown';
 import { useAppDispatch } from '../../../hooks/hooks';
 import { deletePost, likePost } from '../../../actions/posts-actions';
@@ -27,7 +29,7 @@ type Post = {
 	createdAt: Date;
 };
 
-const Post = (props: { post: Post; key: string }) => {
+const Post = (props: { post: Post; key: string; isPinned: boolean }) => {
 	// show snackbar AFTER reload
 	window.onload = () => {
 		const message = sessionStorage.getItem('reload');
@@ -56,7 +58,6 @@ const Post = (props: { post: Post; key: string }) => {
 		if (error) {
 			openSnackbar(error, [5000]);
 		} else {
-			navigate('/');
 			window.location.reload();
 			sessionStorage.setItem('reload', 'Post pinned!');
 		}
@@ -106,6 +107,27 @@ const Post = (props: { post: Post; key: string }) => {
 
 	return (
 		<div className={styles.card}>
+			{profile && post.user === profile.result.username && (
+				<>
+					<div className={styles.options} ref={optionsRef}>
+						<Options onClick={setIsOpen.bind(null, !isOpen)} />
+					</div>
+					<AnimatePresence>
+						{isOpen && (
+							<OptionsDropdown
+								pinHandler={pinHandler}
+								deleteHandler={deleteHandler}
+								ref={dropdownRef}
+							/>
+						)}
+					</AnimatePresence>
+				</>
+			)}
+			{props.isPinned && (
+				<div className={styles.pin}>
+					<Pin /> Pinned post
+				</div>
+			)}
 			<div className={styles.profile}>
 				<Link to={`/profile/${post.user}`} className={styles.avatar}>
 					<LetteredAvatar name={post.user} size={20} />
@@ -116,22 +138,6 @@ const Post = (props: { post: Post; key: string }) => {
 				<p style={{ fontWeight: '100' }}>
 					• {moment(post.createdAt).fromNow()}
 				</p>
-				{profile && post.user === profile.result.username && (
-					<>
-						<div className={styles.options} ref={optionsRef}>
-							<Options onClick={setIsOpen.bind(null, !isOpen)} />
-						</div>
-						<AnimatePresence>
-							{isOpen && (
-								<OptionsDropdown
-									pinHandler={pinHandler}
-									deleteHandler={deleteHandler}
-									ref={dropdownRef}
-								/>
-							)}
-						</AnimatePresence>
-					</>
-				)}
 			</div>
 			<h3>{post.title}</h3>
 			<div className={styles.content}>

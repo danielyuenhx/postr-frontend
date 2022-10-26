@@ -13,7 +13,7 @@ type PostType = {
 	content: string;
 	tags: string;
 	selectedFile: string;
-    likes: [string];
+	likes: [string];
 	createdAt: Date;
 };
 
@@ -25,12 +25,14 @@ const Posts = () => {
 	return (
 		<div className={styles.container}>
 			{!posts.length
-				? Array(5).fill(
-						<div className={styles.card}>
+				? Array.from(Array(5)).map((x) => (
+						<div className={styles.card} key={x}>
 							<Facebook />
 						</div>
-				  )
-				: posts.map((post) => <Post post={post} key={post._id} />)}
+				  ))
+				: posts.map((post) => (
+						<Post post={post} key={post._id} isPinned={false} />
+				  ))}
 		</div>
 	);
 };

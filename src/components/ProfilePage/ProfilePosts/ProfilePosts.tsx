@@ -21,6 +21,7 @@ type User = {
 	createdAt: string;
 	totalPosts: number;
 	totalLikes: number;
+	pinnedPost: string;
 };
 
 const ProfilePosts = (props: { user: User }) => {
@@ -31,15 +32,34 @@ const ProfilePosts = (props: { user: User }) => {
 	posts = posts.filter((post) => post.user === props.user.username);
 	posts.reverse();
 
+	const pinnedPost = posts.filter(
+		(post) => post._id === props.user.pinnedPost
+	)[0];
+
+	if (pinnedPost) {
+		posts = posts.filter((post) => post._id !== pinnedPost._id);
+	}
+
 	return (
 		<div className={styles.container}>
-			{!posts.length ? (
+			{(!posts.length && !pinnedPost) ? (
 				<div className={styles.card}>
 					<h1>🥺</h1>
 					<p>This user has not posted anything yet.</p>
 				</div>
 			) : (
-				posts.map((post) => <Post post={post} key={post._id} />)
+				<>
+					{pinnedPost && (
+						<Post
+							post={pinnedPost}
+							key={pinnedPost._id}
+							isPinned={true}
+						/>
+					)}
+					{posts.map((post) => (
+						<Post post={post} key={post._id} isPinned={false} />
+					))}
+				</>
 			)}
 		</div>
 	);
