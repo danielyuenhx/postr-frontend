@@ -1,9 +1,9 @@
 .container {
     position: relative;
-    /* display: flex; */
+    display: flex;
     justify-content: center;
     margin: auto;
-    max-width: 60rem;
+    max-width: 70rem;
     width: 90%;
     margin: 6rem auto;
 }

@@ -128,7 +128,7 @@ const Header = () => {
                         style={{width: (user !== null) && (windowWidth <= 600) ? "2rem" : "8rem"}}
 					/>
 				</Link>
-				{/* <SearchBar /> */}
+				<SearchBar />
 			</div>
 			{user ? (
 				<nav className={styles.right}>
