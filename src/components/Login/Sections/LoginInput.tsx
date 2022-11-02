@@ -29,6 +29,7 @@ const LoginInput = (props: Props) => {
 				onChange={props.onChange}
                 className={props.type === 'password' ? styles.password : ''}
                 onFocus={props.onFocus}
+				maxLength={15}
 			/>
 			{props.type === 'password' && (
 				<div className={styles.hide}>
