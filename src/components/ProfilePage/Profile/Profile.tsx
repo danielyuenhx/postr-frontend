@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
 import LetteredAvatar from 'react-lettered-avatar';
 import moment from 'moment';
+import { useSnackbar } from 'react-simple-snackbar';
 import { Link } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 
-import styles from './Profile.module.css';
 import Heart from '../icons/Heart';
 import Write from '../icons/Write';
 import Birthday from '../icons/Birthday';
+import { useAppDispatch } from '../../../hooks/hooks';
+
+import styles from './Profile.module.css';
+
 
 type User = {
 	username: string;
@@ -19,6 +23,21 @@ type User = {
 const Profile = (props: { user: User, isLoading: boolean }) => {
 	const item = localStorage.getItem('profile');
 	const profile = item === null ? null : JSON.parse(item);
+
+	const deleteUser = () => {
+		document.body.style.cursor = 'progress';
+		document.documentElement.style.cursor = 'progress';
+
+		// const error = await dispatch(deletePost(post._id));
+		// if (error) {
+		// 	openSnackbar(error, [5000]);
+		// } else {
+		// 	openSnackbar('Successfully deleted post.', [5000]);
+		// }
+
+		document.body.style.cursor = 'default';
+		document.documentElement.style.cursor = 'default';
+	}
 
 	return (
 		<div className={styles.container}>
@@ -62,9 +81,12 @@ const Profile = (props: { user: User, isLoading: boolean }) => {
 					</div>
 					{profile &&
 						profile.result.username === props.user.username && (
-							<Link to="/create" style={{ width: '100%' }}>
-								<button>Create a post</button>
-							</Link>
+							<>
+								<Link to="/create" style={{ width: '100%' }}>
+									<button className={styles.create}>Create a post</button>
+								</Link>
+								<button className={styles.delete}>Delete account</button>
+							</>
 						)}
 				</>
 			) : (
