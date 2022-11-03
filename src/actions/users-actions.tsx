@@ -8,6 +8,20 @@ import { usersActions } from '../store/users-slice';
 
 type Error = { message: string };
 
+export const deleteUser = (id: string) => async(dispatch: AppDispatch) => {
+	try {
+		const { data } = await api.deleteUser(id);
+
+		// dispatch(usersActions.getUser(data));
+	} catch (error) {
+		if (axios.isAxiosError(error) && error.response) {
+			return (error.response?.data as Error).message;
+		} else {
+			return 'An unexpected error occurred';
+		}
+	}
+}
+
 export const getUser = (username: string) => async (dispatch: AppDispatch) => {
 	try {
 		const { data } = await api.getUser(username);

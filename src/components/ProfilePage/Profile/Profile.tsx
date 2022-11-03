@@ -4,11 +4,15 @@ import moment from 'moment';
 import { useSnackbar } from 'react-simple-snackbar';
 import { Link } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
 
 import Heart from '../icons/Heart';
 import Write from '../icons/Write';
 import Birthday from '../icons/Birthday';
+import Modal from '../../UI/Modal';
 import { useAppDispatch } from '../../../hooks/hooks';
+import { deleteUser } from '../../../actions/users-actions';
+import { authActions } from '../../../store/auth-slice';
 
 import styles from './Profile.module.css';
 
@@ -24,16 +28,25 @@ const Profile = (props: { user: User, isLoading: boolean }) => {
 	const item = localStorage.getItem('profile');
 	const profile = item === null ? null : JSON.parse(item);
 
-	const deleteUser = () => {
+	const dispatch = useAppDispatch();
+	const [openSnackbar, closeSnackbar] = useSnackbar();
+	const navigate = useNavigate();
+
+	const deleteHandler = async () => {
 		document.body.style.cursor = 'progress';
 		document.documentElement.style.cursor = 'progress';
 
-		// const error = await dispatch(deletePost(post._id));
-		// if (error) {
-		// 	openSnackbar(error, [5000]);
-		// } else {
-		// 	openSnackbar('Successfully deleted post.', [5000]);
-		// }
+		if (profile.result.username === props.user.username) {
+			const error = await dispatch(deleteUser(profile.result.id));
+			if (error) {
+				openSnackbar(error, [5000]);
+			} else {
+				dispatch(authActions.logout());
+				navigate('/');
+				window.location.reload();
+				sessionStorage.setItem('reload', 'Successfully deleted account.');
+			}
+		}
 
 		document.body.style.cursor = 'default';
 		document.documentElement.style.cursor = 'default';
@@ -85,7 +98,7 @@ const Profile = (props: { user: User, isLoading: boolean }) => {
 								<Link to="/create" style={{ width: '100%' }}>
 									<button className={styles.create}>Create a post</button>
 								</Link>
-								<button className={styles.delete}>Delete account</button>
+								<button onClick={deleteHandler} className={styles.delete}>Delete account</button>
 							</>
 						)}
 				</>

@@ -39,6 +39,7 @@ export const likePost = (id: string) => API.patch(`/posts/${id}/likePost`);
 export const createUser = (newUser: NewUser) =>
 	API.post('/users/createUser', newUser);
 export const loginUser = (user: User) => API.post('/users/loginUser', user);
+export const deleteUser = (id: string) => API.delete(`/users/${id}`);
 export const getUser = (username: string) => API.get(`/users/${username}`);
 export const pinPost = (userId: string, postId: string) =>
 	API.post('/users/pinPost', { userId, postId });
