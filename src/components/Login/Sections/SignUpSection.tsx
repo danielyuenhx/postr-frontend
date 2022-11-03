@@ -47,7 +47,8 @@ const SignUpSection = (props: Props) => {
 		if (error) {
 			openSnackbar(error, [5000]);
 		} else {
-			openSnackbar('Successfully created user!', [5000]);
+			sessionStorage.setItem('reload', 'Successfully created user!');
+			window.location.reload();
 			navigate('/');
 		}
 
