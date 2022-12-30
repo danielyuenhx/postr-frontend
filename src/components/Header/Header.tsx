@@ -145,7 +145,7 @@ const Header = () => {
 								/>
 							</li>
 						</Link>
-						<li className={styles.icon}>
+						{/* <li className={styles.icon}>
 							<div
 								className={
 									user.result.notifications && styles.badge
@@ -154,7 +154,7 @@ const Header = () => {
 							<Notifications
 								filled={location.pathname === '/notifications'}
 							/>
-						</li>
+						</li> */}
 						<li>
 							<Profile
 								username={user.result.username}

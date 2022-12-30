@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import Heart from '../icons/Heart';
 import Write from '../icons/Write';
 import Birthday from '../icons/Birthday';
-import Modal from '../../UI/Modal';
 import { useAppDispatch } from '../../../hooks/hooks';
 import { deleteUser } from '../../../actions/users-actions';
 import { authActions } from '../../../store/auth-slice';
