@@ -40,8 +40,6 @@ export const pinPost =
 	(userId: string, postId: string) => async (dispatch: AppDispatch) => {
 		try {
 			const { data } = await api.pinPost(userId, postId);
-      
-      dispatch(authActions.auth(data));
 		} catch (error) {
 			if (axios.isAxiosError(error) && error.response) {
 				return (error.response?.data as Error).message;

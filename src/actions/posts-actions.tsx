@@ -72,7 +72,6 @@ export const likePost = (id: string) => async (dispatch: AppDispatch) => {
 		const { data } = await api.likePost(id);
 
 		dispatch(postsActions.updatePost(data));
-    console.log(data);
 	} catch (error) {
 		if (axios.isAxiosError(error) && error.response) {
 			return (error.response?.data as Error).message;
