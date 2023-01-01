@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PostsForm from './PostsForm/PostsForm';
+import InfoSection from './InfoSection/InfoSection';
 import Posts from './Posts/Posts';
 
 import styles from './Home.module.css';
@@ -13,7 +13,7 @@ const Home = () => {
 	return (
 		<div className={styles.home}>
 			<Posts pinnedPost={profile?.result?.pinnedPost} />
-			<PostsForm />
+			<InfoSection />
 			{/* <p>© 2022 postr by Daniel Yuen</p>   */}
 		</div>
 	);
