@@ -5,7 +5,9 @@ import PostForm from './PostForm';
 import LoginForm from './LoginForm';
 
 import styles from './InfoSection.module.css';
-import Info from './Info';
+import EventInfo from './EventInfo';
+import Line from '../../UI/Line';
+import RecentlyJoined from './RecentlyJoined';
 
 const InfoSection = () => {
   // check if user is logged in
@@ -19,7 +21,10 @@ const InfoSection = () => {
       ) : (
         <LoginForm />
       )}
-      <Info />
+      <Line />
+      {/* <h3 style={{fontWeight: 200}}>Announcements</h3> */}
+      <EventInfo />
+      <RecentlyJoined />
 			<p className={styles.copyright}>© 2022 postr</p>  
     </div>
   );

@@ -9,7 +9,7 @@ import styles from './LoginForm.module.css'
 
 const LoginForm = () => {
   return (
-    <InfoCard>
+    <InfoCard style={{marginTop: 0}}>
       <div className={styles.login}>
         <div className={styles.logo}>
           <img src={logo} />

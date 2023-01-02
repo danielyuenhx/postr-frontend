@@ -11,14 +11,9 @@
   border-radius: 7px 7px 0px 0px;
 }
 
-.card h1 {
-	padding: 0;
-	margin: 0 0 0.5rem 0;
-}
-
 .title {
   text-align: center;
-  line-height: 3rem;
+  line-height: 2rem;
   font-family: 'Fredoka One', cursive;
   /* color: red; */
   /* color: white;
@@ -29,7 +24,13 @@
 
 .details {
   margin: 0.5rem 0 0.5rem;
-  color: #292929;
+  color: #363636;
+}
+
+.textImg {
+  position: relative;
+  height: 1.25rem;
+  bottom: -0.37rem;
 }
 
 @media only screen and (max-width: 800px) {
@@ -40,9 +41,9 @@
 
 @media only screen and (max-width: 600px) {
 	.card {
-        max-width: 100%;
-        position: relative;
-        top: 0px;
-        margin: 0rem 0rem 2rem 0rem;
+    max-width: 100%;
+    position: relative;
+    top: 0px;
+    margin: 0rem 0rem 2rem 0rem;
 	}
 }

@@ -21,7 +21,7 @@ const PostForm = (props: { username: string }) => {
     placeholders[Math.floor(Math.random() * placeholders.length)];
 
   return (
-    <InfoCard>
+    <InfoCard style={{marginTop: 0}}>
       <form>
         <Link to={`/profile/${props.username}`} className={styles.user}>
           <div className={styles.avatar}>

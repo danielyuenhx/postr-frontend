@@ -15,11 +15,12 @@ const Rules = () => {
         <Wave />
 			</div>
 			<b>Posting publicly</b>
-			<ol>
-				<li>Behave like you would in real life</li>
-				<li>Remember, your post is public!</li>
-				<li>Be nice :)</li>
-			</ol>
+			<ul>
+				<li>Behave like you would in real life. Remember, your post is public!</li>
+				<li>Watch your language.</li>
+				<li>Post decent stuff only. Nobody wants to have to bleach their eyes. </li>
+				<li>Most important of all, be nice :)</li>
+			</ul>
 		</div>
 	);
 };

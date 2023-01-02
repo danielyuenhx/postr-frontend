@@ -4,7 +4,7 @@
     justify-content: center;
     max-width: 65rem;
     width: 90%;
-    margin: 6rem auto;
+    margin: 6rem auto 2rem auto;
 }
 
 @media only screen and (max-width: 600px) {

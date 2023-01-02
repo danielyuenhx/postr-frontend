@@ -100,7 +100,9 @@ const FireworksCanvas = () => {
   }, [intervalId]);
 
   return (
-    <ReactCanvasConfetti refConfetti={getInstance} className={styles.container} />
+    <div className={styles.container} onClick={fire}>
+      <ReactCanvasConfetti refConfetti={getInstance} className={styles.canvas} />
+    </div>
   );
 };
 

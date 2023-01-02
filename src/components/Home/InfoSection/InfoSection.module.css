@@ -13,3 +13,18 @@
 .copyright {
 	color: #0000008b;
 }
+
+@media only screen and (max-width: 800px) {
+	.container {
+		max-width: 13rem;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.container {
+    max-width: 100%;
+    position: relative;
+    top: 0px;
+    margin: 0rem 0rem 2rem 0rem;
+	}
+}
