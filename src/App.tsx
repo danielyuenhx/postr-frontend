@@ -10,6 +10,7 @@ import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import CreatePage from './components/CreatePage/CreatePage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
+import AboutPage from './components/AboutPage/AboutPage'
 
 function App() {
 	const dispatch = useAppDispatch();
@@ -32,6 +33,10 @@ function App() {
 					<Route
 						path="/profile/:username"
 						element={<ProfilePage />}
+					/>
+					<Route
+						path="/about"
+						element={<AboutPage />}
 					/>
 					{/* only accessible if not logged in */}
 					{!profile?.result?.username && <Route path="/login" element={<Login />} />}

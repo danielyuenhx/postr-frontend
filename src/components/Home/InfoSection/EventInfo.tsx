@@ -4,7 +4,7 @@ import ReactCanvasConfetti from 'react-canvas-confetti';
 import InfoCard from '../../UI/InfoCard';
 import FireworksCanvas from './FireworksCanvas';
 
-import logo from '../../../images/onlytext.JPG';
+import logo from '../../../images/onlytext.png';
 
 import styles from './EventInfo.module.css';
 
