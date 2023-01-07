@@ -4,30 +4,30 @@ import { AxiosRequestConfig } from 'axios';
 type User = { username: string; password: string };
 type NewUser = { username: string; password: string; confirmPassword: string };
 type NewPost = {
-	user: string;
-	title: string;
-	content: string;
-	tags: string;
-	selectedFile: string;
+  user: string;
+  title: string;
+  content: string;
+  tags: string;
+  selectedFile: string;
 };
 
 const API = axios.create({ baseURL: 'http://localhost:5000' });
 
 // function that happens on each request
 API.interceptors.request.use((req: AxiosRequestConfig) => {
-	// send token to backend to verify user is logged in
-	// prepending token to header
-	const item = localStorage.getItem('profile');
-	if (item) {
-		if (req.headers === undefined) {
-			req.headers = {};
-		}
-		req.headers.Authorization = `Bearer ${
-			item === null ? null : JSON.parse(item).token
-		}`;
-	}
+  // send token to backend to verify user is logged in
+  // prepending token to header
+  const item = localStorage.getItem('profile');
+  if (item) {
+    if (req.headers === undefined) {
+      req.headers = {};
+    }
+    req.headers.Authorization = `Bearer ${
+      item === null ? null : JSON.parse(item).token
+    }`;
+  }
 
-	return req;
+  return req;
 });
 
 // callback functions that make requests
@@ -37,10 +37,11 @@ export const deletePost = (id: string) => API.delete(`/posts/${id}`);
 export const likePost = (id: string) => API.patch(`/posts/${id}/likePost`);
 
 export const createUser = (newUser: NewUser) =>
-	API.post('/users/createUser', newUser);
+  API.post('/users/createUser', newUser);
 export const loginUser = (user: User) => API.post('/users/loginUser', user);
 export const deleteUser = (id: string) => API.delete(`/users/${id}`);
 export const getUser = (username: string) => API.get(`/users/${username}`);
-export const updatePicture = (username: string, image: string) => API.post(`/users/update/${username}`, image);
+export const updatePicture = (userId: string, image: string) =>
+  API.post(`/users/updatePicture`, { userId, image });
 export const pinPost = (userId: string, postId: string) =>
-	API.post('/users/pinPost', { userId, postId });
+  API.post('/users/pinPost', { userId, postId });

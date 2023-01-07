@@ -37,9 +37,9 @@ export const getUser = (username: string) => async (dispatch: AppDispatch) => {
 };
 
 export const updatePicture =
-	(username: string, image: string) => async (dispatch: AppDispatch) => {
+	(userId: string, image: string) => async (dispatch: AppDispatch) => {
 		try {
-			const { data } = await api.updatePicture(username, image);
+			const { data } = await api.updatePicture(userId, image);
 		} catch (error) {
 			if (axios.isAxiosError(error) && error.response) {
 				return (error.response?.data as Error).message;

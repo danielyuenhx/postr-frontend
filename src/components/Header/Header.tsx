@@ -159,6 +159,7 @@ const Header = () => {
             <li>
               <Profile
                 username={user.result.username}
+                picture={user.result.picture}
                 onClick={setIsOpen.bind(null, !isOpen)}
                 windowWidth={windowWidth}
                 ref={profileRef}

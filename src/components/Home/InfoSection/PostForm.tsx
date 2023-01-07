@@ -16,16 +16,20 @@ const placeholders = [
   "What's on your mind?",
 ];
 
-const PostForm = (props: { username: string }) => {
+const PostForm = (props: { username: string; picture: string }) => {
   const placeholder =
     placeholders[Math.floor(Math.random() * placeholders.length)];
 
   return (
-    <InfoCard style={{marginTop: 0}}>
+    <InfoCard style={{ marginTop: 0 }}>
       <form>
         <Link to={`/profile/${props.username}`} className={styles.user}>
           <div className={styles.avatar}>
-            <LetteredAvatar name={props.username} size={20} />
+            {props.picture ? (
+              <img src={props.picture} className={styles.picture} />
+            ) : (
+              <LetteredAvatar name={props.username} size={20} />
+            )}
           </div>
           <label htmlFor='input'>{props.username}</label>
         </Link>

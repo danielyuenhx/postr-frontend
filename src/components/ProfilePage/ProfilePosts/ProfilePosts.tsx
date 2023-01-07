@@ -14,6 +14,7 @@ type PostType = {
 	selectedFile: string;
 	likes: [string];
 	createdAt: Date;
+	picture: string;
 };
 
 type User = {

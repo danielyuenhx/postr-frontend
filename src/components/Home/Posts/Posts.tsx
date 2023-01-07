@@ -15,6 +15,7 @@ type PostType = {
 	selectedFile: string;
 	likes: [string];
 	createdAt: Date;
+	picture: string;
 };
 
 const Posts = (props: { pinnedPost: String }) => {

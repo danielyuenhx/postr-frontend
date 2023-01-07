@@ -19,164 +19,164 @@ import styles from './Post.module.css';
 import Line from '../../UI/Line';
 
 type Post = {
-	_id: string;
-	user: string;
-	title: string;
-	content: string;
-	tags: string;
-	selectedFile: string;
-	likes: [string];
-	createdAt: Date;
+  _id: string;
+  user: string;
+  title: string;
+  content: string;
+  tags: string;
+  selectedFile: string;
+  likes: [string];
+  createdAt: Date;
+  picture: string;
 };
 
 const Post = (props: { post: Post; key: string; isPinned: boolean }) => {
-	// show snackbar AFTER reload
-	window.onload = () => {
-		const message = sessionStorage.getItem('reload');
-		if (message) {
-			openSnackbar(message, [2500]);
-			sessionStorage.removeItem('reload');
-		}
-	};
+  // show snackbar AFTER reload
+  window.onload = () => {
+    const message = sessionStorage.getItem('reload');
+    if (message) {
+      openSnackbar(message, [2500]);
+      sessionStorage.removeItem('reload');
+    }
+  };
 
-	const item = localStorage.getItem('profile');
-	const profile = item === null ? null : JSON.parse(item);
+  const item = localStorage.getItem('profile');
+  const profile = item === null ? null : JSON.parse(item);
 
-	const post = props.post;
+  const post = props.post;
 
-	const dispatch = useAppDispatch();
-	const [openSnackbar] = useSnackbar();
+  const dispatch = useAppDispatch();
+  const [openSnackbar] = useSnackbar();
 
-	const likeHandler = async () => {
-		await dispatch(likePost(post._id));
-	};
+  const likeHandler = async () => {
+    await dispatch(likePost(post._id));
+  };
 
-	const pinHandler = async () => {
-		const error = await dispatch(pinPost(profile?.result?.id, post._id));
-		if (error) {
-			openSnackbar(error, [5000]);
-		} else {
-			window.location.reload();
-			sessionStorage.setItem('reload', 'Post pinned!');
-		}
-	};
+  const pinHandler = async () => {
+    const error = await dispatch(pinPost(profile?.result?.id, post._id));
+    if (error) {
+      openSnackbar(error, [5000]);
+    } else {
+      window.location.reload();
+      sessionStorage.setItem('reload', 'Post pinned!');
+    }
+  };
 
-	const unpinHandler = async () => {
-		const error = await dispatch(pinPost(profile?.result?.id, ''));
-		if (error) {
-			openSnackbar(error, [5000]);
-		} else {
-			window.location.reload();
-			sessionStorage.setItem('reload', 'Post unpinned!');
-		}
-	};
+  const unpinHandler = async () => {
+    const error = await dispatch(pinPost(profile?.result?.id, ''));
+    if (error) {
+      openSnackbar(error, [5000]);
+    } else {
+      window.location.reload();
+      sessionStorage.setItem('reload', 'Post unpinned!');
+    }
+  };
 
-	const deleteHandler = async () => {
-		document.body.style.cursor = 'progress';
-		document.documentElement.style.cursor = 'progress';
+  const deleteHandler = async () => {
+    document.body.style.cursor = 'progress';
+    document.documentElement.style.cursor = 'progress';
 
-		const error = await dispatch(deletePost(post._id));
-		if (error) {
-			openSnackbar(error, [5000]);
-		} else {
-			openSnackbar('Successfully deleted post.', [5000]);
-		}
+    const error = await dispatch(deletePost(post._id));
+    if (error) {
+      openSnackbar(error, [5000]);
+    } else {
+      openSnackbar('Successfully deleted post.', [5000]);
+    }
 
-		document.body.style.cursor = 'default';
-		document.documentElement.style.cursor = 'default';
-	};
+    document.body.style.cursor = 'default';
+    document.documentElement.style.cursor = 'default';
+  };
 
-	const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-	// add close dropdown mouselistener to close on outside click
-	const dropdownRef = useRef<HTMLDivElement>(null);
-	const optionsRef = useRef<HTMLDivElement>(null);
+  // add close dropdown mouselistener to close on outside click
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const optionsRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		// click outside handler
-		function clickOutsideHandler(event: MouseEvent) {
-			if (
-				dropdownRef.current &&
-				!dropdownRef.current.contains(event.target as Element) &&
-				optionsRef.current &&
-				!optionsRef.current.contains(event.target as Element)
-			) {
-				setIsOpen(false);
-			}
-		}
+  useEffect(() => {
+    // click outside handler
+    function clickOutsideHandler(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Element) &&
+        optionsRef.current &&
+        !optionsRef.current.contains(event.target as Element)
+      ) {
+        setIsOpen(false);
+      }
+    }
 
-		// bind event listener to entire document
-		document.addEventListener('mouseup', clickOutsideHandler);
-		return () => {
-			// remove event listener on cleanup
-			document.removeEventListener('mouseup', clickOutsideHandler);
-		};
-	}, [dropdownRef]);
+    // bind event listener to entire document
+    document.addEventListener('mouseup', clickOutsideHandler);
+    return () => {
+      // remove event listener on cleanup
+      document.removeEventListener('mouseup', clickOutsideHandler);
+    };
+  }, [dropdownRef]);
 
-	return (
-		<div className={styles.card}>
-			{profile && post.user === profile.result.username && (
-				<>
-					<div className={styles.options} ref={optionsRef}>
-						<Options onClick={setIsOpen.bind(null, !isOpen)} />
-					</div>
-					<AnimatePresence>
-						{isOpen && (
-							<OptionsDropdown
+  return (
+    <div className={styles.card}>
+      {profile && post.user === profile.result.username && (
+        <>
+          <div className={styles.options} ref={optionsRef}>
+            <Options onClick={setIsOpen.bind(null, !isOpen)} />
+          </div>
+          <AnimatePresence>
+            {isOpen && (
+              <OptionsDropdown
                 isPinned={props.isPinned}
-								pinHandler={
-									!props.isPinned ? pinHandler : unpinHandler
-								}
-								deleteHandler={deleteHandler}
-								ref={dropdownRef}
-							/>
-						)}
-					</AnimatePresence>
-				</>
-			)}
-			{props.isPinned && (
-				<div className={styles.pin}>
-					<Pin /> Pinned post
-				</div>
-			)}
-			<div className={styles.profile}>
-				<Link to={`/profile/${post.user}`} className={styles.avatar}>
-					<LetteredAvatar name={post.user} size={20} />
-				</Link>
-				<Link to={`/profile/${post.user}`}>
-					<p style={{ fontWeight: '500' }}>{post.user}</p>
-				</Link>
-				<p style={{ fontWeight: '100' }}>
-					• {moment(post.createdAt).fromNow()}
-				</p>
-			</div>
-			<h3>{post.title}</h3>
-			<div className={styles.content}>
-				{ReactHtmlParser(post.content)}
-			</div>
-			{post.selectedFile && <img src={post.selectedFile} />}
-			{/* {post.tags && (
+                pinHandler={!props.isPinned ? pinHandler : unpinHandler}
+                deleteHandler={deleteHandler}
+                ref={dropdownRef}
+              />
+            )}
+          </AnimatePresence>
+        </>
+      )}
+      {props.isPinned && (
+        <div className={styles.pin}>
+          <Pin /> Pinned post
+        </div>
+      )}
+      <div className={styles.profile}>
+        <Link to={`/profile/${post.user}`} className={styles.avatar}>
+          {props.post.picture ? (
+            <img src={props.post.picture} className={styles.picture} />
+          ) : (
+            <LetteredAvatar name={post.user} size={20} />
+          )}
+        </Link>
+        <Link to={`/profile/${post.user}`}>
+          <p style={{ fontWeight: '500' }}>{post.user}</p>
+        </Link>
+        <p style={{ fontWeight: '100' }}>
+          • {moment(post.createdAt).fromNow()}
+        </p>
+      </div>
+      <h3>{post.title}</h3>
+      <div className={styles.content}>{ReactHtmlParser(post.content)}</div>
+      {post.selectedFile && <img src={post.selectedFile} />}
+      {/* {post.tags && (
 				<div className={styles.tags}>
 					<p>#tags</p> <p>#tags</p> <p>#tags</p>
 				</div>
 			)} */}
-			<Line />
-			<div className={styles.like}>
-				<Like
-					isLoggedIn={profile ? true : false}
-					isLikedByUser={
-						(profile ? true : false) &&
-						(post.likes.includes(profile.result.id) ? true : false)
-					}
-					onClick={profile ? likeHandler : () => {}}
-				/>
-				<span>
-					{post.likes.length}{' '}
-					{post.likes.length === 1 ? 'like' : 'likes'}
-				</span>
-			</div>
-		</div>
-	);
+      <Line />
+      <div className={styles.like}>
+        <Like
+          isLoggedIn={profile ? true : false}
+          isLikedByUser={
+            (profile ? true : false) &&
+            (post.likes.includes(profile.result.id) ? true : false)
+          }
+          onClick={profile ? likeHandler : () => {}}
+        />
+        <span>
+          {post.likes.length} {post.likes.length === 1 ? 'like' : 'likes'}
+        </span>
+      </div>
+    </div>
+  );
 };
 
 export default Post;

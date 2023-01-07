@@ -11,7 +11,7 @@ import Heart from '../icons/Heart';
 import Write from '../icons/Write';
 import Birthday from '../icons/Birthday';
 import { useAppDispatch } from '../../../hooks/hooks';
-import { deleteUser } from '../../../actions/users-actions';
+import { deleteUser, updatePicture } from '../../../actions/users-actions';
 import { authActions } from '../../../store/auth-slice';
 
 import styles from './Profile.module.css';
@@ -22,6 +22,7 @@ type User = {
   createdAt: string;
   totalPosts: number;
   totalLikes: number;
+  picture: string;
 };
 
 const Profile = (props: { user: User; isLoading: boolean }) => {
@@ -36,17 +37,20 @@ const Profile = (props: { user: User; isLoading: boolean }) => {
     document.body.style.cursor = 'progress';
     document.documentElement.style.cursor = 'progress';
 
-    // if (profile.result.username === props.user.username) {
-    //   const error = await dispatch(deleteUser(profile.result.id));
-    //   if (error) {
-    //     openSnackbar(error, [5000]);
-    //   } else {
-    //     dispatch(authActions.logout());
-    //     navigate('/');
-    //     window.location.reload();
-    //     sessionStorage.setItem('reload', 'Successfully saved new profile picture!.');
-    //   }
-    // }
+    if (profile.result.username === props.user.username) {
+      const error = await dispatch(
+        updatePicture(profile.result.id, selectedFile)
+      );
+      if (error) {
+        openSnackbar(error, [5000]);
+      } else {
+        window.location.reload();
+        sessionStorage.setItem(
+          'reload',
+          'Successfully saved new profile picture!'
+        );
+      }
+    }
 
     document.body.style.cursor = 'default';
     document.documentElement.style.cursor = 'default';
@@ -94,9 +98,13 @@ const Profile = (props: { user: User; isLoading: boolean }) => {
               </div>
             )}
             {selectedFile ? (
-              <img className={styles.chosenAvatar} src={selectedFile} />
+              <img className={styles.avatarPicture} src={selectedFile} />
             ) : (
-              <LetteredAvatar name={props.user.username} size={60} />
+              props.user.picture ? (
+                <img className={styles.avatarPicture} src={props.user.picture} />
+              ) : (
+                <LetteredAvatar name={props.user.username} size={60} />
+              )
             )}
           </div>
           <h2>{props.user.username}</h2>

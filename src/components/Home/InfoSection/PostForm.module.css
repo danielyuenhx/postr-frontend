@@ -3,6 +3,10 @@
 	user-select: none;
 }
 
+.avatar {
+	display: flex;
+}
+
 .user {
 	display: flex;
 	justify-content: flex-start;
@@ -10,9 +14,9 @@
 	margin-bottom: 0.5rem;
 	font-weight: 500;
 	margin-left: 0.25rem;
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
 }
 
 .user label {
@@ -80,4 +84,10 @@ input:hover {
 	margin-top: 1rem;
 	width: 2rem;
 	height: 2rem;
+}
+
+.picture {
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
 }

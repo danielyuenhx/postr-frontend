@@ -17,7 +17,7 @@ const InfoSection = () => {
   return (
     <div className={styles.container}>
       {profile ? (
-        <PostForm username={profile.result.username} />
+        <PostForm username={profile.result.username} picture={profile.result.picture} />
       ) : (
         <LoginForm />
       )}
