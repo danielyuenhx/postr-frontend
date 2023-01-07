@@ -168,7 +168,7 @@ const Header = () => {
           </ul>
         </nav>
       ) : (
-        pathName === '/login' && <HeaderLogin />
+        !(pathName === '/login') && <HeaderLogin />
       )}
       <AnimatePresence>
         {isOpen && (

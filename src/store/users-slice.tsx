@@ -26,6 +26,12 @@ const usersSlice = createSlice({
 				...action?.payload,
 			};
 		},
+		updatePicture(state, action: PayloadAction<User>) {
+			return {
+				...state,
+				...action?.payload,
+			};
+		},
 	},
 });
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import LetteredAvatar from 'react-lettered-avatar';
 import moment from 'moment';
 import { useSnackbar } from 'react-simple-snackbar';
@@ -32,25 +32,45 @@ const Profile = (props: { user: User; isLoading: boolean }) => {
   const [openSnackbar, closeSnackbar] = useSnackbar();
   const navigate = useNavigate();
 
-  const deleteHandler = async () => {
+  const saveHandler = async () => {
     document.body.style.cursor = 'progress';
     document.documentElement.style.cursor = 'progress';
 
-    if (profile.result.username === props.user.username) {
-      const error = await dispatch(deleteUser(profile.result.id));
-      if (error) {
-        openSnackbar(error, [5000]);
-      } else {
-        dispatch(authActions.logout());
-        navigate('/');
-        window.location.reload();
-        sessionStorage.setItem('reload', 'Successfully deleted account.');
-      }
-    }
+    // if (profile.result.username === props.user.username) {
+    //   const error = await dispatch(deleteUser(profile.result.id));
+    //   if (error) {
+    //     openSnackbar(error, [5000]);
+    //   } else {
+    //     dispatch(authActions.logout());
+    //     navigate('/');
+    //     window.location.reload();
+    //     sessionStorage.setItem('reload', 'Successfully saved new profile picture!.');
+    //   }
+    // }
 
     document.body.style.cursor = 'default';
     document.documentElement.style.cursor = 'default';
   };
+
+  const [fileName, setFileName] = useState('');
+  const [selectedFile, setSelectedFile] = useState('');
+
+  // VERY BAD PRACTICE BECAUSE NOT USING VIRTUAL DOM
+  // but library used does not offer much customisation
+  // already submitted pull request but no recent moderation
+  useEffect(() => {
+    document
+      .getElementById('filebaseDiv')
+      ?.firstElementChild?.setAttribute('id', 'filebase');
+  }, [document.getElementById('filebaseDiv')]);
+
+  useEffect(() => {
+    const input = document.getElementById('filebase') as HTMLInputElement;
+    if (input) {
+      const path = input.value.split('\\');
+      setFileName(input.value.split('\\')[path.length - 1]);
+    }
+  }, [document.getElementById('filebaseDiv'), selectedFile]);
 
   return (
     <div className={styles.container}>
@@ -58,11 +78,26 @@ const Profile = (props: { user: User; isLoading: boolean }) => {
         <>
           <div className={styles.avatar}>
             {profile && profile.result.username === props.user.username && (
-              <div className={styles.avatarOverlay}>
-                <Icon />
+              <div id='filebaseDiv'>
+                <FileBase
+                  type='image'
+                  multiple={false}
+                  onDone={({ base64 }: { base64: string }) =>
+                    setSelectedFile(base64)
+                  }
+                />
+                <label htmlFor='filebase'>
+                  <div className={styles.avatarOverlay}>
+                    <Icon />
+                  </div>
+                </label>
               </div>
             )}
-            <LetteredAvatar name={props.user.username} size={60} />
+            {selectedFile ? (
+              <img className={styles.chosenAvatar} src={selectedFile} />
+            ) : (
+              <LetteredAvatar name={props.user.username} size={60} />
+            )}
           </div>
           <h2>{props.user.username}</h2>
           <p className={styles.fromNow}>
@@ -98,9 +133,11 @@ const Profile = (props: { user: User; isLoading: boolean }) => {
               <Link to='/create' style={{ width: '100%' }}>
                 <button className={styles.create}>Create a post</button>
               </Link>
-              <button onClick={deleteHandler} className={styles.delete}>
-                Delete account
-              </button>
+              {selectedFile && (
+                <button onClick={saveHandler} className={styles.save}>
+                  Save
+                </button>
+              )}
             </>
           )}
         </>

@@ -41,5 +41,6 @@ export const createUser = (newUser: NewUser) =>
 export const loginUser = (user: User) => API.post('/users/loginUser', user);
 export const deleteUser = (id: string) => API.delete(`/users/${id}`);
 export const getUser = (username: string) => API.get(`/users/${username}`);
+export const updatePicture = (username: string, image: string) => API.post(`/users/update/${username}`, image);
 export const pinPost = (userId: string, postId: string) =>
 	API.post('/users/pinPost', { userId, postId });

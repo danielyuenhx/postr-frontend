@@ -10,8 +10,13 @@
 	justify-content: flex-end; */
 }
 
-.copyright {
+.muted {
 	color: #0000008b;
+}
+
+.muted a {
+	color: #0000008b;
+	text-decoration: none;
 }
 
 @media only screen and (max-width: 800px) {

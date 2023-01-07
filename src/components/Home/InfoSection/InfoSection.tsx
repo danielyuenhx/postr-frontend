@@ -24,8 +24,17 @@ const InfoSection = () => {
       <Line />
       {/* <h3 style={{fontWeight: 200}}>Announcements</h3> */}
       <EventInfo />
-      <RecentlyJoined />
-			<p className={styles.copyright}>© 2022 postr</p>  
+      {/* <RecentlyJoined /> */}
+      <p className={styles.muted}>
+        <a href='about'>
+          About
+        </a>
+        {' '} · {' '}
+        <a href='https://github.com/danielyuenhx/postr'>
+          GitHub
+        </a>
+      </p>
+      <p className={styles.muted}>© 2022 postr</p>
     </div>
   );
 };
