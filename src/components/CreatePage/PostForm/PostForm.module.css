@@ -1,3 +1,7 @@
+.container {
+    max-width: 50rem;
+}
+
 .card {
 	box-sizing: border-box;
     margin-top: 1.5rem;

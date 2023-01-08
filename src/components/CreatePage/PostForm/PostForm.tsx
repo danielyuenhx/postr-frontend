@@ -89,7 +89,7 @@ const PostForm = () => {
 	}, [document.getElementById('filebaseDiv'), selectedFile]);
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<h2 className={styles.heading}>Create a post</h2>
 			<Line />
 			<div className={styles.card}>
