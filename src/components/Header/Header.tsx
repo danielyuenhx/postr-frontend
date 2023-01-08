@@ -131,7 +131,7 @@ const Header = () => {
             }}
           />
         </Link>
-        <SearchBar />
+        {/* <SearchBar /> */}
       </div>
       {user ? (
         <nav className={styles.right}>

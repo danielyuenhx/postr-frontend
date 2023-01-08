@@ -140,8 +140,8 @@ const Post = (props: { post: Post; key: string; isPinned: boolean }) => {
       )}
       <div className={styles.profile}>
         <Link to={`/profile/${post.user}`} className={styles.avatar}>
-          {props.post.picture ? (
-            <img src={props.post.picture} className={styles.picture} />
+          {post.picture ? (
+            <img src={post.picture} className={styles.picture} />
           ) : (
             <LetteredAvatar name={post.user} size={20} />
           )}

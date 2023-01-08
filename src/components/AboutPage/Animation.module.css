@@ -32,7 +32,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #e5e5e55d;
+  background-color: #f4f4f442;
   z-index: 0;
 }
 
@@ -42,20 +42,18 @@
   height: 100%;
 }
 
-
 .vignette {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  box-shadow: 0 0 50px rgba(0,0,0,0.5) inset;
+  height: 100vh;
+  box-shadow: 0 0 50px rgba(157, 157, 157, 0.5) inset;
 }
 
 .click {
   padding: 1rem 2rem;
   background-color: #1f87ee;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   border-radius: 7rem;
   text-decoration: none;
   color: white;

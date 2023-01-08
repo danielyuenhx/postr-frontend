@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 import logo from '../../images/onlytext.png';
 
@@ -35,9 +36,18 @@ const Animation = () => {
   const [multiplier, setMultiplier] = useState(1);
 
   useEffect(() => {
+    let tempPageX: number;
+    let tempPageY: number;
+
     const onMouseMove = (e: MouseEvent) => {
-      setPageX(e.pageX);
-      setPageY(e.pageY);
+      tempPageX = e.pageX;
+      tempPageY = e.pageY;
+      requestAnimationFrame(updatePageValues);
+    };
+
+    const updatePageValues = () => {
+      setPageX(tempPageX);
+      setPageY(tempPageY);
     };
 
     const onResize = () => {
@@ -67,9 +77,15 @@ const Animation = () => {
         icon={
           <>
             <img src={logo} />
-            <a href='/' className={styles.click}>
-              Get Started
-            </a>
+            <div
+              // whileHover={{ scale: 1.05 }}
+              // whileTap={{ scale: 0.95 }}
+              // transition={{ ease: 'easeInOut'}}
+            >
+              <a href='/' className={styles.click}>
+                Get Started
+              </a>
+            </div>
           </>
         }
         position={[]}
@@ -101,7 +117,7 @@ const Animation = () => {
         zIndex={10000}
         width={`${20 * multiplier}rem`}
       /> */}
-      <div className={styles.icons}>
+      {(winWidth > 650 && winHeight > 650) && <div className={styles.icons}>
         <Movable
           icon={<Chat />}
           position={[winWidth * 20, winHeight * 12]}
@@ -230,7 +246,7 @@ const Animation = () => {
           offsetSpeed={2.5}
           width="150px"
         /> */}
-      </div>
+      </div>}
     </div>
   );
 };

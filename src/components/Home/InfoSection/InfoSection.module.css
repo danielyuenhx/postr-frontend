@@ -11,6 +11,7 @@
 }
 
 .muted {
+	font-size: 0.75rem;
 	color: #0000008b;
 }
 
@@ -30,6 +31,10 @@
     max-width: 100%;
     position: relative;
     top: 0px;
-    margin: 0rem 0rem 2rem 0rem;
+    margin: 0rem 0rem 1rem 0rem;
+	}
+
+	.muted {
+		display: none;
 	}
 }

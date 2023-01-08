@@ -11,6 +11,17 @@ type Post = {
 	createdAt: Date;
 };
 
+type NewPost = {
+	_id: string;
+	user: string;
+	title: string;
+	content: string;
+	tags: string;
+	selectedFile: string;
+	likes: [string];
+	createdAt: Date;
+};
+
 const initialState: any[] = [];
 
 const postsSlice = createSlice({
@@ -20,15 +31,15 @@ const postsSlice = createSlice({
 		getPosts(state, action: PayloadAction<Post[]>) {
 			return action?.payload;
 		},
-		createPost(state, action: PayloadAction<Post[]>) {
+		createPost(state, action: PayloadAction<NewPost[]>) {
 			return [...state, action?.payload];
 		},
 		deletePost(state, action: PayloadAction<string>) {
-			return state.filter((post) => post._id != action.payload);
+			return state.filter((post) => post._id !== action.payload);
 		},
-		updatePost(state, action: PayloadAction<Post>) {
+		updatePost(state, action: PayloadAction<NewPost>) {
 			return state.map((post) =>
-				post._id === action.payload._id ? action.payload : post
+				post._id === action.payload._id ? {...post, likes: action.payload.likes} : post
 			);
 		},
 	},

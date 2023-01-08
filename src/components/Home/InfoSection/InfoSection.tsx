@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LetteredAvatar from 'react-lettered-avatar';
 
 import PostForm from './PostForm';
@@ -14,27 +14,43 @@ const InfoSection = () => {
   const item = localStorage.getItem('profile');
   const profile = item === null ? null : JSON.parse(item);
 
+  const [winWidth, setWinWidth] = useState(0);
+
+  useEffect(() => {
+    const onResize = () => {
+      setWinWidth(window.innerWidth);
+    };
+
+    onResize();
+
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+    };
+  }, [window.innerWidth]);
+
   return (
     <div className={styles.container}>
       {profile ? (
-        <PostForm username={profile.result.username} picture={profile.result.picture} />
+        <PostForm
+          username={profile.result.username}
+          picture={profile.result.picture}
+        />
       ) : (
         <LoginForm />
       )}
-      <Line />
-      {/* <h3 style={{fontWeight: 200}}>Announcements</h3> */}
+      {winWidth > 600 && <Line />}
+      <h3 style={{ fontWeight: 200, letterSpacing: '0.05rem' }}>
+        Announcements
+      </h3>
       <EventInfo />
       {/* <RecentlyJoined /> */}
       <p className={styles.muted}>
-        <a href='about'>
-          About
-        </a>
-        {' '} · {' '}
-        <a href='https://github.com/danielyuenhx/postr'>
-          GitHub
-        </a>
+        <a href='about'>About</a> ·{' '}
+        <a href='https://github.com/danielyuenhx/postr'>GitHub</a>
       </p>
       <p className={styles.muted}>© 2022 postr</p>
+      {winWidth <= 600 && <Line />}
     </div>
   );
 };

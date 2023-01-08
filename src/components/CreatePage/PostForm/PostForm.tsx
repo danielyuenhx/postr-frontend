@@ -56,6 +56,7 @@ const PostForm = () => {
 				content,
 				tags,
 				selectedFile,
+				picture: profile.result.picture,
 			})
 		);
 		if (error) {

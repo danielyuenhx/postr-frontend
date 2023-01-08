@@ -40,6 +40,13 @@ export const updatePicture =
 	(userId: string, image: string) => async (dispatch: AppDispatch) => {
 		try {
 			const { data } = await api.updatePicture(userId, image);
+
+			const item = localStorage.getItem('profile');
+			const profile = item === null ? null : JSON.parse(item);
+			
+			profile.result.picture = data.result.picture;
+
+			localStorage.setItem('profile', JSON.stringify(profile));
 		} catch (error) {
 			if (axios.isAxiosError(error) && error.response) {
 				return (error.response?.data as Error).message;
@@ -54,6 +61,13 @@ export const pinPost =
 	(userId: string, postId: string) => async (dispatch: AppDispatch) => {
 		try {
 			const { data } = await api.pinPost(userId, postId);
+
+			const item = localStorage.getItem('profile');
+			const profile = item === null ? null : JSON.parse(item);
+			
+			profile.result.pinnedPost = data.result.pinnedPost;
+
+			localStorage.setItem('profile', JSON.stringify(profile));
 		} catch (error) {
 			if (axios.isAxiosError(error) && error.response) {
 				return (error.response?.data as Error).message;

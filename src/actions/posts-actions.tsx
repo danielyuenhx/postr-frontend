@@ -20,6 +20,7 @@ type NewPost = {
 	content: string;
 	tags: string;
 	selectedFile: string;
+	picture: string;
 };
 
 type Error = { message: string };
@@ -42,8 +43,9 @@ export const createPost =
 	(postData: NewPost) => async (dispatch: AppDispatch) => {
 		try {
 			const { data } = await api.createPost(postData);
+			const updatedData = {...data, picture: postData.picture}
 
-			dispatch(postsActions.createPost(data));
+			dispatch(postsActions.createPost(updatedData));
 		} catch (error) {
 			if (axios.isAxiosError(error) && error.response) {
 				return (error.response?.data as Error).message;
