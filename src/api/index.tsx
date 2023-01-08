@@ -11,7 +11,8 @@ type NewPost = {
   selectedFile: string;
 };
 
-const API = axios.create({ baseURL: 'http://localhost:5000' });
+// use localhost if in development
+const API = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 // function that happens on each request
 API.interceptors.request.use((req: AxiosRequestConfig) => {
