@@ -61,6 +61,7 @@
     height: 60px;
     line-height: 60px;
     border-radius: 60px;
+    object-fit: cover;
 }
 
 .container .fromNow {
@@ -152,6 +153,10 @@
 
 .save:hover {
     background-color: #4a5dea;
+}
+
+.filebaseDiv input {
+    display: none;
 }
 
 @media only screen and (max-width: 800px) {

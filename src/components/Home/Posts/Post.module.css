@@ -149,6 +149,7 @@ pre code {
 	height: 20px;
 	border-radius: 100%;
     margin-bottom: 0px !important;
+    object-fit: cover;
 }
 
 .avatar {

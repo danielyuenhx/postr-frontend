@@ -12,7 +12,6 @@ import Write from '../icons/Write';
 import Birthday from '../icons/Birthday';
 import { useAppDispatch } from '../../../hooks/hooks';
 import { deleteUser, updatePicture } from '../../../actions/users-actions';
-import { authActions } from '../../../store/auth-slice';
 
 import styles from './Profile.module.css';
 import Icon from '../icons/Icon';
@@ -82,7 +81,7 @@ const Profile = (props: { user: User; isLoading: boolean }) => {
         <>
           <div className={styles.avatar}>
             {profile && profile.result.username === props.user.username && (
-              <div id='filebaseDiv'>
+              <div id='filebaseDiv' className={styles.filebaseDiv}>
                 <FileBase
                   type='image'
                   multiple={false}
