@@ -145,8 +145,8 @@ pre code {
 }
 
 .picture {
-	width: 20px;
-	height: 20px;
+	width: 20px !important;
+	height: 20px !important;
 	border-radius: 100%;
     margin-bottom: 0px !important;
     object-fit: cover;
