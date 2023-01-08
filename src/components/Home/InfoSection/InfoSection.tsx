@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import LetteredAvatar from 'react-lettered-avatar';
+import { Link } from 'react-router-dom';
 
 import PostForm from './PostForm';
 import LoginForm from './LoginForm';
@@ -7,7 +7,6 @@ import LoginForm from './LoginForm';
 import styles from './InfoSection.module.css';
 import EventInfo from './EventInfo';
 import Line from '../../UI/Line';
-import RecentlyJoined from './RecentlyJoined';
 
 const InfoSection = () => {
   // check if user is logged in
@@ -46,8 +45,8 @@ const InfoSection = () => {
       <EventInfo />
       {/* <RecentlyJoined /> */}
       <p className={styles.muted}>
-        <a href='about'>About</a> ·{' '}
-        <a href='https://github.com/danielyuenhx/postr'>GitHub</a>
+        <Link to='about'>About</Link> ·{' '}
+        <a target='_blank' href='https://github.com/danielyuenhx/postr'>GitHub</a>
       </p>
       <p className={styles.muted}>© 2022 postr</p>
       {winWidth <= 600 && <Line />}

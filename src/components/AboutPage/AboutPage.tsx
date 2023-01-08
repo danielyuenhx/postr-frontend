@@ -10,18 +10,17 @@ import styles from './AboutPage.module.css';
 
 const cardVariants: Variants = {
   offscreen: {
-    // y: 300,
-    x: -500,
+    y: 400,
+    // x: -500,
   },
   onscreen: {
-    x: 0,
+    // x: 0,
     // y: 50,
     y: 0,
-    rotate: -0,
     transition: {
       type: 'spring',
       bounce: 0.4,
-      duration: 1.5,
+      duration: 1,
     },
   },
 };

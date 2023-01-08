@@ -22,7 +22,7 @@ const Rules = () => {
 				<Line />
 				<li>Watch your language.</li>
 				<Line />
-				<li>Post decent stuff only.</li>
+				<li>You're welcome to post anything you like, but do ensure the stuff you post is decent.</li>
 				<Line />
 				<li>Most important of all, be nice :)</li>
 				<Line />
